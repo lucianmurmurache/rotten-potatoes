@@ -25,9 +25,9 @@ http.createServer((request, response) => {
         else {
       console.log('Data added to log file!');
       }
-    });
+    }); //appendFile
     response.writeHead(200, { 'Content-Type': 'text/html'});
     response.write(data);
     response.end('');
-  });
+  }); //readFile
 }).listen(8080);
