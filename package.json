@@ -1,0 +1,27 @@
+{
+  "name": "movie_api",
+  "version": "1.0.0",
+  "description": "## The app is created for the purpose of practising while progressing through the CF course content!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucianmurmurache/rotten-potatoes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucianmurmurache/rotten-potatoes/issues"
+  },
+  "homepage": "https://github.com/lucianmurmurache/rotten-potatoes#readme",
+  "dependencies": {
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0"
+  }
+}
