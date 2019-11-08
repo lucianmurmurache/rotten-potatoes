@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <title>Rotten potatoes</title>
+  <style>
+  #endpoints td, #endpoints th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  #endpoints td:nth-child(even) {background-color: #f2f2f2;}
+  #endpoints tr:hover {background-color: #ddd;}
+  #endpoints th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+  }
+  </style>
 </head>
 
 <body>
@@ -16,8 +31,95 @@
       A user can sign up, add personal information and create and store a list of movies they favour.
     </p>
     <p>
-      The application interacts with a database which stores movie-related data.
+      The application interacts with a database which stores movie-related data. Below you can find further details on each available endpoint!
     </p>
+
+    <h2>Endpoints:</h2>
+
+    <table id="endpoints">
+      <thead>
+        <tr>
+          <th>Logic</th>
+          <th>Method</th>
+          <th>Short Description</th>
+          <th>Request format</th>
+          <th>Response format</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>'/movies'</td>
+          <td>GET</td>
+          <td>Contains data on all available movies.</td>
+          <td>None</td>
+          <td>Contains all available movies.</td>
+        </tr>
+        <tr>
+          <td>/movies/:title'</td>
+          <td>GET</td>
+          <td>Contains data on a single movie using the movie title.</td>
+          <td>None</td>
+          <td>Contains data such as a short description, director, genre and an image URL.</td>
+        </tr>
+        <tr>
+          <td>'/movie/:release'</td>
+          <td>GET</td>
+          <td>Contains data on movies by the release year.</td>
+          <td>None</td>
+          <td>Contains data on movies by release year.</td>
+        </tr>
+        <tr>
+          <td>'/genre/:name'</td>
+          <td>GET</td>
+          <td>Contains data on movies by genre.</td>
+          <td>None</td>
+          <td>Contains data on movies by genre.</td>
+        </tr>
+        <tr>
+          <td>'/directors/:name'</td>
+          <td>GET</td>
+          <td>Contains data about a director.</td>
+          <td>None</td>
+          <td>Contains data about a director.</td>
+        </tr>
+        <tr>
+          <td>'/users'</td>
+          <td>POST</td>
+          <td>User registration.</td>
+          <td>Contains data that a new user inputs.<p>(username: 'Jimmy Jo', password:'jimmyjospw', email:'jimmy.jo@jo.com', dateofbirth:'01.02.1987')</p></td>
+          <td>Contains a text notification that the user has been successfuly added.</td>
+        </tr>
+        <tr>
+          <td>'/users/:username/:password/:email/:dateofbirth'</td>
+          <td>PUT</td>
+          <td>Update user information</td>
+          <td>The user can update their username, password, email or date of birth.</td>
+          <td> Text notification that the user information was updated.</td>
+        </tr>
+        <tr>
+          <td>'/favorites/:username/:title'</td>
+          <td>POST</td>
+          <td>Adding a movie to the user´s favourite list.</td>
+          <td>None</td>
+          <td>Text notification that the movie has been added to the favourite list.</td>
+        </tr>
+        <tr>
+          <td>'/favorites/:username/:title'</td>
+          <td>DELETE</td>
+          <td>Removing a movie from the user´s favourite list.</td>
+          <td>None</td>
+          <td>Text notification that the movie has been removed from the favourite list.</td>
+        </tr>
+        <tr>
+          <td>'/users/:username'</td>
+          <td>DELETE</td>
+          <td>User deregistration</td>
+          <td>None</td>
+          <td>Text notification that the user has been deregistered.</td>
+        </tr>
+      </tbody>
+    </table>
+
   </header>
 
   <footer>
