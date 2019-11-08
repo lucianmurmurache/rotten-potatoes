@@ -6,6 +6,11 @@
   <meta charset="utf-8">
   <title>Rotten potatoes</title>
   <style>
+  #endpoints {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
   #endpoints td, #endpoints th {
     border: 1px solid #ddd;
     padding: 8px;
@@ -19,6 +24,17 @@
     background-color: #4CAF50;
     color: white;
   }
+  h1 {
+    text-align: center;
+  }
+  p {
+    text-indent: 20px;
+  }
+  #intro {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    width: 95%;
+  }
   </style>
 </head>
 
@@ -26,12 +42,11 @@
 
   <header>
     <h1>Documentation</h1>
-    <p>
-      This web application will provide access to information related to movies, movie genres, directors and other movie-related content.<br>
-      A user can sign up, add personal information and create and store a list of movies they favour.
-    </p>
-    <p>
-      The application interacts with a database which stores movie-related data. Below you can find further details on each available endpoint!
+    <p id="intro">
+      This web application will provide access to information related to movies, movie genres, directors and other movie-related content.
+      A user can sign up, add personal information and create and store a list of movies they deem to be their favourite.
+      The application interacts with a database which stores movie-related data. Below you can find further details on each available endpoint, includng logic, method, a short description, the request format
+      and the response format!
     </p>
 
     <h2>Endpoints:</h2>
