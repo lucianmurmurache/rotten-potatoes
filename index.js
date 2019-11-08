@@ -162,16 +162,16 @@ app.delete('/favorites/:username/:title', (req, res) => {
   res.send('Movie removed from favourite list!');
 });
 
+// User deregistration
+app.delete('/users/:username', (req, res) => {
+  res.send('User successfully removed!');
+});
+
 // Serves public folder
 app.use(express.static('public'));
 app.use(function(err, req, res, next) {
   console.error(err.stack);
   res.status(500).send('Something broke!');
-});
-
-// User deregistration
-app.delete('/users/:username', (req, res) => {
-  res.send('User successfully removed!');
 });
 
 // Listen for requests - port 8080
