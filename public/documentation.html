@@ -4,44 +4,19 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
   <title>Rotten potatoes</title>
   <style>
-  #endpoints {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-  #endpoints td, #endpoints th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  #endpoints td:nth-child(even) {background-color: #f2f2f2;}
-  #endpoints tr:hover {background-color: #ddd;}
-  #endpoints th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
-    color: white;
-  }
-  h1 {
-    text-align: center;
-  }
-  p {
-    text-indent: 20px;
-  }
-  #intro {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    font-size: 17px;
-    width: 95%;
-  }
+
   </style>
 </head>
 
 <body>
 
   <header>
-    <h1>Documentation</h1>
+    <h1>Rotten potatoes - Documentation</h1>
     <p id="intro">
       This web application will provide access to information related to movies, movie genres, directors and other movie-related content.
       A user can sign up, add personal information and create and store a list of movies they deem to be their favourite.
@@ -49,9 +24,10 @@
       and the response format!
     </p>
 
+    <!-- ENDPOINTS HEADER AND TABLE -->
     <h2>Endpoints:</h2>
 
-    <table id="endpoints">
+    <table id="endpoints-table">
       <thead>
         <tr>
           <th>Logic</th>
@@ -101,7 +77,7 @@
           <td>'/users'</td>
           <td>POST</td>
           <td>User registration.</td>
-          <td>Contains data that a new user inputs.<p>(username: 'Jimmy Jo', password:'jimmyjospw', email:'jimmy.jo@jo.com', dateofbirth:'01.02.1987')</p></td>
+          <td>Contains data that a new user inputs.<p>(username: 'Jimmy Jo', password:'jimmyjospw', email:'jimmy@jo.com', dateofbirth:'01.02.1987')</p></td>
           <td>Contains a text notification that the user has been successfuly added.</td>
         </tr>
         <tr>
@@ -131,6 +107,407 @@
           <td>User deregistration</td>
           <td>None</td>
           <td>Text notification that the user has been deregistered.</td>
+        </tr>
+      </tbody>
+    </table><br><br>
+
+    <!-- ENTITIES AND ATTRIBUTES HEADER AND TABLE -->
+    <h2>Entities and Attributes:</h2>
+
+    <table id="entitiesAndAttributes-table">
+      <thead>
+        <tr>
+          <th>Entity</th>
+          <th>Attributes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Movies</td>
+          <td>ID, Title, Descrition, Genre, Directors, Image path (URL), Featured(Y/N)</td>
+        </tr>
+        <tr>
+          <td>Director</td>
+          <td>ID, Name, Bio, Birth year, Death year</td>
+        </tr>
+        <tr>
+          <td>Genre</td>
+          <td>ID, Name, Descrition</td>
+        </tr>
+        <tr>
+          <td>Users</td>
+          <td>ID, Username, Password, E-mail, Birthday, Favourite movies</td>
+        </tr>
+      </tbody>
+    </table><br><br>
+
+    <!-- RELATIONAL DATABASE HEADER SOURCE LINK AND TABLE -->
+    <h2>Relational Database:</h2>
+    <small>*Descriptions and image URLs taken from <a href="https://imdb.com" target="_blank">IMDB</a></small>
+
+    <table id="relational-table">
+      <thead><!-- May need to replace with text in comments -->
+        <tr>
+        <th>MovieID</th><!-- MOVIEID -->
+        <th>Title</th><!-- TITLE -->
+        <th>Description</th><!-- DESCRIPTION -->
+        <th>GenreID</th><!-- GENREID -->
+        <th>DirectorID</th><!-- DIRECTORID -->
+        <th>ImagePath</th><!-- IMAGEPATH -->
+        <th>Featured</th><!-- FEATURED -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>The Godfather</td>
+          <td>The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.</td>
+          <td>4, 5</td>
+          <td>1</td>
+          <td>https:// www.imdb.com/title/tt0068646/mediaviewer/rm746868224</td>
+          <td>False</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>The Lord of the Rings: The Fellowship of the Ring</td>
+          <td>A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.</td>
+          <td>2, 5, 6</td>
+          <td>2</td>
+          <td>https:// www.imdb.com/title/tt0120737/mediaviewer/rm3592958976</td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>The Lord of the Rings: The Two Towers</td>
+          <td>While Frodo and Sam edge closer to Mordor with the help of the shifty Gollum, the divided fellowship makes a stand against Sauron\'s new ally, Saruman, and his hordes of Isengard.</td>
+          <td>2, 5, 6</td>
+          <td>2</td>
+          <td>https:// www.imdb.com/title/tt0167261/mediaviewer/rm2020826368</td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>The Lord of the Rings: The Return of the King</td>
+          <td>Gandalf and Aragorn lead the World of Men against Sauron\'s army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.</td>
+          <td>2, 5, 6</td>
+          <td>2</td>
+          <td>https:// www.imdb.com/title/tt0167260/mediaviewer/rm584928512</td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>The Dark Knight</td>
+          <td>When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.',</td>
+          <td>1, 4, 5</td>
+          <td>3</td>
+          <td>https:// www.imdb.com/title/tt0468569/mediaviewer/rm4023877632</td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>The Dark Knight Rises</td>
+          <td>Eight years after the Joker\'s reign of anarchy, Batman, with the help of the enigmatic Catwoman, is forced from his exile to save Gotham City from the brutal guerrilla terrorist Bane.</td>
+          <td>1, 4, 5</td>
+          <td>3</td>
+          <td>https:// www.imdb.com/title/tt1345836/mediaviewer/rm834516224</td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Avengers: Infinity War</td>
+          <td>The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.</td>
+          <td>1, 2, 9</td>
+          <td>4</td>
+          <td>https:// www.imdb.com/title/tt4154756/mediaviewer/rm4044245504</td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Saving Private Ryan</td>
+          <td>Following the Normandy Landings, a group of U.S. soldiers go behind enemy lines to retrieve a paratrooper whose brothers have been killed in action.</td>
+          <td>1, 5</td>
+          <td>5</td>
+          <td>https:// www.imdb.com/title/tt0120815/mediaviewer/rm1924732160</td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Gladiator</td>
+          <td>A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.</td>
+          <td>1, 2, 5</td>
+          <td>6</td>
+          <td>https:// www.imdb.com/title/tt0172495/mediaviewer/rm2442542592</td>
+          <td>True</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>12 Angry Men</td>
+          <td>A jury holdout attempts to prevent a miscarriage of justice by forcing his colleagues to reconsider the evidence.</td>
+          <td>5</td>
+          <td>7</td>
+          <td>https:// www.imdb.com/title/tt0050083/mediaviewer/rm2927108352</td>
+          <td>True</td>
+        </tr>
+      </tbody>
+    </table><br><br>
+
+    <!-- GENRE HEADER AND TABLE -->
+
+    <h2>Genre Table:</h2>
+    <small>*Descriptions taken from <a href="https://en.wikipedia.org/wiki/List_of_genres" target="_blank">Wikipedia</a></small>
+
+    <table id="genre-table"> <!-- May need to replace with text in comments -->
+      <thead>
+        <tr>
+          <th>GenreID</th><!-- GENREID -->
+          <th>Name</th><!-- NAME -->
+          <th>Description</th><!-- DESCRIPTION -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Action</td>
+          <td>An action story is similar to adventure, and the protagonist usually takes a risky turn, which leads to desperate situations
+              (including explosions, fight scenes, daring escapes, etc.). Action and adventure are usually categorized together
+              (sometimes even as "action-adventure") because they have much in common, and many stories fall under both genres simultaneously
+              (for instance, the James Bond series can be classified as both).
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Adventure</td>
+          <td>An adventure story is about a protagonist who journeys to epic or distant places to accomplish something. It can have many other
+              genre elements included within it, because it is a very open genre. The protagonist has a mission and faces obstacles to get to
+              their destination. Also, adventure stories usually include unknown settings and characters with prized properties or features.
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Comedy</td>
+          <td>Comedy is a story that tells about a series of funny, or comical events, intended to make the audience laugh. It is a very open
+              genre, and thus crosses over with many other genres on a frequent basis.
+          </td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Crime</td>
+          <td>A crime story is about a crime that is being committed or was committed. It can also be an account of a criminal's life.
+              It often falls into the action or adventure genres.
+          </td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Drama</td>
+          <td>Within film, television and radio (but not theatre), drama is a genre of narrative fiction (or semi-fiction) intended to be more
+              serious than humorous in tone,[2] focusing on in-depth development of realistic characters who must deal with realistic emotional
+              struggles. A drama is commonly considered the opposite of a comedy, but may also be considered separate from other works of some
+              broad genre, such as a fantasy.
+          </td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Fantasy</td>
+          <td>A fantasy story is about magic or supernatural forces, rather than technology (as science fiction) if it happens to take place in
+              a modern or future era. Depending on the extent of these other elements, the story may or may not be considered to be a "hybrid
+              genre" series; for instance, even though the Harry Potter series canon includes the requirement of a particular gene to be a
+              wizard, it is referred to only as a fantasy series.
+          </td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Animation</td>
+          <td>Although animation is listed under "Genres" and is classified as a genre by many film critics and streaming services, there is
+              an ongoing debate between the animation community and the general public whether animation is a genre or a medium; and that the
+              genres in the "Live-action scripted" genre can also be portrayed in an animated format, and the below kinds of animation are not
+              types of stories, but simply types of ways that a film can be animated.
+          </td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Mystery</td>
+          <td>A mystery story follows an investigator as they attempt to solve a puzzle (often a crime). The details and clues are presented
+              as the story continues and the protagonist discovers them and by the end of the story the mystery/puzzle is solved. For example,
+              in the case of a crime mystery the perpetrator and motive behind the crime are revealed and the perpetrator is brought to justice.
+              Mystery novels are often written in series, which facilitates a more in-depth development of the primary investigator.
+              Specific types of mystery story include locked room mysteries and cozy mysteries.
+          </td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Science fiction(Sci-Fi)</td>
+          <td>Science fiction is similar to fantasy, except stories in this genre use scientific understanding to explain the universe that it takes
+              place in. It generally includes or is centered on the presumed effects or ramifications of computers or machines; travel through space,
+              time or alternate universes; alien life-forms; genetic engineering; or other such things. The science or technology used may or may not
+              be very thoroughly elaborated on; stories whose scientific elements are reasonably detailed, well-researched and considered to be
+              relatively plausible given current knowledge and technology are often referred to as hard science fiction.
+          </td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>Thriller</td>
+          <td>A Thriller is a story that is usually a mix of fear and excitement. It has traits from the suspense genre and often from the action,
+              adventure or mystery genres, but the level of terror makes it borderline horror fiction at times as well. It generally has a dark or
+              serious theme, which also makes it similar to drama.
+          </td>
+        </tr>
+      </tbody>
+    </table><br><br>
+
+    <h2>Directors:</h2>
+    <small>*Bio taken from <a href="https://en.wikipedia.org/wiki/List_of_genres" target="_blank">Wikipedia</a></small>
+
+    <table id="directors-table">
+      <thead> <!-- May need to replace with text in comments -->
+        <tr>
+          <th>DirectorID</th><!-- DIRECTORID -->
+          <th>Name</th><!-- NAME -->
+          <th>Bio</th><!-- BIO -->
+          <th>BirthYear</th><!-- BIRTHYEAR -->
+          <th>DeathYear</th><!-- DEATHYEAR -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Francis Ford Coppola</td>
+          <td>Francis Ford Coppola is an American film director, producer, screenwriter, film composer, and vintner.
+              He was a central figure in the New Hollywood filmmaking movement of the 1960s and 1970s. He is widely
+              considered to be one of the greatest filmmakers of all time.
+          </td>
+          <td>1939</td>
+          <td>--</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Peter Jackson</td>
+          <td>Sir Peter Robert Jackson ONZ KNZM is a New Zealand film director, screenwriter, and film producer.
+              He is best known as the director, writer, and producer of the Lord of the Rings trilogy and the
+              Hobbit trilogy, both of which are adapted from the novels of the same name by J. R. R. Tolkien.
+          </td>
+          <td>1961</td>
+          <td>--</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Christopher Nolan</td>
+          <td>Christopher Edward Nolan, CBE is a British-American film director, screenwriter, and producer,
+              who is known for making personal, distinctive films within the Hollywood mainstream. Having made
+              his directorial debut with Following, Nolan gained considerable attention for his second feature
+              Memento.
+          </td>
+          <td>1970</td>
+          <td>--</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Anthony and Joe Russo</td>
+          <td>Anthony Russo and Joseph Russo, collectively known as the Russo Brothers, are American film and
+              television directors. The brothers direct most of their work together, and occasionally work as
+              producers, screenwriters, actors, and editors.
+          </td>
+          <td>1970</td>
+          <td>--</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Steven Spielberg</td>
+          <td>Steven Allan Spielberg is an American filmmaker. He is considered one of the founding pioneers of
+              the New Hollywood era and one of the most popular directors and producers in film history. Spielberg
+              started in Hollywood directing television and several minor theatrical releases.
+          </td>
+          <td>1946</td>
+          <td>--</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Ridley Scott</td>
+          <td>Sir Ridley Scott is an English filmmaker. Following his commercial breakthrough in 1979 with the science
+              fiction horror film Alien, further works include the neo-noir dystopian film Blade Runner, the road adventure
+              film Thelma & Louise, the historical drama Gladiator and the science fiction film The Martian
+          </td>
+          <td>1937</td>
+          <td>--</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Sidney Lumet</td>
+          <td>Sidney Arthur Lumet was an American director, producer, and screenwriter with over 50 films to his credit.
+              He was nominated five times for the Academy Award: four for Best Director for 12 Angry Men, Dog Day Afternoon,
+              Network, and The Verdict and one for Best Adapted Screenplay for Prince of the City.
+          </td>
+          <td>1924</td>
+          <td>2011</td>
+        </tr>
+      </tbody>
+    </table><br><br>
+
+    <h2>Users:</h2>
+    <p>Contains records for different users.</p>
+
+    <!-- Users table-->
+    <table id="users-table">
+      <thead><!-- May need to replace with text in comments -->
+        <tr>
+          <th>UserID</th><!-- USERID -->
+          <th>Username</th><!-- USERNAME -->
+          <th>Password</th><!-- PASSWORD -->
+          <th>Email</th><!-- EMAIL -->
+          <th>BirthDate</th><!-- BIRTHDATE -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>HenriCoandă</td>
+          <td>IBelieveICanFly</td>
+          <td>henri@coanda.com</td>
+          <td>01/02/1987</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>MarieCurie</td>
+          <td>Plutonium-239</td>
+          <td>marie@curie.org</td>
+          <td>07/11/1867</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>CharlesDarwin</td>
+          <td>FRS-FRGS-FLS-FZS</td>
+          <td>charles@evolution.org</td>
+          <td>12/02/1809</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Users-Movies Table:</h2>
+    <p>Junction table.</p>
+
+    <!-- User-Movies Table -->
+    <table id="userMovie-table">
+      <thead><!-- May need to replace with text in comments -->
+        <tr>
+          <th>UserMovieID</th><!-- USERMOVIEID -->
+          <th>UserID</th><!-- USERID -->
+          <th>MovieID</th><!-- MOVIEID -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>1</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>1</td>
+          <td>2</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>2</td>
+          <td>2</td>
         </tr>
       </tbody>
     </table>
