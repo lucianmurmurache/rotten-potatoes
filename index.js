@@ -76,7 +76,7 @@ let Movies = [{
   released: '1998',
   length: '2h 49min',
   description: 'Following the Normandy Landings, a group of U.S. soldiers go behind enemy lines to retrieve a paratrooper whose brothers have been killed in action.',
-  genre: 'Drama, War',
+  genre: 'Drama, Action',
   director: 'Steven Spielberg',
   imageURL: 'https://www.imdb.com/title/tt0120815/mediaviewer/rm1924732160'
 },
