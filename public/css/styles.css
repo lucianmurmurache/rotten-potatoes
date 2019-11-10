@@ -1,0 +1,191 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #FFF;
+  background-size: cover;
+  font-weight: 400;
+  margin: 5px;
+}
+
+h1 {
+  text-align: center;
+}
+p {
+  text-indent: 20px;
+}
+
+a:link {
+  text-decoration: none;
+  color: #f2f2f2;
+}
+a:visited {
+  text-decoration: none;
+  color: #0000FF;
+}
+a:hover,
+a:active {
+  text-decoration: none;
+  color: #FF0000;
+}
+
+/* Endpoints table styling */
+#endpoints-table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+#endpoints-table td,
+#endpoints-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#endpoints-table td:nth-child(even) {background-color: #f2f2f2;}
+#endpoints-table tr:hover {background-color: #ddd;}
+#endpoints-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+/* Entities&Attributes styling */
+#entitiesAndAttributes-table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  margin-top: 10px;
+  width: 50%;
+}
+#entitiesAndAttributes-table td,
+#entitiesAndAttributes-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#entitiesAndAttributes-table td:nth-child(even) {background-color: #f2f2f2;}
+#entitiesAndAttributes-table tr:hover {background-color: #ddd;}
+#entitiesAndAttributes-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Relational Table styling */
+#relational-table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  margin-top: 10px;
+  width: 100%;
+}
+#relational-table td,
+#relational-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#relational-table td:nth-child(even) {background-color: #f2f2f2;}
+#relational-table tr:hover {background-color: #ddd;}
+#relational-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Genre table styling */
+#genre-table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  margin-top: 10px;
+  width: 100%;
+}
+#genre-table td,
+#genre-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#genre-table td:nth-child(even) {background-color: #f2f2f2;}
+#genre-table tr:hover {background-color: #ddd;}
+#genre-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Directors table styling */
+#directors-table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  margin-top: 10px;
+  width: 100%;
+}
+#directors-table td,
+#directors-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#directors-table td:nth-child(even) {background-color: #f2f2f2;}
+#directors-table tr:hover {background-color: #ddd;}
+#directors-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Users table styling*/
+#users-table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  margin-top: 10px;
+  width: 50%;
+}
+#users-table td,
+#users-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#users-table td:nth-child(even) {background-color: #f2f2f2;}
+#users-table tr:hover {background-color: #ddd;}
+#users-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* User-Movie table styling */
+#userMovie-table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  margin-top: 10px;
+  width: 50%;
+}
+#userMovie-table td,
+#userMovie-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#userMovie-table td:nth-child(even) {background-color: #f2f2f2;}
+#userMovie-table tr:hover {background-color: #ddd;}
+#userMovie-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Intro text styling */
+#intro {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  width: 95%;
+}
