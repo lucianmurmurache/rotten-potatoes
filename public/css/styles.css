@@ -4,8 +4,6 @@
 }
 
 body {
-  background-color: #FFF;
-  background-size: cover;
   font-weight: 400;
   margin: 5px;
 }
@@ -162,20 +160,20 @@ a:active {
 }
 
 /* User-Movie table styling */
-#userMovie-table {
+#user-movie__table {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   margin-top: 10px;
   width: 50%;
 }
-#userMovie-table td,
-#userMovie-table th {
+#user-movie__table td,
+#user-movie__table th {
   border: 1px solid #ddd;
   padding: 8px;
 }
-#userMovie-table td:nth-child(even) {background-color: #f2f2f2;}
-#userMovie-table tr:hover {background-color: #ddd;}
-#userMovie-table th {
+#user-movie__table td:nth-child(even) {background-color: #f2f2f2;}
+#user-movie__table tr:hover {background-color: #ddd;}
+#user-movie__table th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
