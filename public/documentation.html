@@ -81,14 +81,14 @@
           <td>Contains a text notification that the user has been successfuly added.</td>
         </tr>
         <tr>
-          <td>'/users/:username/:password/:email/:dateofbirth'</td>
+          <td>'/users/:username/:password/:email/:birthday'</td>
           <td>PUT</td>
           <td>Update user information</td>
           <td>The user can update their username, password, email or date of birth.</td>
           <td> Text notification that the user information was updated.</td>
         </tr>
         <tr>
-          <td>'/favorites/:username/:title'</td>
+          <td>'/username/:favorites/:title'</td>
           <td>POST</td>
           <td>Adding a movie to the user´s favourite list.</td>
           <td>None</td>
@@ -146,15 +146,15 @@
     <small>*Descriptions and image URLs taken from <a href="https://imdb.com" target="_blank">IMDB</a></small>
 
     <table id="relational-table">
-      <thead><!-- May need to replace with text in comments -->
+      <thead>
         <tr>
-        <th>MovieID</th><!-- MOVIEID -->
-        <th>Title</th><!-- TITLE -->
-        <th>Description</th><!-- DESCRIPTION -->
-        <th>GenreID</th><!-- GENREID -->
-        <th>DirectorID</th><!-- DIRECTORID -->
-        <th>ImagePath</th><!-- IMAGEPATH -->
-        <th>Featured</th><!-- FEATURED -->
+        <th>MovieID</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>GenreID</th>
+        <th>DirectorID</th>
+        <th>ImagePath</th>
+        <th>Featured</th>
         </tr>
       </thead>
       <tbody>
@@ -193,12 +193,12 @@
     <h2>Genre Table:</h2>
     <small>*Descriptions taken from <a href="https://en.wikipedia.org/wiki/List_of_genres" target="_blank">Wikipedia</a></small>
 
-    <table id="genre-table"> <!-- May need to replace with text in comments -->
+    <table id="genre-table">
       <thead>
         <tr>
-          <th>GenreID</th><!-- GENREID -->
-          <th>Name</th><!-- NAME -->
-          <th>Description</th><!-- DESCRIPTION -->
+          <th>GenreID</th>
+          <th>Name</th>
+          <th>Description</th>
         </tr>
       </thead>
       <tbody>
@@ -233,13 +233,13 @@
     <small>*Bio taken from <a href="https://en.wikipedia.org/wiki/List_of_genres" target="_blank">Wikipedia</a></small>
 
     <table id="directors-table">
-      <thead> <!-- May need to replace with text in comments -->
+      <thead>
         <tr>
-          <th>DirectorID</th><!-- DIRECTORID -->
-          <th>Name</th><!-- NAME -->
-          <th>Bio</th><!-- BIO -->
-          <th>Birthyear</th><!-- BIRTHYEAR -->
-          <th>Deathyear</th><!-- DEATHYEAR -->
+          <th>DirectorID</th>
+          <th>Name</th>
+          <th>Bio</th>
+          <th>Birthyear</th>
+          <th>Deathyear</th>
         </tr>
       </thead>
       <tbody>
@@ -282,13 +282,13 @@
 
     <!-- Users table-->
     <table id="users-table">
-      <thead><!-- May need to replace with text in comments -->
+      <thead>
         <tr>
-          <th>UserID</th><!-- USERID -->
-          <th>Username</th><!-- USERNAME -->
-          <th>Password</th><!-- PASSWORD -->
-          <th>Email</th><!-- EMAIL -->
-          <th>BirthDate</th><!-- BIRTHDATE -->
+          <th>UserID</th>
+          <th>Username</th>
+          <th>Password</th>
+          <th>Email</th>
+          <th>Birthday</th>
         </tr>
       </thead>
       <tbody>
@@ -309,40 +309,39 @@
         <tr>
           <td>3</td>
           <td>CharlesDarwin</td>
-          <td>FRS-FRGS-FLS-FZS</td>
-          <td>charles@evolution.org</td>
+          <td>Naturfroscher</td>
+          <td>charles@darwin.org</td>
           <td>12/02/1809</td>
         </tr>
       </tbody>
     </table>
 
-    <h2>Users-Movies Table:</h2>
-    <p>Junction table.</p>
+    <h2>Users Favorites Table:</h2>
 
     <!-- User-Movies Table -->
     <table id="user-movie__table">
-      <thead><!-- May need to replace with text in comments -->
+      <thead>
         <tr>
-          <th>UserMovieID</th><!-- USERMOVIEID -->
-          <th>UserID</th><!-- USERID -->
-          <th>MovieID</th><!-- MOVIEID -->
+          <th>UserMovieID</th>
+          <th>UserID</th>
+          <th>MovieID</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
+          <td>Username: HenriCoanda</td>
+          <td>"_id": ObjectId("5dced41b978df25d546c8aa7")</td>
+          <td>ObjectId("5dcc4e1de104d472d609fd35")</td>
         </tr>
         <tr>
-          <td>2</td>
-          <td>1</td>
-          <td>2</td>
+          <td>Username: MarieCurie</td>
+          <td>"_id": ObjectId("5dcb1908f1770a55351b09f3")</td>
+          <td>ObjectId("5dcc4e1de104d472d609fd35")</td>
         </tr>
         <tr>
-          <td>3</td>
-          <td>2</td>
-          <td>2</td>
+          <td>Username: CharlesDarwin</td>
+          <td>"_id": ObjectId("5dced48b978df25d546c8aa8"),</td>
+          <td>ObjectId("5dcc4da8e104d472d609fd34")</td>
         </tr>
       </tbody>
     </table>
