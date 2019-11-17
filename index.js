@@ -4,102 +4,16 @@ const express = require('express'),
 const morgan = require('morgan');
 const app = express();
 
+const mongoose = require('mongoose');
+const Models = require('./models.js');
+
+const Movies = Models.Movie;
+const Users = Models.User;
+
+mongoose.connect('mongodb://localhost:27017/RottenPotatoes', {useNewUrlParser: true});
 
 // BodyParser
 app.use(bodyParser.json());
-// Movies
-let Movies = [{
-  title: 'The Godfather',
-  released: '1972',
-  length: '2h 55min',
-  description: 'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.',
-  genre: 'Crime, Drama',
-  director: 'Francis Ford Coppola',
-  imageURL: 'https://www.imdb.com/title/tt0068646/mediaviewer/rm746868224'
-},
-{
-  title: 'The Lord of the Rings: The Fellowship of the Ring',
-  released: '2001',
-  length: '2h 58min',
-  description: 'A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.',
-  genre: 'Adventure, Drama, Fantasy',
-  director: 'Peter Jackson',
-  imageURL: 'https://www.imdb.com/title/tt0120737/mediaviewer/rm3592958976'
-},
-{
-  title: 'The Lord of the Rings: The Two Towers',
-  released: '2002',
-  length: '2h 59min',
-  description: 'While Frodo and Sam edge closer to Mordor with the help of the shifty Gollum, the divided fellowship makes a stand against Sauron\'s new ally, Saruman, and his hordes of Isengard.',
-  genre: 'Adventure, Drama, Fantasy',
-  director: 'Peter Jackson',
-  imageURL: 'https://www.imdb.com/title/tt0167261/mediaviewer/rm2020826368'
-},
-{
-  title: 'The Lord of the Rings: The Return of the King',
-  released: '2003',
-  length: '3h 21min',
-  description: 'Gandalf and Aragorn lead the World of Men against Sauron\'s army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.',
-  genre: 'Adventure, Drama, Fantasy',
-  director: 'Peter Jackson',
-  imageURL: 'https://www.imdb.com/title/tt0167260/mediaviewer/rm584928512'
-},
-{
-  title: 'The Dark Knight',
-  released: '2008',
-  length: '2h 32min',
-  description: 'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.',
-  genre: 'Action, Crime, Drama',
-  director: 'Christopher Nolan',
-  imageURL: 'https://www.imdb.com/title/tt0468569/mediaviewer/rm4023877632'
-},
-{
-  title: 'The Dark Knight Rises',
-  released: '2012',
-  length: '2h 58min',
-  description: 'Eight years after the Joker\'s reign of anarchy, Batman, with the help of the enigmatic Catwoman, is forced from his exile to save Gotham City from the brutal guerrilla terrorist Bane.',
-  genre: 'Action, Thriller',
-  director: 'Christopher Nolan',
-  imageURL: 'https://www.imdb.com/title/tt1345836/mediaviewer/rm834516224'
-},
-{
-  title: 'Avengers: Infinity War',
-  released: '2018',
-  length: '2h 29min',
-  description: 'The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.',
-  genre: 'Action, Adventure, Sci-Fi',
-  director: 'Anthony and Joe Russo',
-  imageURL: 'https://www.imdb.com/title/tt4154756/mediaviewer/rm4044245504'
-},
-{
-  title: 'Saving Private Ryan',
-  released: '1998',
-  length: '2h 49min',
-  description: 'Following the Normandy Landings, a group of U.S. soldiers go behind enemy lines to retrieve a paratrooper whose brothers have been killed in action.',
-  genre: 'Drama, Action',
-  director: 'Steven Spielberg',
-  imageURL: 'https://www.imdb.com/title/tt0120815/mediaviewer/rm1924732160'
-},
-{
-  title: 'Gladiator',
-  released: '2000',
-  length: '2h 35min',
-  description: 'A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.',
-  genre: 'Action, Adventure, Drama',
-  director: 'Ridley Scott',
-  imageURL: 'https://www.imdb.com/title/tt0172495/mediaviewer/rm2442542592'
-},
-{
-  title: '12 Angry Men',
-  released: '1957',
-  length: '1h 36min',
-  description: 'A jury holdout attempts to prevent a miscarriage of justice by forcing his colleagues to reconsider the evidence.',
-  genre: 'Drama',
-  director: 'Sidney Lumet',
-  imageURL: 'https://www.imdb.com/title/tt0050083/mediaviewer/rm2927108352'
-
-}]
-
 
 // log requests using morgan
 app.use(morgan('common'));
@@ -135,8 +49,34 @@ app.get('/directors/:name', (req, res) => {
   res.send('GET request successfully returning data on director by name!');
 });
 
-// User registration
-app.post('/users', (req, res) => {
+// User registration [ Add a user (JSON is expected in this format ) ]
+app.post('/users', function(req, res) {
+  Users.findOne({ Username: req.body.Username })
+  .then(function(user) {
+    if(user) {
+      return res.status(400).send(req.body.Username + "already exists");
+    } else {
+      Users.create({
+        Username: req.body.Username,
+        Password: req.body.Password,
+        Email: req.body.Email,
+        Birthday: req.body.Birthday
+      })
+      .then(function(user) {res.status(201).json(user) })
+      .catch(function(error) {
+        console.error(error);
+        res.status(500).send("Error: " + error);
+      })
+    }
+  }).catch(function(error) {
+    console.error(error);
+    res.status(500).send("Error: " + error);
+  });
+});
+
+
+//Old user registration
+/*app.post('/users', (req, res) => {
   let newUser = req.body;
 
   if(!newUser.username) {
@@ -146,9 +86,9 @@ app.post('/users', (req, res) => {
     res.send('User successfully added!');
   }
 });
-
+*/
 // Update user data
-app.put('/users/:username/:password/:email/:dateofbirth', (req, res) => {
+app.put('/users/:username/:password/:email/:birthday', (req, res) => {
   res.send('User data updated!');
 });
 

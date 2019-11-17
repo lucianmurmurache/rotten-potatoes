@@ -17,9 +17,19 @@ var movieSchema = mongoose.Schema({
 });
 
 var userSchema = mongoose.Schema({
-  Username : {type: String, required: true},
-  Password : {type: String, required: true},
-  Email : {type: String,  required: true},
+  Username : {
+    type: String,
+    required: true
+  },
+  Password : {
+    type: String,
+    required: true
+  },
+  Email : {
+    type: String,
+    required: true,
+    validate: [{ validator: value => isEmail(value), msg: 'Invalid email.' }]
+  },
   Birthday : Date,
   Favourites : [{ type : mongoose.Schema.Types.ObjectId, ref: 'Movie'}]
 });
