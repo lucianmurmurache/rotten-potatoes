@@ -28,7 +28,7 @@ var userSchema = mongoose.Schema({
   Email : {
     type: String,
     required: true,
-    validate: [{ validator: value => isEmail(value), msg: 'Invalid email.' }]
+    //validate: [{ validator: value => isEmail(value), msg: 'Invalid email.' }]
   },
   Birthday : Date,
   Favourites : [{ type : mongoose.Schema.Types.ObjectId, ref: 'Movie'}]
