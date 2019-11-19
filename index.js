@@ -104,8 +104,8 @@ app.post('/users', function(req, res) {
 
 // Update user data by username
 app.put('/users/:Username', function(req, res) {
-  Users.findOneAndUpdate({
-    Username : req.params.Username},
+  Users.findOneAndUpdate(
+    { Username : req.params.Username},
     { $set : {
     Username : req.body.Username,
     Password : req.body.Password,
@@ -124,10 +124,10 @@ app.put('/users/:Username', function(req, res) {
 });
 
 // Add movie to user favourite list
-app.post('/users/:Username/Favorites/:MovieID', function(req, res) {
-  Users.findOneAndUpdate({
-    Username : req.params.Username},
-    { $push : { Favorites : req.params.MovieID}},
+app.post('/users/:Username/Movies/:MovieID', function(req, res) {
+  Users.findOneAndUpdate(
+    { Username : req.params.Username},
+    { $push : { Favourites : req.params.MovieID } },
     { new : true}, // This makes sure the updated document is returned
     function(err, updatedUser) {
       if(err) {
@@ -140,10 +140,10 @@ app.post('/users/:Username/Favorites/:MovieID', function(req, res) {
 });
 
 // Detele movie from user favourite list
-app.delete('/users/:Username/Movies/:MovieId', function(req, res) {
-  Users.findOneAndRemove({
-    Username : req.params.Username},
-    { $push : { Favorites : req.params.MovieId}},
+app.delete('/users/:Username/Movies/:MovieID', function(req, res) {
+  Users.findOneAndUpdate(
+    { Username : req.params.Username},
+    { $pull : { Favourites : req.params.MovieID } },
     { new : true}, // This makes sure the updated document is returned
     function(err, updatedUser) {
       if(err) {
@@ -157,9 +157,8 @@ app.delete('/users/:Username/Movies/:MovieId', function(req, res) {
 
 // User deregistration
 app.delete('/users/:Username', function(req, res) {
-  Users.findOneAndRemove({
-    Username: req.params.Username
-  })
+  Users.findOneAndRemove(
+    { Username: req.params.Username })
     .then(function(user) {
       if(!user) {
         res.status(400).send(req.params.Username + " not found!");
