@@ -124,7 +124,7 @@ app.put('/users/:Username', function(req, res) {
 });
 
 // Add movie to user favourite list
-app.post('/users/:Username/Movies/:MovieID', function(req, res) {
+app.post('/users/:Username/Favorites/:MovieID', function(req, res) {
   Users.findOneAndUpdate({
     Username : req.params.Username},
     { $push : { Favorites : req.params.MovieID}},

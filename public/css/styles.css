@@ -3,14 +3,20 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
+  background-color: #EAE7DC;
   font-weight: 400;
   margin: 5px;
 }
 
-h1 {
+h1, h2 {
   text-align: center;
 }
+
 p {
   text-indent: 20px;
 }
@@ -29,156 +35,9 @@ a:active {
   color: #FF0000;
 }
 
-/* Endpoints table styling */
-#endpoints-table {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-#endpoints-table td,
-#endpoints-table th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-#endpoints-table td:nth-child(even) {background-color: #f2f2f2;}
-#endpoints-table tr:hover {background-color: #ddd;}
-#endpoints-table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4CAF50;
-  color: white;
-}
-/* Entities&Attributes styling */
-#entitiesAndAttributes-table {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  margin-top: 10px;
-  width: 50%;
-}
-#entitiesAndAttributes-table td,
-#entitiesAndAttributes-table th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-#entitiesAndAttributes-table td:nth-child(even) {background-color: #f2f2f2;}
-#entitiesAndAttributes-table tr:hover {background-color: #ddd;}
-#entitiesAndAttributes-table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4CAF50;
-  color: white;
-}
-
-/* Relational Table styling */
-#relational-table {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  margin-top: 10px;
-  width: 100%;
-}
-#relational-table td,
-#relational-table th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-#relational-table td:nth-child(even) {background-color: #f2f2f2;}
-#relational-table tr:hover {background-color: #ddd;}
-#relational-table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4CAF50;
-  color: white;
-}
-
-/* Genre table styling */
-#genre-table {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  margin-top: 10px;
-  width: 100%;
-}
-#genre-table td,
-#genre-table th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-#genre-table td:nth-child(even) {background-color: #f2f2f2;}
-#genre-table tr:hover {background-color: #ddd;}
-#genre-table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4CAF50;
-  color: white;
-}
-
-/* Directors table styling */
-#directors-table {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  margin-top: 10px;
-  width: 100%;
-}
-#directors-table td,
-#directors-table th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-#directors-table td:nth-child(even) {background-color: #f2f2f2;}
-#directors-table tr:hover {background-color: #ddd;}
-#directors-table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4CAF50;
-  color: white;
-}
-
-/* Users table styling*/
-#users-table {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  margin-top: 10px;
-  width: 50%;
-}
-#users-table td,
-#users-table th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-#users-table td:nth-child(even) {background-color: #f2f2f2;}
-#users-table tr:hover {background-color: #ddd;}
-#users-table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4CAF50;
-  color: white;
-}
-
-/* User-Movie table styling */
-#user-movie__table {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  margin-top: 10px;
-  width: 50%;
-}
-#user-movie__table td,
-#user-movie__table th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-#user-movie__table td:nth-child(even) {background-color: #f2f2f2;}
-#user-movie__table tr:hover {background-color: #ddd;}
-#user-movie__table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4CAF50;
-  color: white;
+code {
+  font-size: 80%;
+  color: #E85A4F;
 }
 
 /* Intro text styling */
@@ -186,4 +45,25 @@ a:active {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   font-size: 17px;
   width: 95%;
+}
+
+/* Endpoints table styling */
+#endpoints-table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border-collapse: collapse;
+  width: 99%;
+}
+#endpoints-table td,
+#endpoints-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#endpoints-table tr:hover {background-color: #ddd;}
+#endpoints-table th {
+  background-color: #E85A4F;
+  padding-bottom: 12px;
+  padding-top: 12px;
+  text-align: left;
+  color: white;
 }

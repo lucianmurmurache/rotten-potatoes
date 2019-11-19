@@ -15,339 +15,167 @@
 
 <body>
 
+
   <header>
-    <h1>Rotten potatoes - Documentation</h1>
+    <h1>Rotten <img class="website-logo" src="../public/img/potato.png" alt="website-logo"> <br><br></h1>
+    <h2>Documentation</h2>
     <p id="intro">
       This web application will provide access to information related to movies, movie genres, directors and other movie-related content.
       A user can sign up, add personal information and create and store a list of movies they deem to be their favourite.
-      The application interacts with a database which stores movie-related data. Below you can find further details on each available endpoint, includng logic, method, a short description, the request format
-      and the response format!
+      The application interacts with a database which stores movies and users related data. Below you can find further details on each available endpoint, includng request, URL, HTTP method, the request format and the response format!
     </p>
+    <br><br>
 
-    <!-- ENDPOINTS HEADER AND TABLE -->
-    <h2>Endpoints:</h2>
-
+    <!-- ENDPOINTS TABLE -->
     <table id="endpoints-table">
       <thead>
         <tr>
-          <th>Logic</th>
-          <th>Method</th>
-          <th>Short Description</th>
+          <th>Request</th>
+          <th>URL</th>
+          <th>HTTP Method</th>
           <th>Request format</th>
           <th>Response format</th>
         </tr>
       </thead>
       <tbody>
         <tr>
+          <td>Get a list of all available movies</td>
           <td>'/movies'</td>
           <td>GET</td>
-          <td>Contains data on all available movies.</td>
           <td>None</td>
-          <td>Contains all available movies.</td>
+          <td>JSON object that holds data about all available movies</td>
         </tr>
         <tr>
-          <td>/movies/:title'</td>
+          <td>Get a movie by name</td>
+          <td>/movies/:Title'</td>
           <td>GET</td>
-          <td>Contains data on a single movie using the movie title.</td>
           <td>None</td>
-          <td>Contains data such as a short description, director, genre and an image URL.</td>
+          <td>JSON object that holds data about one movie, data such as a short description, director(including bio and birth year), genre(including genre description), actors and an image URL <br>Response example:<br>
+            <code>
+              {
+                "Genre": {
+                  "Name": "Crime",
+                  "Description": "Crime film is a genre that revolves around the action of a criminal mastermind. A Crime film will often revolve around the criminal himself, chronicling his rise and fall."
+                },<br>
+                "Director": {
+                  "Name": "Francis Ford Coppola",
+                  "Bio": "Francis Ford Coppola is an American film director, producer, screenwriter, film composer, and vintner. He was a central figure in the New Hollywood filmmaking movement of the 1960s and 1970s. He is widely considered to be one of the greatest filmmakers of all time.",
+                  "Birth": "1939"
+                },<br>
+                "Actors": [
+                "Marlon Brando",
+                "Al Pacino",
+                "James Caan"
+                ],<br>
+                "_id": "5dd1803fbf39bd7e373b9453",<br>
+                "Title": "The Godfather",<br>
+                "Description": "Don Vito Corleone, head of a mafia family, decides to handover his empire to his youngest son Michael. However, his decision unintentionally puts the lives of his loved ones in grave danger.",<br>
+                "ImagePath": "thegodfather.png",<br>
+                "Featured": true
+          </code>
+        </td>
         </tr>
         <tr>
-          <td>'/movie/:release'</td>
+          <td>Get information about a specific movie genre</td>
+          <td>'/movies/genres/:Name'</td>
           <td>GET</td>
-          <td>Contains data on movies by the release year.</td>
           <td>None</td>
-          <td>Contains data on movies by release year.</td>
+          <td>JSON object that holds data about a specific movie genre<br>
+            Request example:<br>
+            <code>
+              {<br>
+                "Name": "Thriller",<br>
+                "Description": "Thriller film, also known as suspense film or suspense thriller, is a broad film genre that involves excitement and suspense in the audience."<br>
+              }
+            </code>
+          </td>
         </tr>
         <tr>
-          <td>'/genre/:name'</td>
+          <td>Get data about a director by name</td>
+          <td>'movies/directors/:Name'</td>
           <td>GET</td>
-          <td>Contains data on movies by genre.</td>
           <td>None</td>
-          <td>Contains data on movies by genre.</td>
+          <td>JSON object that holds data on a director, including the name, bio and birth year<br>
+            Response example:<br>
+            <code>
+              {<br>
+                "Name": "Ridley Scott",<br>
+                "Bio": "Described by film producer Michael Deeley as the very best eye in the business, director Ridley Scott was born on November 30, 1937 in South Shields, Tyne and Wear, then County Durham.",<br>
+                "Birth": "1937"<br>
+              }
+            </code>
+          </td>
         </tr>
         <tr>
-          <td>'/directors/:name'</td>
-          <td>GET</td>
-          <td>Contains data about a director.</td>
-          <td>None</td>
-          <td>Contains data about a director.</td>
-        </tr>
-        <tr>
+          <td>Add a new user</td>
           <td>'/users'</td>
           <td>POST</td>
-          <td>User registration.</td>
-          <td>Contains data that a new user inputs.<p>(username: 'Jimmy Jo', password:'jimmyjospw', email:'jimmy@jo.com', dateofbirth:'01.02.1987')</p></td>
-          <td>Contains a text notification that the user has been successfuly added.</td>
+          <td>JSON object that holds the data a new user would input<br>
+            Request example:<br>
+            <code>
+                {<br>
+	               "Username" : "testuser2",<br>
+	                "Password" : "testpassword3",<br>
+	                 "Email" : "test2@user.biz",<br>
+	                  "Birthday" : "82/02/02"<br>
+                  }
+            </code>
+          </td>
+          <td>JSON object that holds data on an added user<br>
+            Response example:<br>
+            <code>
+              {<br>
+                "Favourites": [],<br>
+                "_id": "5dd3a20775f0783e94c901aa",<br>
+                "Username": "testuser2",<br>
+                "Password": "testpassword3",<br>
+                "Email": "test2@user.biz",<br>
+                "Birthday": "1982-02-01T23:00:00.000Z",<br>
+                "__v": 0<br>
+              }
+            </code>
+          </td>
         </tr>
         <tr>
-          <td>'/users/:username/:password/:email/:birthday'</td>
-          <td>PUT</td>
           <td>Update user information</td>
-          <td>The user can update their username, password, email or date of birth.</td>
-          <td> Text notification that the user information was updated.</td>
+          <td>'/users/:Username'</td>
+          <td>PUT</td>
+          <td>JSON object that holds the new user data.<br>Request example:<br>
+          <code>
+              {<br>
+               "Username" : "updatedUsername",<br>
+                "Password" : "newpassword",<br>
+                 "Email" : "new@email.added",<br>
+                  "Birthday" : "1919/02/02"<br>
+                }
+          </code></td>
+          <td>A confirmation that the data was updated. An error message is displayed if an error occurs</td>
         </tr>
         <tr>
-          <td>'/username/:favorites/:title'</td>
+          <td>Add a movie to the user´s favourite movies list</td>
+          <td>'/users/username/:favorites/:MovieId'</td>
           <td>POST</td>
-          <td>Adding a movie to the user´s favourite list.</td>
           <td>None</td>
-          <td>Text notification that the movie has been added to the favourite list.</td>
+          <td>A confirmation that the movie was added. If an error occurs, an error message is returned instead</td>
         </tr>
         <tr>
-          <td>'/favorites/:username/:title'</td>
+          <td>Remove a movie from the user´s favourite movies list</td>
+          <td>'/username/favorites/:MovieId'</td>
           <td>DELETE</td>
-          <td>Removing a movie from the user´s favourite list.</td>
           <td>None</td>
-          <td>Text notification that the movie has been removed from the favourite list.</td>
+          <td>A confirmation that the movie has been removed from the favourite list. If an error occurs, an error message is displayed</td>
         </tr>
         <tr>
-          <td>'/users/:username'</td>
+          <td>Remove an existing user</td>
+          <td>'/users/:Username'</td>
           <td>DELETE</td>
-          <td>User deregistration</td>
           <td>None</td>
-          <td>Text notification that the user has been deregistered.</td>
+          <td>A confirmation that the user has been removed. If an error occurs, an error message is displayed</td>
         </tr>
       </tbody>
     </table><br><br>
-
-    <!-- ENTITIES AND ATTRIBUTES HEADER AND TABLE -->
-    <h2>Entities and Attributes:</h2>
-
-    <table id="entitiesAndAttributes-table">
-      <thead>
-        <tr>
-          <th>Entity</th>
-          <th>Attributes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Movies</td>
-          <td>ID, Title, Descrition, Genre, Directors, Image path (URL), Featured(Y/N)</td>
-        </tr>
-        <tr>
-          <td>Director</td>
-          <td>ID, Name, Bio, Birth year, Death year</td>
-        </tr>
-        <tr>
-          <td>Genre</td>
-          <td>ID, Name, Descrition</td>
-        </tr>
-        <tr>
-          <td>Users</td>
-          <td>ID, Username, Password, E-mail, Birthday, Favourite movies</td>
-        </tr>
-      </tbody>
-    </table><br><br>
-
-    <!-- RELATIONAL DATABASE HEADER SOURCE LINK AND TABLE -->
-    <h2>Relational Database:</h2>
-    <small>*Descriptions and image URLs taken from <a href="https://imdb.com" target="_blank">IMDB</a></small>
-
-    <table id="relational-table">
-      <thead>
-        <tr>
-        <th>MovieID</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>GenreID</th>
-        <th>DirectorID</th>
-        <th>ImagePath</th>
-        <th>Featured</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>The Godfather</td>
-          <td>The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.</td>
-          <td>4</td>
-          <td>1</td>
-          <td>https:// www.imdb.com/title/tt0068646/mediaviewer/rm746868224</td>
-          <td>False</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>The Lord of the Rings: The Fellowship of the Ring</td>
-          <td>A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.</td>
-          <td>2</td>
-          <td>2</td>
-          <td>https:// www.imdb.com/title/tt0120737/mediaviewer/rm3592958976</td>
-          <td>True</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>The Lord of the Rings: The Two Towers</td>
-          <td>While Frodo and Sam edge closer to Mordor with the help of the shifty Gollum, the divided fellowship makes a stand against Sauron\'s new ally, Saruman, and his hordes of Isengard.</td>
-          <td>2</td>
-          <td>2</td>
-          <td>https:// www.imdb.com/title/tt0167261/mediaviewer/rm2020826368</td>
-          <td>True</td>
-        </tr>
-      </tbody>
-    </table><br><br>
-
-    <!-- GENRE HEADER AND TABLE -->
-
-    <h2>Genre Table:</h2>
-    <small>*Descriptions taken from <a href="https://en.wikipedia.org/wiki/List_of_genres" target="_blank">Wikipedia</a></small>
-
-    <table id="genre-table">
-      <thead>
-        <tr>
-          <th>GenreID</th>
-          <th>Name</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Action</td>
-          <td>An action story is similar to adventure, and the protagonist usually takes a risky turn, which leads to desperate situations
-              (including explosions, fight scenes, daring escapes, etc.). Action and adventure are usually categorized together
-              (sometimes even as "action-adventure") because they have much in common, and many stories fall under both genres simultaneously
-              (for instance, the James Bond series can be classified as both).
-          </td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Adventure</td>
-          <td>An adventure story is about a protagonist who journeys to epic or distant places to accomplish something. It can have many other
-              genre elements included within it, because it is a very open genre. The protagonist has a mission and faces obstacles to get to
-              their destination. Also, adventure stories usually include unknown settings and characters with prized properties or features.
-          </td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Comedy</td>
-          <td>Comedy is a story that tells about a series of funny, or comical events, intended to make the audience laugh. It is a very open
-              genre, and thus crosses over with many other genres on a frequent basis.
-          </td>
-        </tr>
-      </tbody>
-    </table><br><br>
-
-    <h2>Directors:</h2>
-    <small>*Bio taken from <a href="https://en.wikipedia.org/wiki/List_of_genres" target="_blank">Wikipedia</a></small>
-
-    <table id="directors-table">
-      <thead>
-        <tr>
-          <th>DirectorID</th>
-          <th>Name</th>
-          <th>Bio</th>
-          <th>Birthyear</th>
-          <th>Deathyear</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Francis Ford Coppola</td>
-          <td>Francis Ford Coppola is an American film director, producer, screenwriter, film composer, and vintner.
-              He was a central figure in the New Hollywood filmmaking movement of the 1960s and 1970s. He is widely
-              considered to be one of the greatest filmmakers of all time.
-          </td>
-          <td>1939</td>
-          <td>--</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Peter Jackson</td>
-          <td>Sir Peter Robert Jackson ONZ KNZM is a New Zealand film director, screenwriter, and film producer.
-              He is best known as the director, writer, and producer of the Lord of the Rings trilogy and the
-              Hobbit trilogy, both of which are adapted from the novels of the same name by J. R. R. Tolkien.
-          </td>
-          <td>1961</td>
-          <td>--</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Christopher Nolan</td>
-          <td>Christopher Edward Nolan, CBE is a British-American film director, screenwriter, and producer,
-              who is known for making personal, distinctive films within the Hollywood mainstream. Having made
-              his directorial debut with Following, Nolan gained considerable attention for his second feature
-              Memento.
-          </td>
-          <td>1970</td>
-          <td>--</td>
-        </tr>
-      </tbody>
-    </table><br><br>
-
-    <h2>Users:</h2>
-    <p>Contains records for different users.</p>
-
-    <!-- Users table-->
-    <table id="users-table">
-      <thead>
-        <tr>
-          <th>UserID</th>
-          <th>Username</th>
-          <th>Password</th>
-          <th>Email</th>
-          <th>Birthday</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>HenriCoandă</td>
-          <td>IBelieveICanFly</td>
-          <td>henri@coanda.com</td>
-          <td>01/02/1987</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>MarieCurie</td>
-          <td>Plutonium-239</td>
-          <td>marie@curie.org</td>
-          <td>07/11/1867</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>CharlesDarwin</td>
-          <td>Naturfroscher</td>
-          <td>charles@darwin.org</td>
-          <td>12/02/1809</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h2>Users Favorites Table:</h2>
-
-    <!-- User-Movies Table -->
-    <table id="user-movie__table">
-      <thead>
-        <tr>
-          <th>UserMovieID</th>
-          <th>UserID</th>
-          <th>MovieID</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Username: HenriCoanda</td>
-          <td>"_id": ObjectId("5dced41b978df25d546c8aa7")</td>
-          <td>ObjectId("5dcc4e1de104d472d609fd35")</td>
-        </tr>
-        <tr>
-          <td>Username: MarieCurie</td>
-          <td>"_id": ObjectId("5dcb1908f1770a55351b09f3")</td>
-          <td>ObjectId("5dcc4e1de104d472d609fd35")</td>
-        </tr>
-        <tr>
-          <td>Username: CharlesDarwin</td>
-          <td>"_id": ObjectId("5dced48b978df25d546c8aa8"),</td>
-          <td>ObjectId("5dcc4da8e104d472d609fd34")</td>
-        </tr>
-      </tbody>
-    </table>
-
+    <small>*The logo is a potato, in case you are confused...or horrified!</small>
   </header>
-
   <footer>
     <!-- Social media icons will go here-->
   </footer>
