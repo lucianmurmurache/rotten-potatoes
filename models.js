@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
 var movieSchema = mongoose.Schema({
   Title : {type: String, required: true},
@@ -28,11 +29,18 @@ var userSchema = mongoose.Schema({
   Email : {
     type: String,
     required: true,
-    //validate: [{ validator: value => isEmail(value), msg: 'Invalid email.' }]
   },
   Birthday : Date,
   Favourites : [{ type : mongoose.Schema.Types.ObjectId, ref: 'Movie'}]
 });
+// Hash password entered when registering, before it is stored in MongoDB.
+userSchema.statistics.hashPassword = function(password) {
+  return bcrypt.hashSync(password, 10);
+};
+
+userSchema.methods.validatePassword = function(password) {
+    return bcrypt.compareSync(password, this.Password);
+};
 
 var Movie = mongoose.model('Movie', movieSchema);
 var User = mongoose.model('User', userSchema);
