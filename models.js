@@ -31,10 +31,10 @@ var userSchema = mongoose.Schema({
     required: true,
   },
   Birthday : Date,
-  Favourites : [{ type : mongoose.Schema.Types.ObjectId, ref: 'Movie'}]
+  Favourites : [{ type : mongoose.Schema.Types.ObjectId, ref: 'Movies'}]
 });
 // Hash password entered when registering, before it is stored in MongoDB.
-userSchema.statistics.hashPassword = function(password) {
+userSchema.statics.hashPassword = function(password) {
   return bcrypt.hashSync(password, 10);
 };
 
