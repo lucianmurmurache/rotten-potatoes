@@ -11,6 +11,10 @@ const Users = Models.User;
 
 const passport = require('passport');
 require('./passport');
+
+//Express-validator
+const { check, validationResult } = require('express-validator');
+
 //Cors
 const cors = require('cors');
 app.use(cors());
