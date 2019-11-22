@@ -14,22 +14,22 @@ passport.use(new LocalStrategy({
 },  (username, password, callback) => {
     console.log(username + ' ' + password);
     Users.findOne({ Username: username } , (error, user) => {
-    if (error) {
-      console.log(error);
-      return callback(error);
-    }
-    if (!user) {
-      console.log('Incorrect username');
-      return callback(null, false, {message: 'Incorrect username or password!'});
-    }
-    if (!user.validatePassword(password)) { //Hash password before it is stored in MongoDB!
-      console.log('incorrect password');
-      return callback(null, false, {
-        message: 'Incorrect password!'
-      });
-    }
-    console.log('finished');
-    return callback(null, user);
+      if (error) {
+        console.log(error);
+        return callback(error);
+      }
+      if (!user) {
+        console.log('Incorrect username');
+        return callback(null, false, {message: 'Incorrect username or password!'});
+      }
+      if (!user.validatePassword(password)) { //Hash password before it is stored in MongoDB!
+        console.log('incorrect password');
+        return callback(null, false, {
+          message: 'Incorrect password!'
+        });
+      }
+      console.log('finished');
+      return callback(null, user);
   });
 }));
 
