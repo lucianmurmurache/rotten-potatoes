@@ -1,12 +1,8 @@
 const express = require('express');
 const app = express();
-
 const morgan = require('morgan');
-
 const bodyParser = require('body-parser');
-
-const uuid = require ('uuid');
-
+//const uuid = require ('uuid');
 const mongoose = require('mongoose');
 const Models = require('./models.js');
 
@@ -15,6 +11,22 @@ const Users = Models.User;
 
 const passport = require('passport');
 require('./passport');
+//Cors
+const cors = require('cors');
+app.use(cors());
+
+var allowedOrigins = ['http://localhost:8080' , 'http://testsite.com'];
+
+app.use(cors({
+  origin: function(origin, callback){
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){ // If an origin is not on the list of allowed origins
+      var message = 'The CORS policy for this application does not allow access from origin ' + origin;
+      return callback(new Error(message), false);
+    }
+    return callback(null, true);
+  }
+}));
 
 mongoose.connect('mongodb://localhost:27017/RottenPotatoes', {useNewUrlParser: true});
 
