@@ -103,29 +103,41 @@ app.get('/movies/directors/:Name', passport.authenticate('jwt', { session: false
 });
 
 // User registration
-app.post('/users', function(req, res) {
-  Users.findOne({ Username: req.body.Username })
-  .then(function(user) {
-    if(user) {
-      return res.status(400).send(req.body.Username + " already used!");
-    } else {
-      Users.create({
-        Username: req.body.Username,
-        Password: req.body.Password,
-        Email: req.body.Email,
-        Birthday: req.body.Birthday
-      })
-      .then(function(user) {res.status(201).json(user) })
-      .catch(function(error) {
-        console.error(error);
-        res.status(500).send("Error: " + error);
-      })
+app.post('/users',
+  [
+    check('Username', 'Username is required').isLength({min: 5}),
+    check('Username' , 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+    check('Email' , 'Email does not appear to be valid').isEmail()
+  ], (req, res) => {
+    // Check validation object for errors
+    var errors = validationResult(req);
+    if(!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array()
+      });
     }
-  }).catch(function(error) {
-    console.error(error);
-    res.status(500).send("Error: " + error);
+    var hashedPassword = Users.hashPassword(req.body.Password);
+    Users.findOne({ Username: req.body.Username })
+    .then(function(user) {
+      if(user) {
+        return res.status(400).send(req.body.Username + " already used!");
+      } else {
+        Users.create({
+          Username: req.body.Username,
+          Password: req.body.Password,
+          Email: req.body.Email,
+          Birthday: req.body.Birthday
+        })
+        .then(function(user) {res.status(201).json(user) })
+        .catch(function(error) {
+          console.error(error);
+          res.status(500).send("Error: " + error);
+        })
+      }
+    }).catch(function(error) {
+      console.error(error);
+      res.status(500).send("Error: " + error);
+    });
   });
-});
 
 // Update user data by username
 app.put('/users/:Username', passport.authenticate('jwt', { session: false }), function(req, res) {
