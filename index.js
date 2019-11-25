@@ -107,6 +107,7 @@ app.post('/users',
   [
     check('Username', 'Username is required').isLength({min: 5}),
     check('Username' , 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+    check('Password', 'Password is required').isLength({min: 8}).not().isEmpty(),
     check('Email' , 'Email does not appear to be valid').isEmail()
   ], (req, res) => {
     // Check validation object for errors
@@ -216,5 +217,8 @@ app.use(function(err, req, res, next) {
   res.status(500).send('Something broke!');
 });
 
-// Listen for requests - port 8080
-app.listen(8080);
+// Listen for requests - process.env.PORT
+var port = process.env.PORT || 3000;
+app.listen(port, "0.0.0.0", function() {
+  console.log("Listening on Port 3000");
+});
