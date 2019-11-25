@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const bcryptjs = require('bcryptjs');
 
 var movieSchema = mongoose.Schema({
   Title : {type: String, required: true},
@@ -35,11 +35,11 @@ var userSchema = mongoose.Schema({
 });
 // Hash password entered when registering, before it is stored in MongoDB.
 userSchema.statics.hashPassword = function(password) {
-  return bcrypt.hashSync(password, 10);
+  return bcryptjs.hashSync(password, 10);
 };
 
 userSchema.methods.validatePassword = function(password) {
-    return bcrypt.compareSync(password, this.Password);
+    return bcryptjs.compareSync(password, this.Password);
 };
 
 var Movie = mongoose.model('Movie', movieSchema);
