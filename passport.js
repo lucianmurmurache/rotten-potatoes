@@ -9,7 +9,7 @@ var JWTStrategy = passportJWT.Strategy;
 var ExtractJWT = passportJWT.ExtractJwt;
 
 passport.use(new LocalStrategy({
-    uernameField: 'Username',
+    usernameField: 'Username',
     passwordField: 'Password'
 },  (username, password, callback) => {
     console.log(username + ' ' + password);
