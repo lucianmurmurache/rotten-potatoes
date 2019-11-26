@@ -19,7 +19,7 @@ const { check, validationResult } = require('express-validator');
 const cors = require('cors');
 app.use(cors());
 
-/*var allowedOrigins = ['https://rotten-potatoes3000.herokuapp.com/' , 'http://herokuapp.com'];
+var allowedOrigins = ['http://localhost:8080' , 'http://testsite.com' , 'https://rotten-potatoes3000.herokuapp.com/' , 'http://herokuapp.com'];
 
 app.use(cors({
   origin: function(origin, callback){
@@ -31,7 +31,7 @@ app.use(cors({
     return callback(null, true);
   }
 }));
-*/
+
 // mongoose.connect('mongodb://localhost:27017/RottenPotatoes', {useNewUrlParser: true});
 mongoose.connect('mongodb+srv://lucianmurmurache:cloudmongodbrottenpotatoes3000@cluster0-0yhnp.mongodb.net/RottenPotatoes?retryWrites=true&w=majority', {useNewUrlParser: true});
 
