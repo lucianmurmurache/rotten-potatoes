@@ -106,9 +106,9 @@ app.get('/movies/directors/:Name', passport.authenticate('jwt', { session: false
 // User registration
 app.post('/users',
   [
-    check('Username', 'Username is required').isLength({min: 5}),
+    check('Username', 'Username too short or missing, try again').isLength({min: 5}),
     check('Username' , 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
-    check('Password', 'Password is required').isLength({min: 8}).not().isEmpty(),
+    check('Password', 'Password missing or is smaller than 8 characters.').isLength({min: 8}).not().isEmpty(),
     check('Email' , 'Email does not appear to be valid').isEmail()
   ], (req, res) => {
     // Check validation object for errors
@@ -144,9 +144,9 @@ app.post('/users',
 // Update user data by username
 app.put('/users/:Username', passport.authenticate('jwt', { session: false }),
 [
-  check('Username', 'Username is required').isLength({min: 5}),
+  check('Username', 'Username too short or missing, try again').isLength({min: 5}),
   check('Username' , 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
-  check('Password', 'Password is required').isLength({min: 8}).not().isEmpty(),
+  check('Password', 'Password missing or is smaller than 8 characters.').isLength({min: 8}).not().isEmpty(),
   check('Email' , 'Email does not appear to be valid').isEmail()
 ], (req, res) =>  {
   Users.findOneAndUpdate(
