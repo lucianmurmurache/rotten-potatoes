@@ -19,7 +19,7 @@ const { check, validationResult } = require('express-validator');
 const cors = require('cors');
 app.use(cors());
 
-var allowedOrigins = ['http://localhost:8080' , 'http://testsite.com'];
+var allowedOrigins = ['https://rotten-potatoes3000.herokuapp.com/' , 'http://herokuapp.com'];
 
 app.use(cors({
   origin: function(origin, callback){
