@@ -32,8 +32,8 @@ app.use(cors({
   }
 }));
 
-mongoose.connect('mongodb://localhost:27017/RottenPotatoes', {useNewUrlParser: true});
-
+// mongoose.connect('mongodb://localhost:27017/RottenPotatoes', {useNewUrlParser: true});
+mongoose.connect('mongodb+srv://lucianmurmurache:cloudmongodbrottenpotatoes3000@cluster0-0yhnp.mongodb.net/RottenPotatoes?retryWrites=true&w=majority', {useNewUrlParser: true});
 
 // log requests using morgan
 app.use(morgan('common'));
