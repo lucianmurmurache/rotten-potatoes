@@ -19,6 +19,7 @@ const { check, validationResult } = require('express-validator');
 const cors = require('cors');
 app.use(cors());
 
+/*
 var allowedOrigins = ['http://localhost:8080' , 'http://testsite.com' , 'https://rotten-potatoes3000.herokuapp.com' , 'http://herokuapp.com'];
 
 app.use(cors({
@@ -30,7 +31,7 @@ app.use(cors({
     }
     return callback(null, true);
   }
-}));
+})); */
 
 // mongoose.connect('mongodb://localhost:27017/RottenPotatoes', {useNewUrlParser: true});
 mongoose.connect('mongodb+srv://rottenpotatoes:rottenpotatoes3000@cluster0-0yhnp.mongodb.net/RottenPotatoes?retryWrites=true&w=majority', {useNewUrlParser: true});
@@ -141,7 +142,13 @@ app.post('/users',
   });
 
 // Update user data by username
-app.put('/users/:Username', passport.authenticate('jwt', { session: false }), function(req, res) {
+app.put('/users/:Username', passport.authenticate('jwt', { session: false }),
+[
+  check('Username', 'Username is required').isLength({min: 5}),
+  check('Username' , 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric(),
+  check('Password', 'Password is required').isLength({min: 8}).not().isEmpty(),
+  check('Email' , 'Email does not appear to be valid').isEmail()
+], (req, res) =>  {
   Users.findOneAndUpdate(
     { Username : req.params.Username},
     { $set : {
