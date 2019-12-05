@@ -2,36 +2,36 @@ const mongoose = require('mongoose');
 const bcryptjs = require('bcryptjs');
 
 var movieSchema = mongoose.Schema({
-  Title : {type: String, required: true},
-  Description : {type: String, required: true},
-  Genre : {
-    Name: String,
-    Description : String
+  title : {type: String, required: true},
+  description : {type: String, required: true},
+  genre : {
+    name: String,
+    description : String
   },
-  Director : {
+  director : {
     Name: String,
     Bio : String
   },
-  Actors : [String],
-  ImagePath : String,
-  Featured : Boolean
+  actors : [String],
+  imagePath : String,
+  featured : Boolean
 });
 
 var userSchema = mongoose.Schema({
-  Username : {
+  username : {
     type: String,
     required: true
   },
-  Password : {
+  password : {
     type: String,
     required: true
   },
-  Email : {
+  email : {
     type: String,
     required: true,
   },
-  Birthday : Date,
-  Favourites : [{ type : mongoose.Schema.Types.ObjectId, ref: 'Movies'}]
+  birthday : Date,
+  favourites : [{ type : mongoose.Schema.Types.ObjectId, ref: 'movies'}]
 });
 // Hash password entered when registering, before it is stored in MongoDB.
 userSchema.statics.hashPassword = function(password) {
@@ -39,7 +39,7 @@ userSchema.statics.hashPassword = function(password) {
 };
 
 userSchema.methods.validatePassword = function(password) {
-    return bcryptjs.compareSync(password, this.Password);
+    return bcryptjs.compareSync(password, this.password);
 };
 
 var Movie = mongoose.model('Movie', movieSchema);
