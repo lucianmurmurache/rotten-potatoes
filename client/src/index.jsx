@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 import "./index.scss";
 
 //Main component
-class RottenPotatoes extends React.Componenet {
+class RottenPotatoes extends React.Component {
   render() {
     return (
       <div className="rotten-potatoes">
