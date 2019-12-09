@@ -1,16 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import axios from 'axios';
 
 // Bundle ./index.scss
 import "./index.scss";
 
 //Main component
 class RottenPotatoes extends React.Component {
+  constructor() {
+    //Call superclass constructor
+    super();
+    //Initialise the state to an empty object which is to be destructured later
+    this.state = {};
+  }
+
   render() {
     return (
-      <div className="rotten-potatoes">
-        <div>Good morning</div>
-      </div>
+      <div className="main-view"></div>
     );
   }
 }
