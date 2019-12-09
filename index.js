@@ -21,7 +21,7 @@ const {
 
 //Cors
 const cors = require('cors');
-var allowedOrigins = ['http://localhost:8080', 'https://rotten-potatoes3000.herokuapp.com', 'http://herokuapp.com', 'https://mongodb.com', 'https://cloud.mongodb.com'];
+var allowedOrigins = ['http://localhost:1234', 'https://rotten-potatoes3000.herokuapp.com', 'http://herokuapp.com'];
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin) return callback(null, true);
