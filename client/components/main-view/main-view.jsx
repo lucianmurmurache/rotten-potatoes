@@ -5,11 +5,12 @@ export class MainView extends React.Component {
 
     constructor() {
         super();
+
         this.state = {};
     }
 
     componentDidMount() {
-        axios.get('<https://rotten-potatoes3000.herokuapp.com/movies>') // This might require correction!('</movies>')
+        axios.get('<https://rotten-potatoes3000.herokuapp.com/movies>')
             .then(response => {
                 //Assign result to state
                 this.setState({
