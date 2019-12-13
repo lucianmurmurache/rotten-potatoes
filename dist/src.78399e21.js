@@ -33551,7 +33551,9 @@ function (_React$Component) {
   _createClass(MovieView, [{
     key: "render",
     value: function render() {
-      var movie = this.props.movie;
+      var _this$props = this.props,
+          movie = _this$props.movie,
+          _onClick = _this$props.onClick;
       if (!movie) return null;
       return _react.default.createElement("div", {
         className: "movie-view"
@@ -33582,7 +33584,14 @@ function (_React$Component) {
         className: "label"
       }, "Director: "), _react.default.createElement("span", {
         className: "value"
-      }, movie.director.name)));
+      }, movie.director.name)), _react.default.createElement("button", {
+        //Back button not working, made a similar structure as movie-card.jsx but it does not work!
+        onClick: function onClick() {
+          return _onClick();
+        } //If I set onClick(movies)-returns error"movies is undefined", if left blank, it returns "Uncaught TypeError: _onCkick is not a function"
+        ,
+        className: "return-button"
+      }, "Return to movie list"));
     }
   }]);
 
@@ -33649,7 +33658,7 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      _axios.default.get('<https://rotten-potatoes3000.herokuapp.com/movies>').then(function (response) {
+      _axios.default.get('https://rotten-potatoes3000.herokuapp.com/movies').then(function (response) {
         //Assign result to state
         _this2.setState({
           movies: response.data
@@ -33675,7 +33684,8 @@ function (_React$Component) {
           selectedMovie = _this$state.selectedMovie;
       if (!movies) return _react.default.createElement("div", {
         className: "main-view"
-      });
+      }); //If movie not loaded yet
+
       return _react.default.createElement("div", {
         className: "main-view"
       }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
@@ -33853,7 +33863,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52821" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52587" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
