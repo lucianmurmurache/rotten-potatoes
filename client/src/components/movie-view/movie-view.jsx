@@ -7,7 +7,7 @@ export class MovieView extends React.Component {
         this.state = {};
     }
     render() {
-        const { movie } = this.props;
+        const { movie, onClick } = this.props;
 
         if (!movie) return null;
 
@@ -30,7 +30,12 @@ export class MovieView extends React.Component {
                     <span className="label">Director: </span>
                     <span className="value">{movie.director.name}</span>
                 </div>
-            </div>
+                <button //Back button not working, made a similar structure as movie-card.jsx but it does not work!
+                    onClick={() => onClick()} //If I set onClick(movies)-returns error"movies is undefined", if left blank, it returns "Uncaught TypeError: _onCkick is not a function"
+                    className="return-button">
+                    Return to movie list
+                </button>
+            </div >
         );
     }
 }
