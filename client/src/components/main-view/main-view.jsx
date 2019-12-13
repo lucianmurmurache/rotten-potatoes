@@ -27,10 +27,17 @@ export class MainView extends React.Component {
                 console.log(error);
             });
     }
-
+    // Access single movie data
     onMovieClick(movie) {
         this.setState({
             selectedMovie: movie
+        });
+    }
+
+    //Return button
+    onReturnClick() {
+        this.setState({
+            selectedMovie: null
         });
     }
 
@@ -42,7 +49,7 @@ export class MainView extends React.Component {
         return (
             <div className="main-view">
                 {selectedMovie
-                    ? <MovieView movie={selectedMovie} />
+                    ? <MovieView movie={selectedMovie} onClick={button => this.onReturnClick()} />
                     : movies.map(movie => (
                         <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)} />
                     ))
