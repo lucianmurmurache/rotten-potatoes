@@ -33585,11 +33585,10 @@ function (_React$Component) {
       }, "Director: "), _react.default.createElement("span", {
         className: "value"
       }, movie.director.name)), _react.default.createElement("button", {
-        //Back button not working, made a similar structure as movie-card.jsx but it does not work!
+        //Return button
         onClick: function onClick() {
           return _onClick();
-        } //If I set onClick(movies)-returns error"movies is undefined", if left blank, it returns "Uncaught TypeError: _onCkick is not a function"
-        ,
+        },
         className: "return-button"
       }, "Return to movie list"));
     }
@@ -33666,12 +33665,21 @@ function (_React$Component) {
       }).catch(function (error) {
         console.log(error);
       });
-    }
+    } // Access single movie data
+
   }, {
     key: "onMovieClick",
     value: function onMovieClick(movie) {
       this.setState({
         selectedMovie: movie
+      });
+    } //Return button
+
+  }, {
+    key: "onReturnClick",
+    value: function onReturnClick() {
+      this.setState({
+        selectedMovie: null
       });
     }
   }, {
@@ -33689,7 +33697,10 @@ function (_React$Component) {
       return _react.default.createElement("div", {
         className: "main-view"
       }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
-        movie: selectedMovie
+        movie: selectedMovie,
+        onClick: function onClick(button) {
+          return _this3.onReturnClick();
+        }
       }) : movies.map(function (movie) {
         return _react.default.createElement(_movieCard.MovieCard, {
           key: movie._id,
@@ -33863,7 +33874,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52587" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54189" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
