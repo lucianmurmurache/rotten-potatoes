@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { PromiseProvider } from 'mongoose';
 
 export class MovieCard extends React.Component {
     render() {
@@ -16,7 +17,18 @@ export class MovieCard extends React.Component {
 
 MovieCard.propTypes = {
     movie: PropTypes.shape({
-        Title: PropTypes.string
+        title: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        genre: PropTypes.shapes({
+            name: PropTypes.string.isRequired,
+            description: PropTypes.string.isRequired
+        }).isRequired,
+        director: PropTypes.shapes({
+            name: PropTypes.string.isRequired,
+            bio: PropTypes.string.isRequired,
+            birth: PropTypes.string.isRequired
+        }).isRequired,
+        imagePath: PropTypes.string.isRequired
     }).isRequired,
     onClick: PropTypes.func.isRequired
 };
