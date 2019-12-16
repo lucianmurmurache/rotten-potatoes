@@ -1,16 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { PromiseProvider } from 'mongoose';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+//import { PromiseProvider } from 'mongoose';
 
 export class MovieCard extends React.Component {
     render() {
         const { movie, onClick } = this.props;
 
         return (
-            <div
-                onClick={() => onClick(movie)}
-                className="movie-card">{movie.title}
-            </div>
+            <Card style={{ width: '16rem' }}>
+                <Card.Img variant="top" src={movie.imagePath} />
+                <Card.Body>
+                    <Card.Title>{movie.title}</Card.Title>
+                    <Card.Text>{movie.description}</Card.Text>
+                    <Button
+                        onClick={() => onClick(movie)}
+                        variant="link">Open
+                    </Button>
+                </Card.Body>
+            </Card>
         );
     }
 }
