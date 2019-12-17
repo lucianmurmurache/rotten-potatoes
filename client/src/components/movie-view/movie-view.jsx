@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 
 export class MovieView extends React.Component {
     constructor() {
@@ -30,11 +31,12 @@ export class MovieView extends React.Component {
                     <span className="label">Director: </span>
                     <span className="value">{movie.director.name}</span>
                 </div>
-                <button //Return button
+                <Button //Return button
+                    variant="dark"
                     onClick={() => onClick()}
                     className="return-button">
                     Return to movie list
-                </button>
+                </Button>
             </div >
         );
     }
