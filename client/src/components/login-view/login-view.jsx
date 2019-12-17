@@ -27,12 +27,7 @@ export function LoginView(props) {
                 Password:
                 <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
             </Form.Label>
-            <Form.Group as={Row} controlId="formHorizontalCheck">
-                <Col sm={{ span: 10, offset: 2 }}>
-                    <Form.Check label="Remember me" />
-                </Col>
-            </Form.Group>
-            <Button type="button" onClick={handleSubmit}>Submit</Button>
+            <Button variant="dark" type="button" onClick={handleSubmit}>Submit</Button>
         </Form>
     );
 }
