@@ -44,10 +44,29 @@ export class MainView extends React.Component {
         });
     }
 
-    onLoggedIn(user) {
+    onLoggedIn(authData) {
+        console.log(authData);
         this.setState({
-            user
+            user: authData.user.username
         });
+        localStorage.setItem('token', authData.token);
+        localStorage.setItem('user', authData.user.username);
+        this.getMovies(authDta.Token);
+    }
+
+    getMovies(token) {
+        axios.get('https://rotten-potatoes3000.herokuapp.com/movies', {
+            headers: { Authorization: 'Brearer ${token}' }
+        })
+            .then(response => {
+                // Assign result to state
+                this.setState({
+                    movies: response.data
+                });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     render() {
