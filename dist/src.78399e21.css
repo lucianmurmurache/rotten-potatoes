@@ -19,6 +19,18 @@
   font-size: 20px;
   padding: 8px 16px;
 }
+.movie-card {
+  align-items: center;
+  width: 16rem;
+}
+.movie-view {
+  text-align: center;
+}
+
+.return-button {
+  font-size: 20px;
+  padding: 8px 16px;
+}
 .rotten-potatoes {
   color: steelblue;
 }
