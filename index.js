@@ -132,7 +132,7 @@ app.post('/user',
         errors: errors.array()
       });
     }
-    var hashedPassword = Users.hashpassword(req.body.password);
+    var hashedPassword = Users.hashPassword(req.body.password);
     Users.findOne({
         username: req.body.username
       })
