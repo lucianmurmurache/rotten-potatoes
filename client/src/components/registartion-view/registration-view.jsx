@@ -1,48 +1,66 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import axios from 'axios';
 
 export function RegistrationView(props) {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+    const [username, createUsername] = useState('');
+    const [password, createPassword] = useState('');
+    const [email, createEmail] = useState('');
+    const [birthday, createBirthday] = useState('');
 
-    const handleSubmit = (e) => {
+
+    const handleRegister = (e) => {
         e.preventDefault();
-        console.log(username, password);
-        /* 
-            Send request to server for authentication 
-            and then call props.onLoggedIn(username)
-        */
-        props.onLoggedIn(username);
+        axios.post('https://rotten-potatoes3000.herokuapp.com/login', {
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthday: birthday
+        })
+            .then((response) => {
+                const data = response.data;
+                console.log(data);
+            })
+            .catch((e) => {
+                console.log('Unable to register user, try again.')
+            });
     };
 
 
     return (
-        <Form>
-            <Form.Group as={Row} controlId="formHorizontalEmail">
-                <Form.Label column sm={2}>
-                    Username:
-                        <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
+        <Form className="registration-form">
+            <Form.Group controlId="formBasicUsername">
+                <Form.Label column md={2}>
+                    Username
+                        <Form.Control type="text" value={username} placeholder="Enter Username" onChange={(e) => createUsername(e.target.value)} />
                 </Form.Label>
-                <Col sm={10}>
-                    <Form.Control type="email" placeholder="Email" />
-                </Col>
             </Form.Group>
 
-            <Form.Group as={Row} controlId="formHorizontalPassword">
-                <Form.Label column sm={2}>
-                    Password:
-                        <input type="password" value={password} onChange={e => setPassword(e.target.value)}
-                    />
+            <Form.Group controlId="formBasicPassword">
+                <Form.Label column md={2}>
+                    Password
+                        <Form.Control type="text" value={password} placeholder="Enter Password" onChange={(e) => createPassword(e.target.value)} />
                 </Form.Label>
-                <Col sm={10}>
-                    <Form.Control type="password" placeholder="Password" />
-                </Col>
             </Form.Group>
 
-            <Form.Group as={Row}>
-                <Col sm={{ span: 10, offset: 2 }}>
-                    <Button type="submit">Sign in</Button>
-                </Col>
+            <Form.Group controlId="formBasicEmail">
+                <Form.Label column md={2}>
+                    Email
+                    <Form.Control type="text" value={email} placeholder="Enter email" onChange={(e) => createEmail(e.target.value)} />
+                </Form.Label>
+            </Form.Group>
+
+            <Form.Group controlId="formBasicBirthday">
+
+                <Form.Label column md={2}>
+                    Birthday
+                    <Form.Control type="text" value={birthday} placeholder="Enter Birthdate" onChange={(e) => createBirthday(e.target.value)} />
+                </Form.Label>
+            </Form.Group>
+
+            <Form.Group>
+                <Button type="submit">Sign in</Button>
             </Form.Group>
         </Form>
     )

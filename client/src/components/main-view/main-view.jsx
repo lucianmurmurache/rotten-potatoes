@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-//import { RegistrationView } from '../registartion-view/registration-view';
+import { RegistrationView } from '../registartion-view/registration-view';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
@@ -20,7 +20,7 @@ export class MainView extends React.Component {
 
     componentDidMount() {
         axios.get('https://rotten-potatoes3000.herokuapp.com/movies')
-            .then(response => {
+            .then((response) => {
                 //Assign result to state
                 this.setState({
                     movies: response.data
@@ -36,14 +36,15 @@ export class MainView extends React.Component {
             selectedMovie: movie
         });
     }
-
-    //Return button
-    onReturnClick() {
-        this.setState({
-            selectedMovie: null
-        });
-    }
-
+    /*
+        //Return button
+        onReturnClick() {
+            this.setState({
+                selectedMovie: null
+            });
+        }
+    */
+    //Login
     onLoggedIn(authData) {
         console.log(authData);
         this.setState({
@@ -58,7 +59,7 @@ export class MainView extends React.Component {
         axios.get('https://rotten-potatoes3000.herokuapp.com/movies', {
             headers: { Authorization: 'Brearer ${token}' }
         })
-            .then(response => {
+            .then((response) => {
                 // Assign result to state
                 this.setState({
                     movies: response.data
@@ -72,9 +73,9 @@ export class MainView extends React.Component {
     render() {
         const { movies, selectedMovie, user } = this.state;
 
-        if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+        if (!user) return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
 
-        if (!movies) return <div className="main-view" />; //If movie not loaded yet
+        if (!movies) return <div className="main-view" />;
 
         return (
             <div className="main-view">
