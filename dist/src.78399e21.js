@@ -36175,18 +36175,19 @@ function (_React$Component) {
 exports.MovieCard = MovieCard;
 MovieCard.propTypes = {
   movie: _propTypes.default.shape({
-    title: _propTypes.default.string,
-    description: _propTypes.default.string,
+    _id: _propTypes.default.string.isRequired,
+    title: _propTypes.default.string.isRequired,
+    description: _propTypes.default.string.isRequired,
     genre: _propTypes.default.shape({
-      name: _propTypes.default.string,
-      description: _propTypes.default.string
+      name: _propTypes.default.string.isRequired,
+      description: _propTypes.default.string.isRequired
     }).isRequired,
     director: _propTypes.default.shape({
-      name: _propTypes.default.string,
-      bio: _propTypes.default.string,
-      birth: _propTypes.default.string
+      name: _propTypes.default.string.isRequired,
+      bio: _propTypes.default.string.isRequired,
+      birth: _propTypes.default.string.isRequired
     }).isRequired,
-    imagePath: _propTypes.default.string
+    imagePath: _propTypes.default.string.isRequired
   }).isRequired,
   onClick: _propTypes.default.func.isRequired
 };
