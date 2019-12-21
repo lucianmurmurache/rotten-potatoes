@@ -35908,6 +35908,7 @@ function LoginView(props) {
     type: "text",
     placeholder: "Enter username",
     value: username,
+    autoComplete: "on",
     onChange: function onChange(e) {
       return setUsername(e.target.value);
     }
@@ -35917,6 +35918,7 @@ function LoginView(props) {
     type: "password",
     placeholder: "Enter password",
     value: password,
+    autoComplete: "off",
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }
@@ -36374,7 +36376,6 @@ function (_React$Component) {
             });
         }
     */
-    //Login
 
   }, {
     key: "onLoggedIn",
@@ -36385,7 +36386,7 @@ function (_React$Component) {
       });
       localStorage.setItem('token', authData.token);
       localStorage.setItem('user', authData.user.username);
-      this.getMovies(authDta.Token);
+      this.getMovies(authData.token);
     }
   }, {
     key: "getMovies",
@@ -36427,7 +36428,7 @@ function (_React$Component) {
       }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
         movie: selectedMovie,
         onClick: function onClick(button) {
-          return _this4.onReturnClick();
+          return _this4.onMovieClick();
         }
       }) : movies.map(function (movie) {
         return _react.default.createElement(_movieCard.MovieCard, {
@@ -36535,7 +36536,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60697" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62427" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

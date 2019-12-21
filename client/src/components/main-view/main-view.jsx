@@ -44,7 +44,7 @@ export class MainView extends React.Component {
             });
         }
     */
-    //Login
+
     onLoggedIn(authData) {
         console.log(authData);
         this.setState({
@@ -52,7 +52,7 @@ export class MainView extends React.Component {
         });
         localStorage.setItem('token', authData.token);
         localStorage.setItem('user', authData.user.username);
-        this.getMovies(authDta.Token);
+        this.getMovies(authData.token);
     }
 
     getMovies(token) {
@@ -80,7 +80,7 @@ export class MainView extends React.Component {
         return (
             <div className="main-view">
                 {selectedMovie
-                    ? <MovieView movie={selectedMovie} onClick={button => this.onReturnClick()} />
+                    ? <MovieView movie={selectedMovie} onClick={button => this.onMovieClick()} />
                     : movies.map(movie => (
                         <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)} />
                     ))
