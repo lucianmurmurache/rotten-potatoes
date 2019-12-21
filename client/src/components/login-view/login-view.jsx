@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../login-view/login-view.scss';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
@@ -15,32 +16,33 @@ export function LoginView(props) {
             Username: username,
             Password: password
         })
-            .then(response => {
+            .then((response) => {
                 const data = response.data;
                 props.onLoggedIn(data);
             })
-            .catch(e => {
+            .catch((e) => {
                 console.log('no such user')
             });
     };
 
     return (
-        <Form>
-            <Form.Group controlId="formHorizontalUsername">
-                <Form.Label column sm={2}>
+        <Form className="login-form">
+            <Form.Label className="login-intro">User Login</Form.Label>
+            <Form.Group controlId="formBasicUsername">
+                <Form.Label>
                     Username
                 </Form.Label>
-                <Form.Control type="text" placeholder="Enter username" value={username} onChange={e => setUsername(e.target.value)} />
+                <Form.Control type="username" placeholder="Enter username" value={username} onChange={(e) => setUsername(e.target.value)} />
             </Form.Group>
 
-            <Form.Group controlId="formHorizontalPassword">
-                <Form.Label column sm={2}>
+            <Form.Group controlId="formBasicPassword">
+                <Form.Label>
                     Password
                 </Form.Label>
-                <Form.Control type="password" placeholder="Enter password" value={password} onChange={e => setPassword(e.target.value)} />
+                <Form.Control type="password" placeholder="Enter password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </Form.Group>
             <Form.Group>
-                <Button variant="dark" type="button" onClick={handleSubmit}>Submit</Button>
+                <Button className="login-button" variant="dark" type="button" onClick={handleSubmit}>Login</Button>
             </Form.Group>
         </Form>
     );
