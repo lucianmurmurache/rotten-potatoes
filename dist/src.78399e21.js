@@ -36153,10 +36153,8 @@ function (_React$Component) {
           movie = _this$props.movie,
           _onClick = _this$props.onClick;
       return _react.default.createElement(_Card.default, {
-        bg: "light",
-        style: {
-          width: '16rem'
-        }
+        className: "movie-card",
+        bg: "light"
       }, _react.default.createElement(_Card.default.Img, {
         variant: "top",
         src: movie.imagePath
