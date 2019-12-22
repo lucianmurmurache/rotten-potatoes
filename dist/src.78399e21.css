@@ -62,6 +62,10 @@
   font-size: 20px;
   padding: 8px 16px;
 }
+
+.movie-view__card {
+  max-width: 70%;
+}
 .rotten-potatoes {
   color: steelblue;
 }
