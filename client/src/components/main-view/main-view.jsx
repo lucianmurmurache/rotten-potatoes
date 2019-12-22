@@ -6,53 +6,34 @@ import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
+/* =============react-bootstrap-imports=============*/
+//import Form from 'react-bootstrap/Form';
+//import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+/* =============react-bootstrap-imports=============*/
+
 export class MainView extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             movies: null,
             selectedMovie: null,
-            user: null
+            user: null,
         };
     }
 
     componentDidMount() {
-        axios.get('https://rotten-potatoes3000.herokuapp.com/movies')
-            .then((response) => {
-                //Assign result to state
-                this.setState({
-                    movies: response.data
-                });
-            })
-            .catch(function (error) {
-                console.log(error);
+        let accessToken = localStorage.getItem('token');
+        if (accessToken !== null) {
+            this.setState({
+                user: localStorage.getItem('user')
             });
-    }
-    // Access single movie data
-    onMovieClick(movie) {
-        this.setState({
-            selectedMovie: movie
-        });
-    }
-
-    //Return button
-    onReturnClick() {
-        this.setState({
-            selectedMovie: null
-        });
-    }
-
-
-    onLoggedIn(authData) {
-        console.log(authData);
-        this.setState({
-            user: authData.user.username
-        });
-        localStorage.setItem('token', authData.token);
-        localStorage.setItem('user', authData.user.username);
-        this.getMovies(authData.token);
+            this.getMovies(accessToken);
+        }
     }
 
     getMovies(token) {
@@ -70,21 +51,53 @@ export class MainView extends React.Component {
             });
     }
 
+    // Access single movie data
+    onMovieClick(movie) {
+        this.setState({
+            selectedMovie: movie
+        });
+    }
+
+    //Return button
+    onReturnClick() {
+        this.setState({
+            selectedMovie: null
+        });
+    }
+
+    onLoggedIn(authData) {
+        console.log(authData);
+        this.setState({
+            user: authData.user.username
+        });
+        localStorage.setItem('token', authData.token);
+        localStorage.setItem('user', authData.user.username);
+        this.getMovies(authData.token);
+    }
+
     render() {
         const { movies, selectedMovie, user } = this.state;
 
         if (!user) return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
 
+        // RegistrationView goes here!
+
         if (!movies) return <div className="main-view" />;
 
         return (
             <div className="main-view">
-                {selectedMovie
-                    ? <MovieView movie={selectedMovie} onClick={button => this.onMovieClick()} />
-                    : movies.map(movie => (
-                        <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)} />
-                    ))
-                }
+                <Container>
+                    <Row>
+                        {selectedMovie
+                            ? <MovieView movie={selectedMovie} onClick={() => this.onReturnClick()} />
+                            : movies.map(movie => (
+                                <Col>
+                                    <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)} />
+                                </Col>
+                            ))
+                        }
+                    </Row>
+                </Container>
             </div>
         );
     }
