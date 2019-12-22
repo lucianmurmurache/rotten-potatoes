@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-/* =============react-bootstrap=============*/
+/* =============react-bootstrap-imports=============*/
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-/* =============react-bootstrap=============*/
+/* =============react-bootstrap-imports=============*/
 
 import axios from 'axios';
 import './login-view.scss';
@@ -23,15 +24,15 @@ export function LoginView(props) {
             Password: password
         })
             .then((response) => {
-                const data = response.data;
-                props.onLoggedIn(data);
+                const authData = response.data;
+                props.onLoggedIn(authData);
             })
             .catch((e) => {
-                console.log('no such user')
+                console.log('User not found! Please check your credentials.')
             });
     };
 
-    return (
+    return ( //Button to switch to register not finished!
         <Row className="login-row">
             <Col xs={10} sm={8} md={6} className="form-col">
                 <Form className="login-form">
@@ -52,8 +53,17 @@ export function LoginView(props) {
                     <Form.Group>
                         <Button className="login-button" variant="dark" type="button" onClick={handleSubmit}>Login</Button>
                     </Form.Group>
+                    <Form.Group>
+                        <Button variant="link" type="button" onClick={() => onClick = { /*registrationView*/ }}>Don´t have an account?</Button>
+                    </Form.Group>
                 </Form>
             </Col>
         </Row>
     );
 }
+
+/*=================PropTypes=================*/
+LoginView.propTypes = {
+    onLoggedIn: PropTypes.func.isRequired
+};
+/*=================PropTypes=================*/
