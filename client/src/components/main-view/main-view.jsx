@@ -36,14 +36,14 @@ export class MainView extends React.Component {
             selectedMovie: movie
         });
     }
-    /*
-        //Return button
-        onReturnClick() {
-            this.setState({
-                selectedMovie: null
-            });
-        }
-    */
+
+    //Return button
+    onReturnClick() {
+        this.setState({
+            selectedMovie: null
+        });
+    }
+
 
     onLoggedIn(authData) {
         console.log(authData);
