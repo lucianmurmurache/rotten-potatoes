@@ -1,6 +1,14 @@
 import React from 'react';
+import './movie-view.scss';
+
+/* =============react-bootstrap-imports=============*/
+//import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import '../movie-view/movie-view.scss';
+import Card from 'react-bootstrap/Card';
+//import Row from 'react-bootstrap/Row';
+//import Col from 'react-bootstrap/Col';
+//import Container from 'react-bootstrap/Container';
+/* =============react-bootstrap-imports=============*/
 
 export class MovieView extends React.Component {
     constructor() {
@@ -15,27 +23,25 @@ export class MovieView extends React.Component {
 
         return (
             <div className="movie-view">
-                <img className="movie-poster" src={movie.imagePath} />
-                <div className="movie-title">
-                    <span className="label">Title: </span>
-                    <span className="value">{movie.title}</span>
-                </div>
-                <div className="movie-description">
-                    <span className="label">Description: </span>
-                    <span className="value">{movie.description}</span>
-                </div>
-                <div className="movie-genre">
-                    <span className="label">Genre: </span>
-                    <span className="value">{movie.genre.name}</span>
-                </div>
-                <div className="movie-director">
-                    <span className="label">Director: </span>
-                    <span className="value">{movie.director.name}</span>
-                </div>
-                <Button variant="dark" onClick={() => onClick()} className="return-button">
-                    Return to list
+                <Card className="movie-view__card">
+                    <Card.Img variant="top" className="movie-poster" src={movie.imagePath} />
+                    <Card.Title className="movie-title">
+                        {movie.title}
+                    </Card.Title>
+                    <Card.Text className="movie-description">
+                        Description: {movie.description}
+                    </Card.Text>
+                    <Card.Text className="movie-genre">
+                        Genre: {movie.genre.name}
+                    </Card.Text>
+                    <Card.Text className="movie-director">
+                        Director: {movie.director.name}
+                    </Card.Text>
+                    <Button variant="dark" onClick={() => onClick()} className="return-button">
+                        Return to list
                 </Button>
+                </Card>
             </div >
         );
     }
-}
+} 
