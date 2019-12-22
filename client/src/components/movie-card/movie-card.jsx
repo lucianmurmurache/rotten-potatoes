@@ -1,8 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './movie-card.scss';
+
+/* =============react-bootstrap-imports=============*/
+//import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import '../movie-card/movie-card.scss';
+//import Row from 'react-bootstrap/Row';
+//import Col from 'react-bootstrap/Col';
+//import Container from 'react-bootstrap/Container';
+/* =============react-bootstrap-imports=============*/
 
 export class MovieCard extends React.Component {
     render() {
@@ -24,6 +31,7 @@ export class MovieCard extends React.Component {
     }
 }
 
+/*=================PropTypes=================*/
 MovieCard.propTypes = {
     movie: PropTypes.shape({
         _id: PropTypes.string.isRequired,
@@ -42,3 +50,4 @@ MovieCard.propTypes = {
     }).isRequired,
     onClick: PropTypes.func.isRequired
 };
+/*=================PropTypes=================*/
