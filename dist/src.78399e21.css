@@ -1,3 +1,19 @@
+.movie-card {
+  align-items: center;
+  width: 16rem;
+}
+.movie-view {
+  text-align: center;
+}
+
+.return-button {
+  font-size: 20px;
+  padding: 8px 16px;
+}
+
+.movie-view__card {
+  max-width: 70%;
+}
 .login-row {
   margin-top: 1%;
   justify-content: center;
@@ -24,21 +40,31 @@
   font-size: 20px;
   padding: 8px 16px;
 }
-.movie-card {
-  align-items: center;
-  width: 16rem;
-}
-.movie-view {
-  text-align: center;
+.registration-row {
+  margin-top: 1%;
+  justify-content: center;
 }
 
-.return-button {
+.registration-form {
+  text-align: left;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  max-width: 300px;
+  font-size: 20px;
+  width: 100%;
+  padding: 10px;
+  margin: auto;
+  height: 100%;
+}
+
+.registration-intro {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+.registration-button {
   font-size: 20px;
   padding: 8px 16px;
-}
-
-.movie-view__card {
-  max-width: 70%;
 }
 .rotten-potatoes {
   color: steelblue;
