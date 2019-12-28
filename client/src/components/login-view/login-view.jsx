@@ -51,10 +51,11 @@ export function LoginView(props) {
                         <Form.Control type="password" placeholder="Enter password" value={password} autoComplete="off" onChange={(e) => setPassword(e.target.value)} />
                     </Form.Group>
                     <Form.Group>
-                        <Button className="login-button" variant="dark" type="button" onClick={handleSubmit}>Login</Button>
+                        <Button className="login-button" variant="dark" type="submit" onClick={handleSubmit}>Login</Button>
                     </Form.Group>
                     <Form.Group>
-                        <Button variant="link" type="button" onClick={() => onClick = { /*registrationView*/ }}>Don´t have an account?</Button>
+                        <Form.Text>Don´t have an account?</Form.Text>
+                        <Button variant="link" type="button" /*onClick={switchToRegistrationView}*/>Register</Button>
                     </Form.Group>
                 </Form>
             </Col>
@@ -64,6 +65,7 @@ export function LoginView(props) {
 
 /*=================PropTypes=================*/
 LoginView.propTypes = {
-    onLoggedIn: PropTypes.func.isRequired
+    onLoggedIn: PropTypes.func.isRequired,
+    //onClick: PropTypes.func.isRequired
 };
 /*=================PropTypes=================*/
