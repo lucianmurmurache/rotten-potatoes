@@ -35825,7 +35825,7 @@ function RegistrationView(props) {
   var handleSubmit = function handleSubmit(e) {
     e.preventDefault();
 
-    _axios.default.post('https://rotten-potatoes3000.herokuapp.com/user', {
+    _axios.default.post('https://rotten-potatoes3000.herokuapp.com/login', {
       Username: username,
       Password: password,
       Email: email,
@@ -35908,7 +35908,8 @@ function RegistrationView(props) {
 
 
 RegistrationView.propTypes = {
-  onClick: _propTypes.default.func.isRequired
+  onClick: _propTypes.default.func.isRequired,
+  onUserRegister: _propTypes.default.func.isRequired
 };
 /*=================PropTypes=================*/
 },{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","prop-types":"../node_modules/prop-types/index.js","./registration-view.scss":"components/registartion-view/registration-view.scss","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js"}],"components/login-view/login-view.scss":[function(require,module,exports) {
@@ -36015,9 +36016,9 @@ function LoginView(props) {
     })), _react.default.createElement(_Form.default.Group, null, _react.default.createElement(_Button.default, {
       className: "login-button",
       variant: "dark",
-      type: "button",
+      type: "submit",
       onClick: handleSubmit
-    }, "Login")), _react.default.createElement(_Form.default.Group, null, _react.default.createElement(_Button.default, {
+    }, "Login")), _react.default.createElement(_Form.default.Group, null, _react.default.createElement(_Form.default.Text, null, "Don\xB4t have an account?"), _react.default.createElement(_Button.default, {
       variant: "link",
       type: "button",
       onClick: function (_onClick) {
@@ -36031,18 +36032,17 @@ function LoginView(props) {
 
         return onClick;
       }(function () {
-        return onClick = {
-          /*registrationView*/
-        };
+        return onClick;
       })
-    }, "Don\xB4t have an account?")))))
+    }, "Register")))))
   );
 }
 /*=================PropTypes=================*/
 
 
 LoginView.propTypes = {
-  onLoggedIn: _propTypes.default.func.isRequired
+  onLoggedIn: _propTypes.default.func.isRequired //onClick: PropTypes.func.isRequired
+
 };
 /*=================PropTypes=================*/
 },{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","axios":"../node_modules/axios/index.js","./login-view.scss":"components/login-view/login-view.scss"}],"components/movie-card/movie-card.scss":[function(require,module,exports) {
@@ -36416,6 +36416,14 @@ function (_React$Component) {
 
   return MovieView;
 }(_react.default.Component);
+/*=================PropTypes=================*/
+//MovieView.propTypes = {
+//    movie: PropTypes.func.isRequired,
+//    onClick: PropTypes.func.isRequired
+//};
+
+/*=================PropTypes=================*/
+
 
 exports.MovieView = MovieView;
 },{"react":"../node_modules/react/index.js","./movie-view.scss":"components/movie-view/movie-view.scss","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js"}],"../node_modules/react-bootstrap/esm/Container.js":[function(require,module,exports) {
@@ -36586,6 +36594,14 @@ function (_React$Component) {
       this.getMovies(authData.token);
     }
   }, {
+    key: "onUserRegister",
+    value: function onUserRegister(regData) {
+      console.log(regData);
+      this.setState({
+        user: regData.user
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -36593,13 +36609,18 @@ function (_React$Component) {
       var _this$state = this.state,
           movies = _this$state.movies,
           selectedMovie = _this$state.selectedMovie,
-          user = _this$state.user;
+          user = _this$state.user,
+          register = _this$state.register;
       if (!user) return _react.default.createElement(_loginView.LoginView, {
         onLoggedIn: function onLoggedIn(user) {
           return _this3.onLoggedIn(user);
         }
-      }); // RegistrationView goes here!
-
+      });
+      if (register) return _react.default.createElement(_registrationView.RegistrationView, {
+        onUserRegister: function onUserRegister(user) {
+          return _this3.onUserRegister(user);
+        }
+      });
       if (!movies) return _react.default.createElement("div", {
         className: "main-view"
       });
@@ -36716,7 +36737,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56896" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57482" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
