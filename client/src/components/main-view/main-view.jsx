@@ -1,10 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 
-//import { RegistrationView } from '../registartion-view/registration-view';
-import { LoginView } from '../login-view/login-view';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+import { LoginView } from '../login-view/login-view';
+import { RegistrationView } from '../registartion-view/registration-view';
+
 
 /* =============react-bootstrap-imports=============*/
 //import Form from 'react-bootstrap/Form';
@@ -26,16 +29,6 @@ export class MainView extends React.Component {
         };
     }
 
-    componentDidMount() {
-        let accessToken = localStorage.getItem('token');
-        if (accessToken !== null) {
-            this.setState({
-                user: localStorage.getItem('user')
-            });
-            this.getMovies(accessToken);
-        }
-    }
-
     getMovies(token) {
         axios.get('https://rotten-potatoes3000.herokuapp.com/movies', {
             headers: { Authorization: 'Bearer ${token}' }
@@ -51,12 +44,24 @@ export class MainView extends React.Component {
             });
     }
 
+    componentDidMount() {
+        let accessToken = localStorage.getItem('token');
+        if (accessToken !== null) {
+            this.setState({
+                user: localStorage.getItem('user')
+            });
+            this.getMovies(accessToken);
+        }
+    }
+
+    /*
     // Access single movie data
     onMovieClick(movie) {
         this.setState({
             selectedMovie: movie
         });
     }
+    */
 
     //Return button
     onReturnClick() {
@@ -77,27 +82,33 @@ export class MainView extends React.Component {
     }
 
     render() {
-        const { movies, selectedMovie, user } = this.state;
+        const { movies, /*selectedMovie,*/ user } = this.state;
 
         if (!user) return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
 
         if (!movies) return <div className="main-view" />;
 
         return (
-            <div className="main-view">
-                <Container>
-                    <Row>
-                        {selectedMovie
-                            ? <MovieView movie={selectedMovie} onClick={() => this.onReturnClick()} />
-                            : movies.map(movie => (
-                                <Col>
-                                    <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)} />
-                                </Col>
-                            ))
-                        }
-                    </Row>
-                </Container>
-            </div>
+            <Router>
+                <div className="main-view">
+                    <Container>
+                        <Row>
+                            <Route exact path="/" render={() => movies.map(m => <MovieCard key={m._id} movie={m} />)} />
+                            <Route path="/movies/:movieID" render={({ match }) => <MovieView movie={movies.find(m => m._id === match.params.movieId)} />} />
+                            <Route path="/directors/:name" render={({ match }) => {
+                                if (!movies) return <div className="main-view" />;
+                                return <DirectorView director={movies.find(m => m.directors.name === match.params.name).director} />
+                            }
+                            } />
+                            <Route path="/genres/:name" render={({ match }) => {
+                                if (!movies) return <div className="main-view" />;
+                                return <GenreView genre={movies.find(m => m.genres.name === match.params.name).genre} />
+                            }
+                            } />
+                        </Row>
+                    </Container>
+                </div>
+            </Router>
         );
     }
 }
