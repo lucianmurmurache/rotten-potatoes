@@ -20,7 +20,7 @@ export function RegistrationView(props) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('https://rotten-potatoes3000.herokuapp.com/user', {
+        axios.post('https://rotten-potatoes3000.herokuapp.com/login', {
             Username: username,
             Password: password,
             Email: email,
@@ -73,7 +73,8 @@ export function RegistrationView(props) {
                     <Button variant="dark" className="registration-button" type="submit" onclick={handleSubmit}>Register</Button>
                 </Form.Group>
                 <Form.Group>
-                    <Button variant="link" onclick={handleSubmit}>Already have an account?</Button>
+                    <Form.Text>Already have an account?</Form.Text>
+                    <Button variant="link" type="button" /*onclick={switchToLoginView}*/>Login</Button>
                 </Form.Group>
             </Form>
         </Row>
@@ -82,6 +83,7 @@ export function RegistrationView(props) {
 
 /*=================PropTypes=================*/
 RegistrationView.propTypes = {
-    onClick: PropTypes.func.isRequired
+    onClick: PropTypes.func.isRequired,
+    onUserRegister: PropTypes.func.isRequired
 };
 /*=================PropTypes=================*/
