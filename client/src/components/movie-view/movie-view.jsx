@@ -1,5 +1,6 @@
 import React from 'react';
 import './movie-view.scss';
+//import PropTypes from 'prop-types';
 
 /* =============react-bootstrap-imports=============*/
 //import Form from 'react-bootstrap/Form';
@@ -44,4 +45,11 @@ export class MovieView extends React.Component {
             </div >
         );
     }
-} 
+}
+
+/*=================PropTypes=================*/
+//MovieView.propTypes = {
+//    movie: PropTypes.func.isRequired,
+//    onClick: PropTypes.func.isRequired
+//};
+/*=================PropTypes=================*/
