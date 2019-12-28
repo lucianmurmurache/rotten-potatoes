@@ -34361,79 +34361,7 @@ if ("development" !== 'production') {
   // http://fb.me/prop-types-in-prod
   module.exports = require('./factoryWithThrowingShims')();
 }
-},{"react-is":"../node_modules/react-is/index.js","./factoryWithTypeCheckers":"../node_modules/prop-types/factoryWithTypeCheckers.js"}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"components/registartion-view/registration-view.scss":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/@babel/runtime/helpers/esm/extends.js":[function(require,module,exports) {
+},{"react-is":"../node_modules/react-is/index.js","./factoryWithTypeCheckers":"../node_modules/prop-types/factoryWithTypeCheckers.js"}],"../node_modules/@babel/runtime/helpers/esm/extends.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35761,158 +35689,74 @@ var Row = _react.default.forwardRef(function (props, ref) {
 Row.defaultProps = defaultProps;
 var _default = Row;
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","classnames":"../node_modules/classnames/index.js","react":"../node_modules/react/index.js","./ThemeProvider":"../node_modules/react-bootstrap/esm/ThemeProvider.js"}],"components/registartion-view/registration-view.jsx":[function(require,module,exports) {
-"use strict";
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","classnames":"../node_modules/classnames/index.js","react":"../node_modules/react/index.js","./ThemeProvider":"../node_modules/react-bootstrap/esm/ThemeProvider.js"}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.RegistrationView = RegistrationView;
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
 
-var _react = _interopRequireWildcard(require("react"));
+  return bundleURL;
+}
 
-var _axios = _interopRequireDefault(require("axios"));
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
 
-var _propTypes = _interopRequireDefault(require("prop-types"));
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
 
-require("./registration-view.scss");
+  return '/';
+}
 
-var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
 
-var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
 
-var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
+function updateLink(link) {
+  var newLink = link.cloneNode();
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
-//import Col from 'react-bootstrap/Col';
-//import Container from 'react-bootstrap/Container';
-
-/* =============react-bootstrap-imports=============*/
-function RegistrationView(props) {
-  var _useState = (0, _react.useState)(''),
-      _useState2 = _slicedToArray(_useState, 2),
-      username = _useState2[0],
-      setUsername = _useState2[1];
-
-  var _useState3 = (0, _react.useState)(''),
-      _useState4 = _slicedToArray(_useState3, 2),
-      password = _useState4[0],
-      setPassword = _useState4[1];
-
-  var _useState5 = (0, _react.useState)(''),
-      _useState6 = _slicedToArray(_useState5, 2),
-      email = _useState6[0],
-      setEmail = _useState6[1];
-
-  var _useState7 = (0, _react.useState)(''),
-      _useState8 = _slicedToArray(_useState7, 2),
-      birthday = _useState8[0],
-      setBirthday = _useState8[1];
-
-  var handleSubmit = function handleSubmit(e) {
-    e.preventDefault();
-
-    _axios.default.post('https://rotten-potatoes3000.herokuapp.com/login', {
-      Username: username,
-      Password: password,
-      Email: email,
-      Birthday: birthday
-    }).then(function (response) {
-      var data = response.data;
-      console.log(data);
-    }).catch(function (e) {
-      console.log('Unable to register user, try again.');
-    });
+  newLink.onload = function () {
+    link.remove();
   };
 
-  return (//Button to switch to login not finished!
-    _react.default.createElement(_Row.default, {
-      className: "registration-row"
-    }, _react.default.createElement(_Form.default, {
-      className: "registration-form"
-    }, _react.default.createElement(_Form.default.Label, {
-      className: "registration-intro"
-    }, "User registration"), _react.default.createElement(_Form.default.Group, {
-      controlId: "formBasicUsername"
-    }, _react.default.createElement(_Form.default.Label, {
-      column: true,
-      md: 2
-    }, "Username", _react.default.createElement(_Form.default.Control, {
-      type: "text",
-      value: username,
-      placeholder: "Enter Username",
-      onChange: function onChange(e) {
-        return setUsername(e.target.value);
-      }
-    }))), _react.default.createElement(_Form.default.Group, {
-      controlId: "formBasicPassword"
-    }, _react.default.createElement(_Form.default.Label, {
-      column: true,
-      md: 2
-    }, "Password", _react.default.createElement(_Form.default.Control, {
-      type: "text",
-      value: password,
-      placeholder: "Enter Password",
-      onChange: function onChange(e) {
-        return setPassword(e.target.value);
-      }
-    }))), _react.default.createElement(_Form.default.Group, {
-      controlId: "formBasicEmail"
-    }, _react.default.createElement(_Form.default.Label, {
-      column: true,
-      md: 2
-    }, "Email", _react.default.createElement(_Form.default.Control, {
-      type: "text",
-      value: email,
-      placeholder: "Enter email",
-      onChange: function onChange(e) {
-        return setEmail(e.target.value);
-      }
-    }))), _react.default.createElement(_Form.default.Group, {
-      controlId: "formBasicBirthday"
-    }, _react.default.createElement(_Form.default.Label, {
-      column: true,
-      md: 2
-    }, "Birthday", _react.default.createElement(_Form.default.Control, {
-      type: "text",
-      value: birthday,
-      placeholder: "Enter Birthdate",
-      onChange: function onChange(e) {
-        return setBirthday(e.target.value);
-      }
-    }))), _react.default.createElement(_Form.default.Group, null, _react.default.createElement(_Button.default, {
-      variant: "dark",
-      className: "registration-button",
-      type: "submit",
-      onclick: handleSubmit
-    }, "Register")), _react.default.createElement(_Form.default.Group, null, _react.default.createElement(_Button.default, {
-      variant: "link",
-      onclick: handleSubmit
-    }, "Already have an account?"))))
-  );
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
 }
-/*=================PropTypes=================*/
 
+var cssTimeout = null;
 
-RegistrationView.propTypes = {
-  onClick: _propTypes.default.func.isRequired,
-  onUserRegister: _propTypes.default.func.isRequired
-};
-/*=================PropTypes=================*/
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","prop-types":"../node_modules/prop-types/index.js","./registration-view.scss":"components/registartion-view/registration-view.scss","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js"}],"components/login-view/login-view.scss":[function(require,module,exports) {
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"components/login-view/login-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -36020,20 +35864,9 @@ function LoginView(props) {
       onClick: handleSubmit
     }, "Login")), _react.default.createElement(_Form.default.Group, null, _react.default.createElement(_Form.default.Text, null, "Don\xB4t have an account?"), _react.default.createElement(_Button.default, {
       variant: "link",
-      type: "button",
-      onClick: function (_onClick) {
-        function onClick() {
-          return _onClick.apply(this, arguments);
-        }
+      type: "button"
+      /*onClick={switchToRegistrationView}*/
 
-        onClick.toString = function () {
-          return _onClick.toString();
-        };
-
-        return onClick;
-      }(function () {
-        return onClick;
-      })
     }, "Register")))))
   );
 }
@@ -36482,8 +36315,6 @@ var _react = _interopRequireDefault(require("react"));
 
 var _axios = _interopRequireDefault(require("axios"));
 
-var _registrationView = require("../registartion-view/registration-view");
-
 var _loginView = require("../login-view/login-view");
 
 var _movieCard = require("../movie-card/movie-card");
@@ -36581,7 +36412,8 @@ function (_React$Component) {
       this.setState({
         selectedMovie: null
       });
-    }
+    } //Login with token
+
   }, {
     key: "onLoggedIn",
     value: function onLoggedIn(authData) {
@@ -36594,14 +36426,6 @@ function (_React$Component) {
       this.getMovies(authData.token);
     }
   }, {
-    key: "onUserRegister",
-    value: function onUserRegister(regData) {
-      console.log(regData);
-      this.setState({
-        user: regData.user
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -36609,16 +36433,10 @@ function (_React$Component) {
       var _this$state = this.state,
           movies = _this$state.movies,
           selectedMovie = _this$state.selectedMovie,
-          user = _this$state.user,
-          register = _this$state.register;
+          user = _this$state.user;
       if (!user) return _react.default.createElement(_loginView.LoginView, {
         onLoggedIn: function onLoggedIn(user) {
           return _this3.onLoggedIn(user);
-        }
-      });
-      if (register) return _react.default.createElement(_registrationView.RegistrationView, {
-        onUserRegister: function onUserRegister(user) {
-          return _this3.onUserRegister(user);
         }
       });
       if (!movies) return _react.default.createElement("div", {
@@ -36647,7 +36465,7 @@ function (_React$Component) {
 }(_react.default.Component);
 
 exports.MainView = MainView;
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","../registartion-view/registration-view":"components/registartion-view/registration-view.jsx","../login-view/login-view":"components/login-view/login-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js"}],"index.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","../login-view/login-view":"components/login-view/login-view.jsx","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js"}],"index.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -36737,7 +36555,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57482" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60649" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
