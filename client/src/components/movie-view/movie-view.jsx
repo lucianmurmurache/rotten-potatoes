@@ -2,6 +2,8 @@ import React from 'react';
 import './movie-view.scss';
 //import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
+
 /* =============react-bootstrap-imports=============*/
 //import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -32,12 +34,12 @@ export class MovieView extends React.Component {
                     <Card.Text className="movie-description">
                         Description: {movie.description}
                     </Card.Text>
-                    <Card.Text className="movie-genre">
-                        Genre: {movie.genre.name}
-                    </Card.Text>
-                    <Card.Text className="movie-director">
-                        Director: {movie.director.name}
-                    </Card.Text>
+                    <Link to={'/genres/${movie.genre.name}'}>
+                        <Button variant="link">Genre</Button>
+                    </Link>
+                    <Link to={'/directors/${movie.director.name}'}>
+                        <Button variant="link">Director</Button>
+                    </Link>
                     <Button variant="dark" onClick={() => onClick()} className="return-button">
                         Return to list
                 </Button>
