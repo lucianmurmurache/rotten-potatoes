@@ -13,7 +13,7 @@ import { RegistrationView } from '../registartion-view/registration-view';
 //import Form from 'react-bootstrap/Form';
 //import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+//import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 /* =============react-bootstrap-imports=============*/
 
@@ -23,8 +23,7 @@ export class MainView extends React.Component {
         super(props);
 
         this.state = {
-            movies: null,
-            selectedMovie: null,
+            movies: [],
             user: null,
         };
     }
@@ -54,15 +53,6 @@ export class MainView extends React.Component {
         }
     }
 
-    /*
-    // Access single movie data
-    onMovieClick(movie) {
-        this.setState({
-            selectedMovie: movie
-        });
-    }
-    */
-
     //Return button
     onReturnClick() {
         this.setState({
@@ -82,9 +72,7 @@ export class MainView extends React.Component {
     }
 
     render() {
-        const { movies, /*selectedMovie,*/ user } = this.state;
-
-        if (!user) return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
+        const { movies, user } = this.state;
 
         if (!movies) return <div className="main-view" />;
 
@@ -93,18 +81,20 @@ export class MainView extends React.Component {
                 <div className="main-view">
                     <Container>
                         <Row>
-                            <Route exact path="/" render={() => movies.map(m => <MovieCard key={m._id} movie={m} />)} />
+                            <Route exact path="/" render={() => {
+                                if (!user) return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
+                                return movies.map(m => <MovieCard key={m._id} movie={m} />)
+                            }} />
+                            <Route path="/register" render={() => <RegistrationView />} />
                             <Route path="/movies/:movieID" render={({ match }) => <MovieView movie={movies.find(m => m._id === match.params.movieId)} />} />
                             <Route path="/directors/:name" render={({ match }) => {
                                 if (!movies) return <div className="main-view" />;
                                 return <DirectorView director={movies.find(m => m.directors.name === match.params.name).director} />
-                            }
-                            } />
+                            }} />
                             <Route path="/genres/:name" render={({ match }) => {
                                 if (!movies) return <div className="main-view" />;
                                 return <GenreView genre={movies.find(m => m.genres.name === match.params.name).genre} />
-                            }
-                            } />
+                            }} />
                         </Row>
                     </Container>
                 </div>
