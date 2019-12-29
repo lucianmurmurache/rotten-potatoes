@@ -1,26 +1,30 @@
-.registration-row {
-    margin-top: 1%;
-    justify-content: center;
-}
-
 .registration-form {
-    text-align: left;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    max-width: 300px;
-    font-size: 20px;
+    text-align: left;
     width: 100%;
-    padding: 10px;
+    max-width: 400px;
+    font-size: 20px;
+    padding-left: 3%;
+    padding-right: 3%;
     margin: auto;
-    height: 100%;
 }
 
 .registration-intro {
     text-align: center;
     font-size: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 .registration-button {
     font-size: 20px;
     padding: 8px 16px;
+}
+
+.login-text {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.login-button {
+    font-size: 18px;
 }
