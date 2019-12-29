@@ -5,6 +5,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+import { DirectorView } from '../director-view/director-view';
+import { GenreView } from '../genre-view/genre-view';
+import { ProfileView } from '../profile-view/profile-view';
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registartion-view/registration-view';
 
@@ -85,15 +88,24 @@ export class MainView extends React.Component {
                                 if (!user) return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
                                 return movies.map(m => <MovieCard key={m._id} movie={m} />)
                             }} />
+
                             <Route path="/register" render={() => <RegistrationView />} />
+
                             <Route path="/movies/:movieID" render={({ match }) => <MovieView movie={movies.find(m => m._id === match.params.movieId)} />} />
+
                             <Route path="/directors/:name" render={({ match }) => {
                                 if (!movies) return <div className="main-view" />;
                                 return <DirectorView director={movies.find(m => m.directors.name === match.params.name).director} />
                             }} />
+
                             <Route path="/genres/:name" render={({ match }) => {
                                 if (!movies) return <div className="main-view" />;
                                 return <GenreView genre={movies.find(m => m.genres.name === match.params.name).genre} />
+                            }} />
+
+                            <Route path="/user/:username" render={({ match }) => {
+                                if (!movies) return <div className="main-view" />;
+                                return <ProfileView genre={user.find(user => user.username === match.params.name).user} />
                             }} />
                         </Row>
                     </Container>
