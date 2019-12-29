@@ -14,6 +14,18 @@
 .movie-view__card {
   max-width: 70%;
 }
+.director-view {
+  align-items: center;
+  max-width: 70%;
+}
+.genre-view {
+  align-items: center;
+  max-width: 70%;
+}
+.profile-view {
+  align-items: center;
+  max-width: 70%;
+}
 .login-form {
   text-align: left;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
