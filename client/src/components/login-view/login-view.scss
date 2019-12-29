@@ -1,21 +1,14 @@
-.login-row {
-    margin-top: 1%;
-    justify-content: center;
-}
-
 .login-form {
     text-align: left;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    max-width: 300px;
+    max-width: 400px;
     font-size: 20px;
     width: 100%;
-    padding: 10px;
+    padding: 3%;
     margin: auto;
-    height: 100%;
 }
 
 .login-intro {
-    text-align: center;
     font-size: 30px;
     margin-bottom: 30px;
 }
@@ -23,4 +16,14 @@
 .login-button {
     font-size: 20px;
     padding: 8px 16px;
+}
+
+.register-text {
+    margin-top: 40px;
+    font-size: 14px;
+}
+
+.register-button {
+    font-size: 18px;
+    margin-bottom: -10px;
 }
