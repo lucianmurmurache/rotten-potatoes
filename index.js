@@ -38,6 +38,9 @@ mongoose.connect('mongodb+srv://rottenpotatoes:rottenpotatoes3000@cluster0-0yhnp
   useNewUrlParser: true
 });
 
+// Express
+app.use(express.static('public'));
+
 // log requests using morgan
 app.use(morgan('common'));
 
@@ -175,12 +178,20 @@ app.put('/user/:username', passport.authenticate('jwt', {
     }).not().isEmpty(),
     check('email', 'Email does not appear to be valid').isEmail()
   ], (req, res) => {
+    // Check validation object for errors
+    var errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({
+        errors: errors.array()
+      });
+    }
+    var hashedPassword = Users.hashPassword(req.body.password);
     Users.findOneAndUpdate({
         username: req.params.username
       }, {
         $set: {
           username: req.body.username,
-          password: req.body.password,
+          password: hashedPassword,
           email: req.body.email,
           birthday: req.body.birthday
         }
@@ -264,7 +275,6 @@ app.delete('/user/:username', passport.authenticate('jwt', {
 });
 
 // Serves public folder
-app.use(express.static('public'));
 app.use(function (err, req, res, next) {
   console.error(err.stack);
   res.status(500).send('Something broke!');

@@ -12,7 +12,7 @@ function generateJWTToken(user) {
   });
 }
 
-/* POST login */
+/* POST Login */
 module.exports = (router) => {
   router.post('/login', (req, res) => {
     passport.authenticate('local', {

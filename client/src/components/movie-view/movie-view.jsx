@@ -1,6 +1,6 @@
 import React from 'react';
 import './movie-view.scss';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 
@@ -50,8 +50,10 @@ export class MovieView extends React.Component {
 }
 
 /*=================PropTypes=================*/
-//MovieView.propTypes = {
-//    movie: PropTypes.func.isRequired,
-//    onClick: PropTypes.func.isRequired
-//};
+MovieView.propTypes = {
+    movie: PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string
+    }).isRequired
+};
 /*=================PropTypes=================*/

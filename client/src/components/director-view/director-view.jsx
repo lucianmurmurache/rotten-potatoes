@@ -16,8 +16,8 @@ import Button from 'react-bootstrap/Button';
 //import axios from 'axios';
 
 export class DirectorView extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {};
     }
 
@@ -41,6 +41,7 @@ export class DirectorView extends React.Component {
         )
     }
 }
+
 
 /*=================PropTypes=================*/
 //DirectorView.propTypes = {

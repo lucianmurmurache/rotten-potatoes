@@ -38075,7 +38075,114 @@ Card.Footer = (0, _createWithBsPrefix.default)('card-footer');
 Card.ImgOverlay = (0, _createWithBsPrefix.default)('card-img-overlay');
 var _default = Card;
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","classnames":"../node_modules/classnames/index.js","react":"../node_modules/react/index.js","./ThemeProvider":"../node_modules/react-bootstrap/esm/ThemeProvider.js","./createWithBsPrefix":"../node_modules/react-bootstrap/esm/createWithBsPrefix.js","./divWithClassName":"../node_modules/react-bootstrap/esm/divWithClassName.js","./CardContext":"../node_modules/react-bootstrap/esm/CardContext.js","./CardImg":"../node_modules/react-bootstrap/esm/CardImg.js"}],"components/movie-card/movie-card.jsx":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","classnames":"../node_modules/classnames/index.js","react":"../node_modules/react/index.js","./ThemeProvider":"../node_modules/react-bootstrap/esm/ThemeProvider.js","./createWithBsPrefix":"../node_modules/react-bootstrap/esm/createWithBsPrefix.js","./divWithClassName":"../node_modules/react-bootstrap/esm/divWithClassName.js","./CardContext":"../node_modules/react-bootstrap/esm/CardContext.js","./CardImg":"../node_modules/react-bootstrap/esm/CardImg.js"}],"../node_modules/react-bootstrap/esm/Row.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _ThemeProvider = require("./ThemeProvider");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var defaultProps = {
+  noGutters: false
+};
+
+var Row = _react.default.forwardRef(function (props, ref) {
+  var bsPrefix = props.bsPrefix,
+      noGutters = props.noGutters,
+      _props$as = props.as,
+      Component = _props$as === void 0 ? 'div' : _props$as,
+      className = props.className,
+      otherProps = (0, _objectWithoutPropertiesLoose2.default)(props, ["bsPrefix", "noGutters", "as", "className"]);
+  var decoratedBsPrefix = (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'row');
+  return _react.default.createElement(Component, (0, _extends2.default)({
+    ref: ref
+  }, otherProps, {
+    className: (0, _classnames.default)(className, decoratedBsPrefix, noGutters && 'no-gutters')
+  }));
+});
+
+Row.defaultProps = defaultProps;
+var _default = Row;
+exports.default = _default;
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","classnames":"../node_modules/classnames/index.js","react":"../node_modules/react/index.js","./ThemeProvider":"../node_modules/react-bootstrap/esm/ThemeProvider.js"}],"../node_modules/react-bootstrap/esm/Col.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
+
+var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
+
+var _react = _interopRequireDefault(require("react"));
+
+var _ThemeProvider = require("./ThemeProvider");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var DEVICE_SIZES = ['xl', 'lg', 'md', 'sm', 'xs'];
+
+var Col = _react.default.forwardRef( // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
+function (_ref, ref) {
+  var bsPrefix = _ref.bsPrefix,
+      className = _ref.className,
+      _ref$as = _ref.as,
+      Component = _ref$as === void 0 ? 'div' : _ref$as,
+      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["bsPrefix", "className", "as"]);
+  var prefix = (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'col');
+  var spans = [];
+  var classes = [];
+  DEVICE_SIZES.forEach(function (brkPoint) {
+    var propValue = props[brkPoint];
+    delete props[brkPoint];
+    var span, offset, order;
+
+    if (propValue != null && typeof propValue === 'object') {
+      var _propValue$span = propValue.span;
+      span = _propValue$span === void 0 ? true : _propValue$span;
+      offset = propValue.offset;
+      order = propValue.order;
+    } else {
+      span = propValue;
+    }
+
+    var infix = brkPoint !== 'xs' ? "-" + brkPoint : '';
+    if (span != null) spans.push(span === true ? "" + prefix + infix : "" + prefix + infix + "-" + span);
+    if (order != null) classes.push("order" + infix + "-" + order);
+    if (offset != null) classes.push("offset" + infix + "-" + offset);
+  });
+
+  if (!spans.length) {
+    spans.push(prefix); // plain 'col'
+  }
+
+  return _react.default.createElement(Component, (0, _extends2.default)({}, props, {
+    ref: ref,
+    className: _classnames.default.apply(void 0, [className].concat(spans, classes))
+  }));
+});
+
+Col.displayName = 'Col';
+var _default = Col;
+exports.default = _default;
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","classnames":"../node_modules/classnames/index.js","react":"../node_modules/react/index.js","./ThemeProvider":"../node_modules/react-bootstrap/esm/ThemeProvider.js"}],"components/movie-card/movie-card.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -38094,6 +38201,10 @@ var _reactRouterDom = require("react-router-dom");
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
 var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
+
+var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
+
+var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -38115,8 +38226,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-//import Row from 'react-bootstrap/Row';
-//import Col from 'react-bootstrap/Col';
 //import Container from 'react-bootstrap/Container';
 
 /* =============react-bootstrap-imports=============*/
@@ -38135,7 +38244,10 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var movie = this.props.movie;
-      return _react.default.createElement(_Card.default, {
+      return _react.default.createElement(_Row.default, null, _react.default.createElement(_Col.default, {
+        xs: 6,
+        md: 4
+      }, _react.default.createElement(_Card.default, {
         className: "movie-card",
         bg: "light"
       }, _react.default.createElement(_Card.default.Img, {
@@ -38145,7 +38257,7 @@ function (_React$Component) {
         to: '/movies/${movie._id'
       }, _react.default.createElement(_Button.default, {
         variant: "link"
-      }, "Open"))));
+      }, "Open"))))));
     }
   }]);
 
@@ -38173,7 +38285,7 @@ MovieCard.propTypes = {
   }).isRequired
 };
 /*=================PropTypes=================*/
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./movie-card.scss":"components/movie-card/movie-card.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./movie-card.scss":"components/movie-card/movie-card.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -38189,6 +38301,8 @@ exports.MovieView = void 0;
 var _react = _interopRequireDefault(require("react"));
 
 require("./movie-view.scss");
+
+var _propTypes = _interopRequireDefault(require("prop-types"));
 
 var _reactRouterDom = require("react-router-dom");
 
@@ -38276,16 +38390,17 @@ function (_React$Component) {
   return MovieView;
 }(_react.default.Component);
 /*=================PropTypes=================*/
-//MovieView.propTypes = {
-//    movie: PropTypes.func.isRequired,
-//    onClick: PropTypes.func.isRequired
-//};
-
-/*=================PropTypes=================*/
 
 
 exports.MovieView = MovieView;
-},{"react":"../node_modules/react/index.js","./movie-view.scss":"components/movie-view/movie-view.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js"}],"components/director-view/director-view.scss":[function(require,module,exports) {
+MovieView.propTypes = {
+  movie: _propTypes.default.shape({
+    title: _propTypes.default.string,
+    description: _propTypes.default.string
+  }).isRequired
+};
+/*=================PropTypes=================*/
+},{"react":"../node_modules/react/index.js","./movie-view.scss":"components/movie-view/movie-view.scss","prop-types":"../node_modules/prop-types/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js"}],"components/director-view/director-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -38338,12 +38453,12 @@ var DirectorView =
 function (_React$Component) {
   _inherits(DirectorView, _React$Component);
 
-  function DirectorView() {
+  function DirectorView(props) {
     var _this;
 
     _classCallCheck(this, DirectorView);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(DirectorView).call(this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DirectorView).call(this, props));
     _this.state = {};
     return _this;
   }
@@ -38431,12 +38546,12 @@ var GenreView =
 function (_React$Component) {
   _inherits(GenreView, _React$Component);
 
-  function GenreView() {
+  function GenreView(props) {
     var _this;
 
     _classCallCheck(this, GenreView);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(GenreView).call(this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(GenreView).call(this, props));
     _this.state = {};
     return _this;
   }
@@ -38524,12 +38639,12 @@ var ProfileView =
 function (_React$Component) {
   _inherits(ProfileView, _React$Component);
 
-  function ProfileView() {
+  function ProfileView(props) {
     var _this;
 
     _classCallCheck(this, ProfileView);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfileView).call(this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfileView).call(this, props));
     _this.state = {};
     return _this;
   }
@@ -39119,72 +39234,7 @@ var FormGroup = _react.default.forwardRef(function (_ref, ref) {
 FormGroup.displayName = 'FormGroup';
 var _default = FormGroup;
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","classnames":"../node_modules/classnames/index.js","react":"../node_modules/react/index.js","./FormContext":"../node_modules/react-bootstrap/esm/FormContext.js","./ThemeProvider":"../node_modules/react-bootstrap/esm/ThemeProvider.js"}],"../node_modules/react-bootstrap/esm/Col.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
-
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose"));
-
-var _classnames = _interopRequireDefault(require("classnames"));
-
-var _react = _interopRequireDefault(require("react"));
-
-var _ThemeProvider = require("./ThemeProvider");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var DEVICE_SIZES = ['xl', 'lg', 'md', 'sm', 'xs'];
-
-var Col = _react.default.forwardRef( // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
-function (_ref, ref) {
-  var bsPrefix = _ref.bsPrefix,
-      className = _ref.className,
-      _ref$as = _ref.as,
-      Component = _ref$as === void 0 ? 'div' : _ref$as,
-      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["bsPrefix", "className", "as"]);
-  var prefix = (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'col');
-  var spans = [];
-  var classes = [];
-  DEVICE_SIZES.forEach(function (brkPoint) {
-    var propValue = props[brkPoint];
-    delete props[brkPoint];
-    var span, offset, order;
-
-    if (propValue != null && typeof propValue === 'object') {
-      var _propValue$span = propValue.span;
-      span = _propValue$span === void 0 ? true : _propValue$span;
-      offset = propValue.offset;
-      order = propValue.order;
-    } else {
-      span = propValue;
-    }
-
-    var infix = brkPoint !== 'xs' ? "-" + brkPoint : '';
-    if (span != null) spans.push(span === true ? "" + prefix + infix : "" + prefix + infix + "-" + span);
-    if (order != null) classes.push("order" + infix + "-" + order);
-    if (offset != null) classes.push("offset" + infix + "-" + offset);
-  });
-
-  if (!spans.length) {
-    spans.push(prefix); // plain 'col'
-  }
-
-  return _react.default.createElement(Component, (0, _extends2.default)({}, props, {
-    ref: ref,
-    className: _classnames.default.apply(void 0, [className].concat(spans, classes))
-  }));
-});
-
-Col.displayName = 'Col';
-var _default = Col;
-exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","classnames":"../node_modules/classnames/index.js","react":"../node_modules/react/index.js","./ThemeProvider":"../node_modules/react-bootstrap/esm/ThemeProvider.js"}],"../node_modules/react-bootstrap/esm/FormLabel.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","classnames":"../node_modules/classnames/index.js","react":"../node_modules/react/index.js","./FormContext":"../node_modules/react-bootstrap/esm/FormContext.js","./ThemeProvider":"../node_modules/react-bootstrap/esm/ThemeProvider.js"}],"../node_modules/react-bootstrap/esm/FormLabel.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -39449,48 +39499,46 @@ function LoginView(props) {
     });
   };
 
-  return (//Button to switch to register not finished!
-    _react.default.createElement(_Form.default, {
-      className: "login-form"
-    }, _react.default.createElement(_Form.default.Label, {
-      className: "login-intro"
-    }, "Login"), _react.default.createElement(_Form.default.Group, {
-      controlId: "formBasicUsername"
-    }, _react.default.createElement(_Form.default.Label, null, "Username"), _react.default.createElement(_Form.default.Control, {
-      type: "text",
-      placeholder: "Enter username",
-      value: username,
-      autoComplete: "on",
-      onChange: function onChange(e) {
-        return setUsername(e.target.value);
-      }
-    })), _react.default.createElement(_Form.default.Group, {
-      controlId: "formBasicPassword"
-    }, _react.default.createElement(_Form.default.Label, null, "Password"), _react.default.createElement(_Form.default.Control, {
-      type: "password",
-      placeholder: "Enter password",
-      value: password,
-      autoComplete: "off",
-      onChange: function onChange(e) {
-        return setPassword(e.target.value);
-      }
-    })), _react.default.createElement(_Button.default, {
-      className: "login-button",
-      variant: "dark",
-      type: "submit",
-      onClick: handleSubmit
-    }, "Login"), _react.default.createElement(_Form.default.Group, {
-      controlId: "formBasic"
-    }, _react.default.createElement(_Form.default.Text, {
-      className: "register-text"
-    }, "Don\xB4t have an account?"), _react.default.createElement(_reactRouterDom.Link, {
-      to: '/register'
-    }, _react.default.createElement(_Button.default, {
-      variant: "link",
-      className: "register-button",
-      type: "link"
-    }, "Register"))))
-  );
+  return _react.default.createElement(_Form.default, {
+    className: "login-form"
+  }, _react.default.createElement(_Form.default.Label, {
+    className: "login-intro"
+  }, "Login"), _react.default.createElement(_Form.default.Group, {
+    controlId: "formBasicUsername"
+  }, _react.default.createElement(_Form.default.Label, null, "Username"), _react.default.createElement(_Form.default.Control, {
+    type: "text",
+    placeholder: "Enter username",
+    value: username,
+    autoComplete: "on",
+    onChange: function onChange(e) {
+      return setUsername(e.target.value);
+    }
+  })), _react.default.createElement(_Form.default.Group, {
+    controlId: "formBasicPassword"
+  }, _react.default.createElement(_Form.default.Label, null, "Password"), _react.default.createElement(_Form.default.Control, {
+    type: "password",
+    placeholder: "Enter password",
+    value: password,
+    autoComplete: "off",
+    onChange: function onChange(e) {
+      return setPassword(e.target.value);
+    }
+  })), _react.default.createElement(_Button.default, {
+    className: "login-button",
+    variant: "dark",
+    type: "submit",
+    onClick: handleSubmit
+  }, "Login"), _react.default.createElement(_Form.default.Group, {
+    controlId: "formBasic"
+  }, _react.default.createElement(_Form.default.Text, {
+    className: "register-text"
+  }, "Don\xB4t have an account?"), _react.default.createElement(_reactRouterDom.Link, {
+    to: '/register'
+  }, _react.default.createElement(_Button.default, {
+    variant: "link",
+    className: "register-button",
+    type: "link"
+  }, "Register"))));
 }
 /*=================PropTypes=================*/
 
@@ -39581,65 +39629,63 @@ function RegistrationView(props) {
     });
   };
 
-  return (//Button to switch to login not finished!
-    _react.default.createElement(_Form.default, {
-      className: "registration-form"
-    }, _react.default.createElement(_Form.default.Label, {
-      className: "registration-intro"
-    }, "Register"), _react.default.createElement(_Form.default.Group, {
-      controlId: "formBasicUsername"
-    }, _react.default.createElement(_Form.default.Label, null, "Username"), _react.default.createElement(_Form.default.Control, {
-      type: "text",
-      value: username,
-      placeholder: "Set username (min 5 characters)",
-      onChange: function onChange(e) {
-        return setUsername(e.target.value);
-      }
-    })), _react.default.createElement(_Form.default.Group, {
-      controlId: "formBasicPassword"
-    }, _react.default.createElement(_Form.default.Label, null, "Password"), _react.default.createElement(_Form.default.Control, {
-      type: "password",
-      value: password,
-      placeholder: "Set password (min 8 characters)",
-      autoComplete: "off",
-      onChange: function onChange(e) {
-        return setPassword(e.target.value);
-      }
-    })), _react.default.createElement(_Form.default.Group, {
-      controlId: "formBasicEmail"
-    }, _react.default.createElement(_Form.default.Label, null, "Email"), _react.default.createElement(_Form.default.Control, {
-      type: "text",
-      value: email,
-      placeholder: "Enter email address (eg: abc@123.com)",
-      onChange: function onChange(e) {
-        return setEmail(e.target.value);
-      }
-    })), _react.default.createElement(_Form.default.Group, {
-      controlId: "formBasicBirthday"
-    }, _react.default.createElement(_Form.default.Label, null, "Birthday"), _react.default.createElement(_Form.default.Control, {
-      type: "text",
-      value: birthday,
-      placeholder: "Enter birth date (eg: 1987-12-31)",
-      onChange: function onChange(e) {
-        return setBirthday(e.target.value);
-      }
-    })), _react.default.createElement(_Button.default, {
-      variant: "dark",
-      className: "registration-button",
-      type: "submit",
-      onClick: handleRegister
-    }, "Register"), _react.default.createElement(_Form.default.Group, {
-      controlId: "formBasic"
-    }, _react.default.createElement(_Form.default.Text, {
-      className: "login-text"
-    }, "Already have an account?"), _react.default.createElement(_reactRouterDom.Link, {
-      to: '/'
-    }, _react.default.createElement(_Button.default, {
-      variant: "link",
-      className: "login-button",
-      type: "link"
-    }, "Login"))))
-  );
+  return _react.default.createElement(_Form.default, {
+    className: "registration-form"
+  }, _react.default.createElement(_Form.default.Label, {
+    className: "registration-intro"
+  }, "Register"), _react.default.createElement(_Form.default.Group, {
+    controlId: "formBasicUsername"
+  }, _react.default.createElement(_Form.default.Label, null, "Username"), _react.default.createElement(_Form.default.Control, {
+    type: "text",
+    value: username,
+    placeholder: "Set username (min 5 characters)",
+    onChange: function onChange(e) {
+      return setUsername(e.target.value);
+    }
+  })), _react.default.createElement(_Form.default.Group, {
+    controlId: "formBasicPassword"
+  }, _react.default.createElement(_Form.default.Label, null, "Password"), _react.default.createElement(_Form.default.Control, {
+    type: "password",
+    value: password,
+    placeholder: "Set password (min 8 characters)",
+    autoComplete: "off",
+    onChange: function onChange(e) {
+      return setPassword(e.target.value);
+    }
+  })), _react.default.createElement(_Form.default.Group, {
+    controlId: "formBasicEmail"
+  }, _react.default.createElement(_Form.default.Label, null, "Email"), _react.default.createElement(_Form.default.Control, {
+    type: "text",
+    value: email,
+    placeholder: "Enter email address (eg: abc@123.com)",
+    onChange: function onChange(e) {
+      return setEmail(e.target.value);
+    }
+  })), _react.default.createElement(_Form.default.Group, {
+    controlId: "formBasicBirthday"
+  }, _react.default.createElement(_Form.default.Label, null, "Birthday"), _react.default.createElement(_Form.default.Control, {
+    type: "text",
+    value: birthday,
+    placeholder: "Enter birth date (eg: 1987-12-31)",
+    onChange: function onChange(e) {
+      return setBirthday(e.target.value);
+    }
+  })), _react.default.createElement(_Button.default, {
+    variant: "dark",
+    className: "registration-button",
+    type: "submit",
+    onClick: handleRegister
+  }, "Register"), _react.default.createElement(_Form.default.Group, {
+    controlId: "formBasic"
+  }, _react.default.createElement(_Form.default.Text, {
+    className: "login-text"
+  }, "Already have an account?"), _react.default.createElement(_reactRouterDom.Link, {
+    to: '/'
+  }, _react.default.createElement(_Button.default, {
+    variant: "link",
+    className: "login-button",
+    type: "link"
+  }, "Login"))));
 }
 /*=================PropTypes=================*/
 
@@ -39647,49 +39693,7 @@ function RegistrationView(props) {
 RegistrationView.propTypes = {// No props!
 };
 /*=================PropTypes=================*/
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","./registration-view.scss":"components/registartion-view/registration-view.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"../node_modules/react-bootstrap/esm/Row.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
-
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose"));
-
-var _classnames = _interopRequireDefault(require("classnames"));
-
-var _react = _interopRequireDefault(require("react"));
-
-var _ThemeProvider = require("./ThemeProvider");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var defaultProps = {
-  noGutters: false
-};
-
-var Row = _react.default.forwardRef(function (props, ref) {
-  var bsPrefix = props.bsPrefix,
-      noGutters = props.noGutters,
-      _props$as = props.as,
-      Component = _props$as === void 0 ? 'div' : _props$as,
-      className = props.className,
-      otherProps = (0, _objectWithoutPropertiesLoose2.default)(props, ["bsPrefix", "noGutters", "as", "className"]);
-  var decoratedBsPrefix = (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'row');
-  return _react.default.createElement(Component, (0, _extends2.default)({
-    ref: ref
-  }, otherProps, {
-    className: (0, _classnames.default)(className, decoratedBsPrefix, noGutters && 'no-gutters')
-  }));
-});
-
-Row.defaultProps = defaultProps;
-var _default = Row;
-exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","classnames":"../node_modules/classnames/index.js","react":"../node_modules/react/index.js","./ThemeProvider":"../node_modules/react-bootstrap/esm/ThemeProvider.js"}],"../node_modules/react-bootstrap/esm/Container.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","./registration-view.scss":"components/registartion-view/registration-view.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"../node_modules/react-bootstrap/esm/Container.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -39833,7 +39837,7 @@ function (_React$Component) {
         });
         this.getMovies(accessToken);
       }
-    } //Return button
+    } //Return button.
 
   }, {
     key: "onReturnClick",
@@ -39841,7 +39845,7 @@ function (_React$Component) {
       this.setState({
         selectedMovie: null
       });
-    } //Login with token
+    } //Login with token.
 
   }, {
     key: "onLoggedIn",
@@ -40035,7 +40039,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53341" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57392" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

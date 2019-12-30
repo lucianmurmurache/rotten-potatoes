@@ -2,6 +2,7 @@
   align-items: center;
   width: 16rem;
 }
+/*=====Movie view=====*/
 .movie-view {
   text-align: center;
 }
@@ -18,14 +19,26 @@
   align-items: center;
   max-width: 70%;
 }
+
+.btn {
+  font-size: 20px;
+  padding: 8px 16px;
+}
 .genre-view {
   align-items: center;
   max-width: 70%;
 }
+
+.btn {
+  font-size: 20px;
+  padding: 8px 16px;
+}
+/*=====Profile=====*/
 .profile-view {
   align-items: center;
   max-width: 70%;
 }
+/*=====Login=====*/
 .login-form {
   text-align: left;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -46,6 +59,7 @@
   padding: 8px 16px;
 }
 
+/*=====Register=====*/
 .register-text {
   margin-top: 40px;
   font-size: 14px;
@@ -55,6 +69,7 @@
   font-size: 18px;
   margin-bottom: -10px;
 }
+/*=====Register=====*/
 .registration-form {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   text-align: left;
@@ -77,6 +92,7 @@
   padding: 8px 16px;
 }
 
+/*=====Login=====*/
 .login-text {
   margin-top: 20px;
   font-size: 14px;

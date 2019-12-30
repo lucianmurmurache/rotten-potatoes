@@ -39,7 +39,7 @@ export function RegistrationView(props) {
     };
 
 
-    return ( //Button to switch to login not finished!
+    return (
         <Form className="registration-form">
             <Form.Label className="registration-intro">Register</Form.Label>
             <Form.Group controlId="formBasicUsername">

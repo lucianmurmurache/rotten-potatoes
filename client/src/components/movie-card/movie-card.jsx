@@ -8,8 +8,10 @@ import { Link } from 'react-router-dom';
 //import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-//import Row from 'react-bootstrap/Row';
-//import Col from 'react-bootstrap/Col';
+// import CardDeck from 'react-bootstrap/CardDeck';
+// import CardGroup from 'react-bootstrap/CardGroup';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 //import Container from 'react-bootstrap/Container';
 /* =============react-bootstrap-imports=============*/
 
@@ -18,16 +20,20 @@ export class MovieCard extends React.Component {
         const { movie } = this.props;
 
         return (
-            <Card className="movie-card" bg="light">
-                <Card.Img variant="top" src={movie.imagePath} />
-                <Card.Body>
-                    <Card.Title>{movie.title}</Card.Title>
-                    <Card.Text>{movie.description}</Card.Text>
-                    <Link to={'/movies/${movie._id'}>
-                        <Button variant="link">Open</Button>
-                    </Link>
-                </Card.Body>
-            </Card>
+            <Row>
+                <Col xs={6} md={4}>
+                    <Card className="movie-card" bg="light">
+                        <Card.Img variant="top" src={movie.imagePath} />
+                        <Card.Body>
+                            <Card.Title>{movie.title}</Card.Title>
+                            <Card.Text>{movie.description}</Card.Text>
+                            <Link to={'/movies/${movie._id'}>
+                                <Button variant="link">Open</Button>
+                            </Link>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
         );
     }
 }

@@ -16,8 +16,8 @@ import Button from 'react-bootstrap/Button';
 //import axios from 'axios';
 
 export class GenreView extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {};
     }
 

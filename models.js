@@ -43,7 +43,7 @@ var userSchema = mongoose.Schema({
     ref: 'movies'
   }]
 });
-// Hash password entered when registering, before it is stored in MongoDB.
+// Hash password entered when registering, before it is stored in MongoDB
 userSchema.statics.hashPassword = function (password) {
   return bcryptjs.hashSync(password, 10);
 };

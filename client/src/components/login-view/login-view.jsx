@@ -34,7 +34,7 @@ export function LoginView(props) {
             });
     };
 
-    return ( //Button to switch to register not finished!
+    return (
         <Form className="login-form">
             <Form.Label className="login-intro">Login</Form.Label>
             <Form.Group controlId="formBasicUsername">
