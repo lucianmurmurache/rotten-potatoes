@@ -1,7 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+
 .movie-card {
   align-items: center;
   width: 16rem;
 }
+* {
+  box-sizing: border-box;
+}
+
 /*=====Movie view=====*/
 .movie-view {
   text-align: center;
@@ -15,6 +23,10 @@
 .movie-view__card {
   max-width: 70%;
 }
+* {
+  box-sizing: border-box;
+}
+
 .director-view {
   align-items: center;
   max-width: 70%;
@@ -24,6 +36,10 @@
   font-size: 20px;
   padding: 8px 16px;
 }
+* {
+  box-sizing: border-box;
+}
+
 .genre-view {
   align-items: center;
   max-width: 70%;
@@ -33,11 +49,19 @@
   font-size: 20px;
   padding: 8px 16px;
 }
+* {
+  box-sizing: border-box;
+}
+
 /*=====Profile=====*/
 .profile-view {
   align-items: center;
   max-width: 70%;
 }
+* {
+  box-sizing: border-box;
+}
+
 /*=====Login=====*/
 .login-form {
   text-align: left;
@@ -69,6 +93,10 @@
   font-size: 18px;
   margin-bottom: -10px;
 }
+* {
+  box-sizing: border-box;
+}
+
 /*=====Register=====*/
 .registration-form {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
