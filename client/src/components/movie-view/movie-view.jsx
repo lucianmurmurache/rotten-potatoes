@@ -14,8 +14,8 @@ import Card from 'react-bootstrap/Card';
 /* =============react-bootstrap-imports=============*/
 
 export class MovieView extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {};
     }

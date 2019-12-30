@@ -208,7 +208,7 @@ app.put('/user/:username', passport.authenticate('jwt', {
       })
   });
 
-// Add movie to user favourite list
+// Add movie to user favourite list.
 app.post('/user/:username/movies/:movieID', passport.authenticate('jwt', {
   session: false
 }), function (req, res) {

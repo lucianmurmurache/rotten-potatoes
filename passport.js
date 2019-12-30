@@ -26,7 +26,7 @@ passport.use(new LocalStrategy({
         message: 'Incorrect username or password!'
       });
     }
-    if (!user.validatePassword(password)) { //Hash password before it is stored in MongoDB!
+    if (!user.validatePassword(password)) { //Hash password before it is stored in MongoDB
       console.log('incorrect password');
       return callback(null, false, {
         message: 'Incorrect password!'

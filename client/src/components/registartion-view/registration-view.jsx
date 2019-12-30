@@ -31,7 +31,7 @@ export function RegistrationView(props) {
             .then((response) => {
                 const data = response.data;
                 console.log(data);
-                window.open('/', '_self'); // The argument '_self' is needed for the ppage to open in the current tab
+                window.open('/', '_self'); // The argument '_self' is needed for the ppage to open in the current tab.
             })
             .catch((e) => {
                 console.log('Unable to register user, try again.')
