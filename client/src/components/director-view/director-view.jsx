@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 /* =============react-bootstrap-imports=============*/
 //import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-//import Card from 'react-bootstrap/Card';
+import Card from 'react-bootstrap/Card';
 //import Row from 'react-bootstrap/Row';
 //import Col from 'react-bootstrap/Col';
 //import Container from 'react-bootstrap/Container';
@@ -16,8 +16,8 @@ import Button from 'react-bootstrap/Button';
 //import axios from 'axios';
 
 export class DirectorView extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {};
     }
 
@@ -25,19 +25,21 @@ export class DirectorView extends React.Component {
         const { director } = this.props;
 
         return (
-            <div className="director-view">
-                <div className="director-title">
-                    <h1>{director.name}</h1>
-                </div>
-                <div className="director-bio">
-                    Bio: {director.bio}
-                </div>
-                <Link to={'/'}>
-                    <Button variant="dark" className="btn">
-                        Back
+            <Card className="director-view">
+                <Card.Body>
+                    <Card.Title className="director-title">
+                        {director.name}
+                    </Card.Title>
+                    <Card.Text className="director-bio">
+                        Bio: {director.bio}
+                    </Card.Text>
+                    <Link to={'/'}>
+                        <Button variant="dark" className="btn">
+                            Back
                     </Button>
-                </Link>
-            </div>
+                    </Link>
+                </Card.Body>
+            </Card>
         )
     }
 }
