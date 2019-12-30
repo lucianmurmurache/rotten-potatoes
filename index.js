@@ -1,9 +1,10 @@
+/*===============Modules===============*/
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
-//const uuid = require ('uuid');
+const uuid = require('uuid');
 const mongoose = require('mongoose');
 const Models = require('./models.js');
 
@@ -32,22 +33,28 @@ app.use(cors({
     return callback(null, true);
   }
 }));
+/*===============Modules===============*/
 
+/*===============MongoDB Connection===============*/
 // mongoose.connect('mongodb://localhost:27017/RottenPotatoes', {useNewUrlParser: true});
 mongoose.connect('mongodb+srv://rottenpotatoes:rottenpotatoes3000@cluster0-0yhnp.mongodb.net/RottenPotatoes?retryWrites=true&w=majority', {
   useNewUrlParser: true
 });
+/*===============MongoDB Connection===============*/
 
 // Express
 app.use(express.static('public'));
 
-// log requests using morgan
+// log requests using morgan-common
 app.use(morgan('common'));
 
 // BodyParser
 app.use(bodyParser.json());
+
 // Import auth.js
 var auth = require('./auth')(app);
+
+/*===============Endpoints===============*/
 
 // Default textual response
 app.get('/', function (req, res) {
@@ -140,7 +147,7 @@ app.post('/user',
         username: req.body.username
       })
       .then(function (user) {
-        if (user) {
+        if (user) { // If username already in use
           return res.status(400).send(req.body.username + " already used!");
         } else {
           Users.create({
@@ -208,6 +215,42 @@ app.put('/user/:username', passport.authenticate('jwt', {
       })
   });
 
+// Get user profile
+app.get('/user/:username', passport.authenticate('jwt', {
+  session: false
+}), function (req, res) {
+  Users.findOne({
+      username: req.params.username
+    })
+    .then(function (user) {
+      res.json(user)
+    })
+    .catch(function (err) {
+      console.error(err);
+      res.status(500).send("Error: " + err)
+    })
+});
+
+// User deregistration
+app.delete('/user/:username', passport.authenticate('jwt', {
+  session: false
+}), function (req, res) {
+  Users.findOneAndRemove({
+      username: req.params.username
+    })
+    .then(function (user) {
+      if (!user) {
+        res.status(400).send(req.params.username + " not found!");
+      } else {
+        res.status(200).send(req.params.username + " successfully deleted!");
+      }
+    })
+    .catch(function (err) {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    });
+});
+
 // Add movie to user favourite list.
 app.post('/user/:username/movies/:movieID', passport.authenticate('jwt', {
   session: false
@@ -253,26 +296,7 @@ app.delete('/user/:username/movies/:movieID', passport.authenticate('jwt', {
       }
     })
 });
-
-// User deregistration
-app.delete('/user/:username', passport.authenticate('jwt', {
-  session: false
-}), function (req, res) {
-  Users.findOneAndRemove({
-      username: req.params.username
-    })
-    .then(function (user) {
-      if (!user) {
-        res.status(400).send(req.params.username + " not found!");
-      } else {
-        res.status(200).send(req.params.username + " successfully deleted!");
-      }
-    })
-    .catch(function (err) {
-      console.error(err);
-      res.status(500).send("Error: " + err);
-    });
-});
+/*===============Endpoints===============*/
 
 // Serves public folder
 app.use(function (err, req, res, next) {
