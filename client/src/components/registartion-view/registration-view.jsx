@@ -22,11 +22,11 @@ export function RegistrationView(props) {
 
     const handleRegister = (e) => {
         e.preventDefault();
-        axios.post('https://rotten-potatoes3000.herokuapp.com/login', {
-            Username: username,
-            Password: password,
-            Email: email,
-            Birthday: birthday
+        axios.post('https://rotten-potatoes3000.herokuapp.com/user', {
+            username: username,
+            password: password,
+            email: email,
+            birthday: birthday
         })
             .then((response) => {
                 const data = response.data;
@@ -68,7 +68,7 @@ export function RegistrationView(props) {
                 <Form.Label>
                     Birthday
                 </Form.Label>
-                <Form.Control type="text" value={birthday} placeholder="Enter birth date (eg: 1987-12-31)" onChange={(e) => setBirthday(e.target.value)} />
+                <Form.Control type="date" value={birthday} placeholder="dd-mm-yyyy" onChange={(e) => setBirthday(e.target.value)} />
             </Form.Group>
             <Button variant="dark" className="registration-button" type="submit" onClick={handleRegister}>
                 Register
