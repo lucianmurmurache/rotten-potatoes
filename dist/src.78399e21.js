@@ -38421,6 +38421,8 @@ var _reactRouterDom = require("react-router-dom");
 
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
+var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -38441,7 +38443,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-//import Card from 'react-bootstrap/Card';
 //import Row from 'react-bootstrap/Row';
 //import Col from 'react-bootstrap/Col';
 //import Container from 'react-bootstrap/Container';
@@ -38453,12 +38454,12 @@ var DirectorView =
 function (_React$Component) {
   _inherits(DirectorView, _React$Component);
 
-  function DirectorView(props) {
+  function DirectorView() {
     var _this;
 
     _classCallCheck(this, DirectorView);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(DirectorView).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DirectorView).call(this));
     _this.state = {};
     return _this;
   }
@@ -38467,18 +38468,18 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var director = this.props.director;
-      return _react.default.createElement("div", {
+      return _react.default.createElement(_Card.default, {
         className: "director-view"
-      }, _react.default.createElement("div", {
+      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, {
         className: "director-title"
-      }, _react.default.createElement("h1", null, director.name)), _react.default.createElement("div", {
+      }, director.name), _react.default.createElement(_Card.default.Text, {
         className: "director-bio"
       }, "Bio: ", director.bio), _react.default.createElement(_reactRouterDom.Link, {
         to: '/'
       }, _react.default.createElement(_Button.default, {
         variant: "dark",
         className: "btn"
-      }, "Back")));
+      }, "Back"))));
     }
   }]);
 
@@ -38493,7 +38494,7 @@ function (_React$Component) {
 
 
 exports.DirectorView = DirectorView;
-},{"react":"../node_modules/react/index.js","./director-view.scss":"components/director-view/director-view.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"components/genre-view/genre-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./director-view.scss":"components/director-view/director-view.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js"}],"components/genre-view/genre-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -38645,10 +38646,10 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfileView).call(this));
     _this.state = {
-      username: [],
-      password: [],
-      email: [],
-      birthday: [],
+      username: null,
+      password: null,
+      email: null,
+      birthday: null,
       favourites: []
     };
     return _this;
@@ -38661,14 +38662,14 @@ function (_React$Component) {
 
       var username = localStorage.getItem('user');
 
-      _axios.default.get('https://rotten-potatoes3000.herokuapp.com/user/:username', {
-        // Might need correction: ${username}
+      _axios.default.get('https://rotten-potatoes3000.herokuapp.com/user/${username}', {
         headers: {
           Authorization: 'Bearer ${token}'
         }
       }).then(function (response) {
         _this2.setState({
           username: response.data.username,
+          password: response.data.password,
           email: response.data.email,
           birthday: response.data.birthday,
           favourites: response.data.favourites
@@ -38684,14 +38685,12 @@ function (_React$Component) {
 
       console.log('Deleting: ', favouriteMovie);
 
-      _axios.default.delete('https://rotten-potatoes3000.herokuapp.com/user/:username/movies/${favouriteMovie}', {
-        //URL may not be correct! -replace ":username" with "${username}".
+      _axios.default.delete('https://rotten-potatoes3000.herokuapp.com/user/${username}/movies/${favouriteMovie}', {
         headers: {
           Authorization: 'Bearer ${token}'
         }
       }).then(function (response) {
-        _this3.getUserProfile('token'); // Might need correction: (localStorage.getItem('token'))
-
+        _this3.getUserProfile(localStorage.getItem('token'));
       }).catch(function (error) {
         console.log(error);
       });
@@ -38702,7 +38701,9 @@ function (_React$Component) {
       var accessToken = localStorage.getItem('token');
 
       if (accessToken !== null) {
-        console.log('Access token found');
+        this.setState({
+          user: localStorage.getItem('user')
+        });
         this.getUserProfile(accessToken);
       }
     }
@@ -38716,15 +38717,15 @@ function (_React$Component) {
           favourites = _this$props.favourites;
       return _react.default.createElement(_Card.default, {
         className: "profile-view"
-      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Profile"), _react.default.createElement(_Card.default.Text, null, "Username: ", username), _react.default.createElement(_Card.default.Text, null, "Email: ", email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", birthday), _react.default.createElement(_Card.default.Text, null, "Favorites: ", favourites, _react.default.createElement(_reactRouterDom.Link, null, _react.default.createElement(_Button.default, {
+      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Profile"), _react.default.createElement(_Card.default.Text, null, "Username: ", username), _react.default.createElement(_Card.default.Text, null, "Password: not visible"), _react.default.createElement(_Card.default.Text, null, "Email: ", email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", birthday), _react.default.createElement(_Card.default.Text, null, "Favorites: ", favourites)), _react.default.createElement(_reactRouterDom.Link, null, _react.default.createElement(_Button.default, {
         variant: "dark",
         size: "sm",
         onClick: this.deleteFavouriteMovie(favouriteMovie)
-      }, "Delete"))), _react.default.createElement(_reactRouterDom.Link, {
-        to: '#'
+      }, "Delete")), _react.default.createElement(_reactRouterDom.Link, {
+        to: '/user/:username'
       }, _react.default.createElement(_Button.default, {
-        className: "update-button"
-      }, "Update profile"))), _react.default.createElement(_reactRouterDom.Link, {
+        className: "edit-button"
+      }, "Edit profile")), _react.default.createElement(_reactRouterDom.Link, {
         to: '/'
       }, _react.default.createElement(_Button.default, {
         variant: "dark",
@@ -39558,8 +39559,8 @@ function LoginView(props) {
     /* Send request to server for authentication */
 
     _axios.default.post('https://rotten-potatoes3000.herokuapp.com/login', {
-      Username: username,
-      Password: password
+      username: username,
+      password: password
     }).then(function (response) {
       var authData = response.data;
       props.onLoggedIn(authData);
@@ -39573,7 +39574,7 @@ function LoginView(props) {
   }, _react.default.createElement(_Form.default.Label, {
     className: "login-intro"
   }, "Login"), _react.default.createElement(_Form.default.Group, {
-    controlId: "formBasicUsername"
+    controlId: "formGroupUsername"
   }, _react.default.createElement(_Form.default.Label, null, "Username"), _react.default.createElement(_Form.default.Control, {
     type: "text",
     placeholder: "Enter username",
@@ -39583,7 +39584,7 @@ function LoginView(props) {
       return setUsername(e.target.value);
     }
   })), _react.default.createElement(_Form.default.Group, {
-    controlId: "formBasicPassword"
+    controlId: "formGroupPassword"
   }, _react.default.createElement(_Form.default.Label, null, "Password"), _react.default.createElement(_Form.default.Control, {
     type: "password",
     placeholder: "Enter password",
@@ -39598,7 +39599,7 @@ function LoginView(props) {
     type: "submit",
     onClick: handleSubmit
   }, "Login"), _react.default.createElement(_Form.default.Group, {
-    controlId: "formBasic"
+    controlId: "formGroupRegister"
   }, _react.default.createElement(_Form.default.Text, {
     className: "register-text"
   }, "Don\xB4t have an account?"), _react.default.createElement(_reactRouterDom.Link, {
@@ -39684,11 +39685,11 @@ function RegistrationView(props) {
   var handleRegister = function handleRegister(e) {
     e.preventDefault();
 
-    _axios.default.post('https://rotten-potatoes3000.herokuapp.com/login', {
-      Username: username,
-      Password: password,
-      Email: email,
-      Birthday: birthday
+    _axios.default.post('https://rotten-potatoes3000.herokuapp.com/user', {
+      username: username,
+      password: password,
+      email: email,
+      birthday: birthday
     }).then(function (response) {
       var data = response.data;
       console.log(data);
@@ -39733,9 +39734,9 @@ function RegistrationView(props) {
   })), _react.default.createElement(_Form.default.Group, {
     controlId: "formBasicBirthday"
   }, _react.default.createElement(_Form.default.Label, null, "Birthday"), _react.default.createElement(_Form.default.Control, {
-    type: "text",
+    type: "date",
     value: birthday,
-    placeholder: "Enter birth date (eg: 1987-12-31)",
+    placeholder: "dd-mm-yyyy",
     onChange: function onChange(e) {
       return setBirthday(e.target.value);
     }
@@ -39864,12 +39865,12 @@ var MainView =
 function (_React$Component) {
   _inherits(MainView, _React$Component);
 
-  function MainView(props) {
+  function MainView() {
     var _this;
 
     _classCallCheck(this, MainView);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(MainView).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(MainView).call(this));
     _this.state = {
       movies: [],
       user: null
@@ -40108,7 +40109,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64956" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58492" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
