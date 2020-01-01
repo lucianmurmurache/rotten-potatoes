@@ -22,8 +22,8 @@ import Container from 'react-bootstrap/Container';
 
 export class MainView extends React.Component {
 
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
 
         this.state = {
             movies: [],
