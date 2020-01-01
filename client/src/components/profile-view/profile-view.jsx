@@ -19,22 +19,23 @@ export class ProfileView extends React.Component {
     constructor() {
         super();
         this.state = {
-            username: [],
-            password: [],
-            email: [],
-            birthday: [],
+            username: null,
+            password: null,
+            email: null,
+            birthday: null,
             favourites: []
         };
     }
 
     getUserProfile(token) {
         let username = localStorage.getItem('user');
-        axios.get('https://rotten-potatoes3000.herokuapp.com/user/:username', { // Might need correction: ${username}
+        axios.get('https://rotten-potatoes3000.herokuapp.com/user/${username}', {
             headers: { Authorization: 'Bearer ${token}' }
         })
             .then((response) => {
                 this.setState({
                     username: response.data.username,
+                    password: response.data.password,
                     email: response.data.email,
                     birthday: response.data.birthday,
                     favourites: response.data.favourites
@@ -47,11 +48,11 @@ export class ProfileView extends React.Component {
 
     deleteFavouriteMovie(favouriteMovie) {
         console.log('Deleting: ', favouriteMovie);
-        axios.delete('https://rotten-potatoes3000.herokuapp.com/user/:username/movies/${favouriteMovie}', { //URL may not be correct! -replace ":username" with "${username}".
+        axios.delete('https://rotten-potatoes3000.herokuapp.com/user/${username}/movies/${favouriteMovie}', {
             headers: { Authorization: 'Bearer ${token}' }
         })
             .then((response) => {
-                this.getUserProfile(('token')); // Might need correction: (localStorage.getItem('token'))
+                this.getUserProfile(localStorage.getItem('token'));
             })
             .catch(function (error) {
                 console.log(error);
@@ -61,7 +62,9 @@ export class ProfileView extends React.Component {
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
         if (accessToken !== null) {
-            console.log('Access token found');
+            this.setState({
+                user: localStorage.getItem('user')
+            });
             this.getUserProfile(accessToken);
         }
     }
@@ -76,26 +79,31 @@ export class ProfileView extends React.Component {
                         Profile
                         </Card.Title>
                     <Card.Text>Username: {username}</Card.Text>
+                    <Card.Text>Password: not visible</Card.Text>
                     <Card.Text>Email: {email}</Card.Text>
                     <Card.Text>Birthday: {birthday}</Card.Text>
                     <Card.Text>Favorites: {favourites}
-                        <Link>
-                            <Button variant="dark" size="sm" onClick={this.deleteFavouriteMovie(favouriteMovie)}>
-                                Delete
-                            </Button>
-                        </Link>
                     </Card.Text>
-                    <Link to={'#'}>
-                        <Button className="update-button">
-                            Update profile
-                        </Button>
-                    </Link>
                 </Card.Body>
+
+                <Link>
+                    <Button variant="dark" size="sm" onClick={this.deleteFavouriteMovie(favouriteMovie)}>
+                        Delete
+                            </Button>
+                </Link>
+
+                <Link to={'/user/:username'}>
+                    <Button className="edit-button">
+                        Edit profile
+                        </Button>
+                </Link>
+
                 <Link to={'/'}>
                     <Button variant="dark" className="btn">
                         Back to movie list
                     </Button>
                 </Link>
+
             </Card>
         )
     }
