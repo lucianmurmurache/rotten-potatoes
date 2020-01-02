@@ -23,6 +23,7 @@ export class DirectorView extends React.Component {
 
     render() {
         const { director } = this.props;
+        if (!director) return null;
 
         return (
             <Card className="director-view">
@@ -30,8 +31,11 @@ export class DirectorView extends React.Component {
                     <Card.Title className="director-title">
                         {director.name}
                     </Card.Title>
+                    <Card.text className="director-birth">
+                        Born in {director.birth}
+                    </Card.text>
                     <Card.Text className="director-bio">
-                        Bio: {director.bio}
+                        Biography: {director.bio}
                     </Card.Text>
                     <Link to={'/'}>
                         <Button variant="dark" className="btn">
