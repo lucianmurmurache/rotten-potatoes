@@ -38353,9 +38353,7 @@ function (_React$Component) {
   _createClass(MovieView, [{
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          movie = _this$props.movie,
-          _onClick = _this$props.onClick;
+      var movie = this.props.movie;
       if (!movie) return null;
       return _react.default.createElement("div", {
         className: "movie-view"
@@ -38377,13 +38375,12 @@ function (_React$Component) {
         to: '/directors/${movie.director.name}'
       }, _react.default.createElement(_Button.default, {
         variant: "link"
-      }, "Director")), _react.default.createElement(_Button.default, {
+      }, "Director")), _react.default.createElement(_reactRouterDom.Link, {
+        to: '/'
+      }, _react.default.createElement(_Button.default, {
         variant: "dark",
-        onClick: function onClick() {
-          return _onClick();
-        },
         className: "return-button"
-      }, "Return to list")));
+      }, "Return to list"))));
     }
   }]);
 
@@ -38400,6 +38397,7 @@ MovieView.propTypes = {
   }).isRequired
 };
 /*=================PropTypes=================*/
+// git commit -m "Replaced onClick-backButton with Link to"
 },{"react":"../node_modules/react/index.js","./movie-view.scss":"components/movie-view/movie-view.scss","prop-types":"../node_modules/prop-types/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js"}],"components/director-view/director-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -38468,13 +38466,16 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var director = this.props.director;
+      if (!director) return null;
       return _react.default.createElement(_Card.default, {
         className: "director-view"
       }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, {
         className: "director-title"
-      }, director.name), _react.default.createElement(_Card.default.Text, {
+      }, director.name), _react.default.createElement(_Card.default.text, {
+        className: "director-birth"
+      }, "Born in ", director.birth), _react.default.createElement(_Card.default.Text, {
         className: "director-bio"
-      }, "Bio: ", director.bio), _react.default.createElement(_reactRouterDom.Link, {
+      }, "Biography: ", director.bio), _react.default.createElement(_reactRouterDom.Link, {
         to: '/'
       }, _react.default.createElement(_Button.default, {
         variant: "dark",
@@ -38537,12 +38538,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-//import Row from 'react-bootstrap/Row';
-//import Col from 'react-bootstrap/Col';
-//import Container from 'react-bootstrap/Container';
-
 /* =============react-bootstrap-imports=============*/
-//import axios from 'axios';
 var GenreView =
 /*#__PURE__*/
 function (_React$Component) {
@@ -38650,7 +38646,7 @@ function (_React$Component) {
       password: null,
       email: null,
       birthday: null,
-      favourites: null
+      favourites: []
     };
     return _this;
   }
@@ -38678,21 +38674,24 @@ function (_React$Component) {
         console.log(error);
       });
     }
-    /* WORK IN PROGRESS
-          deleteFavouriteMovie(movie._id) {
-            console.log('Deleting: ' + movie._id);
-            axios.delete('https://rotten-potatoes3000.herokuapp.com/user/${username}/movies/${movie._id}', {
-                headers: { Authorization: 'Bearer ${token}' }
-            })
-                .then((response) => {
-                    this.getUserProfile(localStorage.getItem('token'));
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-        }
-    */
+  }, {
+    key: "deleteFavouriteMovie",
+    value: function deleteFavouriteMovie(e, movieID) {
+      var _this3 = this;
 
+      e.preventDefault();
+      console.log('Deleting ' + movieID);
+
+      _axios.default.delete('https://rotten-potatoes3000.herokuapp.com/user/${username}/movies/${movieID}', {
+        headers: {
+          Authorization: 'Bearer ${token}'
+        }
+      }).then(function (response) {
+        _this3.getUserProfile(localStorage.getItem('token'));
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
@@ -38708,19 +38707,30 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          username = _this$props.username,
-          email = _this$props.email,
-          birthday = _this$props.birthday,
-          favourites = _this$props.favourites;
+      var _this4 = this;
+
+      var _this$state = this.state,
+          username = _this$state.username,
+          email = _this$state.email,
+          birthday = _this$state.birthday,
+          favourites = _this$state.favourites;
       return _react.default.createElement(_Card.default, {
         className: "profile-view"
-      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Profile"), _react.default.createElement(_Card.default.Text, null, "Username: ", username), _react.default.createElement(_Card.default.Text, null, "Email: ", email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", birthday), _react.default.createElement(_Card.default.Text, null, "Favorites: ", favourites)), _react.default.createElement(_reactRouterDom.Link, {
-        to: '/user/${username}'
-      }, _react.default.createElement(_Button.default, {
-        className: "edit-button",
-        variant: "dark"
-      }, "Edit profile")), _react.default.createElement(_reactRouterDom.Link, {
+      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Profile"), _react.default.createElement(_Card.default.Text, {
+        className: "profile-username"
+      }, "Username: ", username), _react.default.createElement(_Card.default.Text, {
+        className: "profile-email"
+      }, "Email: ", email), _react.default.createElement(_Card.default.Text, {
+        className: "profile-birthday"
+      }, "Birthday: ", birthday), _react.default.createElement(_Card.default.Text, {
+        className: "profile-favourites"
+      }, "Favorites: ", favourites), _react.default.createElement(_Button.default, {
+        variant: "danger",
+        size: "sm",
+        onClick: function onClick(e) {
+          return _this4.deleteFavouriteMovie(movieID);
+        }
+      }, "Delete")), _react.default.createElement(_reactRouterDom.Link, {
         to: '/'
       }, _react.default.createElement(_Button.default, {
         variant: "dark",
@@ -38731,13 +38741,51 @@ function (_React$Component) {
 
   return ProfileView;
 }(_react.default.Component);
-/*=================PropTypes=================*/
-//ProfileView.propTypes = {
-//   no props yet!
-//};
+/* WORK IN PROGRESS
 
-/*=================PropTypes=================*/
-// git commit -m "Delete favourite movie not working - looking for fix"
+   const handleUpdate = (e) => {
+        e.preventDefault();
+        axios.put('https://rotten-potatoes3000.herokuapp.com/user/${username}', {
+            username: username,
+            password: password,
+            email: email,
+            birthday: birthday
+        }, {
+            headers: { Authorization: 'Bearer ${token}' }
+        })
+        .then((response) => {
+            console.log('Your profile has been updated!')
+        })
+        .catch(function (error) {
+                console.log('Unable to update profile: ' + error);
+            })
+
+    }
+
+    const handleDelete = (e) => {
+        e.preventDefault();
+        axios.delete('https://rotten-potatoes3000.herokuapp.com/user/${username}', {
+            headers: { Authorization: 'Bearer ${token}' }
+        })
+        .then((response) => {
+            console.log('Account deleted');
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+            window.open('/' , '_self');
+        })
+        .catch(function (error) {
+                console.log('Unable to delete profile: ' + error);
+            })
+    }
+
+    ====================BUTTONS====================
+    <Link to={'/user/${user}'}>
+        <Button className="profile-button">Profile</Button>
+    </Link>
+
+    <Button variant="light" className="logout-button" onClick={() => this.onLogout()}>Logout</Button>
+    ====================BUTTONS====================
+*/
 
 
 exports.ProfileView = ProfileView;
@@ -39831,11 +39879,7 @@ var _loginView = require("../login-view/login-view");
 
 var _registrationView = require("../registartion-view/registration-view");
 
-var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
-
 var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
-
-var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
 
 var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
 
@@ -39907,14 +39951,6 @@ function (_React$Component) {
         });
         this.getMovies(accessToken);
       }
-    } //Return button
-
-  }, {
-    key: "onReturnClick",
-    value: function onReturnClick() {
-      this.setState({
-        selectedMovie: null
-      });
     } //Login with token
 
   }, {
@@ -39935,13 +39971,6 @@ function (_React$Component) {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
     }
-    /*
-    <Link to={'/user/${user}'}>
-        <Button className="profile-button">Profile</Button>
-    </Link>
-      <Button variant="light" className="logout-button" onClick={() => this.onLogout()}>Logout</Button>
-    */
-
   }, {
     key: "render",
     value: function render() {
@@ -40023,10 +40052,11 @@ function (_React$Component) {
   }]);
 
   return MainView;
-}(_react.default.Component);
+}(_react.default.Component); // git commit -m "Removed onClick-back button"
+
 
 exports.MainView = MainView;
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx","../login-view/login-view":"components/login-view/login-view.jsx","../registartion-view/registration-view":"components/registartion-view/registration-view.jsx","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js"}],"index.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx","../login-view/login-view":"components/login-view/login-view.jsx","../registartion-view/registration-view":"components/registartion-view/registration-view.jsx","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js"}],"index.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -40116,7 +40146,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57254" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63876" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
