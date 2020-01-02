@@ -20,7 +20,7 @@ export class MovieView extends React.Component {
         this.state = {};
     }
     render() {
-        const { movie, onClick } = this.props;
+        const { movie } = this.props;
 
         if (!movie) return null;
 
@@ -40,9 +40,11 @@ export class MovieView extends React.Component {
                     <Link to={'/directors/${movie.director.name}'}>
                         <Button variant="link">Director</Button>
                     </Link>
-                    <Button variant="dark" onClick={() => onClick()} className="return-button">
-                        Return to list
-                </Button>
+                    <Link to={'/'}>
+                        <Button variant="dark" className="return-button">
+                            Return to list
+                        </Button>
+                    </Link>
                 </Card>
             </div >
         );
