@@ -23,7 +23,7 @@ export class ProfileView extends React.Component {
             password: null,
             email: null,
             birthday: null,
-            favourites: []
+            favourites: null
         };
     }
 
@@ -45,20 +45,21 @@ export class ProfileView extends React.Component {
                 console.log(error);
             });
     }
+    /* WORK IN PROGRESS
 
-    deleteFavouriteMovie(favouriteMovie) {
-        console.log('Deleting: ', favouriteMovie);
-        axios.delete('https://rotten-potatoes3000.herokuapp.com/user/${username}/movies/${favouriteMovie}', {
-            headers: { Authorization: 'Bearer ${token}' }
-        })
-            .then((response) => {
-                this.getUserProfile(localStorage.getItem('token'));
+        deleteFavouriteMovie(movie._id) {
+            console.log('Deleting: ' + movie._id);
+            axios.delete('https://rotten-potatoes3000.herokuapp.com/user/${username}/movies/${movie._id}', {
+                headers: { Authorization: 'Bearer ${token}' }
             })
-            .catch(function (error) {
-                console.log(error);
-            })
-    }
-
+                .then((response) => {
+                    this.getUserProfile(localStorage.getItem('token'));
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        }
+    */
     componentDidMount() {
         let accessToken = localStorage.getItem('token');
         if (accessToken !== null) {
@@ -75,35 +76,23 @@ export class ProfileView extends React.Component {
         return (
             <Card className="profile-view">
                 <Card.Body>
-                    <Card.Title>
-                        Profile
-                        </Card.Title>
+                    <Card.Title>Profile</Card.Title>
                     <Card.Text>Username: {username}</Card.Text>
-                    <Card.Text>Password: not visible</Card.Text>
                     <Card.Text>Email: {email}</Card.Text>
                     <Card.Text>Birthday: {birthday}</Card.Text>
-                    <Card.Text>Favorites: {favourites}
-                    </Card.Text>
+                    <Card.Text>Favorites: {favourites}</Card.Text>
                 </Card.Body>
 
-                <Link>
-                    <Button variant="dark" size="sm" onClick={this.deleteFavouriteMovie(favouriteMovie)}>
-                        Delete
-                            </Button>
-                </Link>
-
-                <Link to={'/user/:username'}>
-                    <Button className="edit-button">
+                <Link to={'/user/${username}'}>
+                    <Button className="edit-button" variant="dark">
                         Edit profile
                         </Button>
                 </Link>
-
                 <Link to={'/'}>
                     <Button variant="dark" className="btn">
                         Back to movie list
                     </Button>
                 </Link>
-
             </Card>
         )
     }
