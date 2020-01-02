@@ -55,13 +55,8 @@
 
 /*=====Profile=====*/
 .profile-view {
-  align-items: center;
+  align-items: right;
   max-width: 70%;
-}
-
-.btn {
-  font-size: 20px;
-  padding: 8px 16px;
 }
 * {
   box-sizing: border-box;

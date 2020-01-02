@@ -38650,7 +38650,7 @@ function (_React$Component) {
       password: null,
       email: null,
       birthday: null,
-      favourites: []
+      favourites: null
     };
     return _this;
   }
@@ -38678,23 +38678,21 @@ function (_React$Component) {
         console.log(error);
       });
     }
-  }, {
-    key: "deleteFavouriteMovie",
-    value: function deleteFavouriteMovie(favouriteMovie) {
-      var _this3 = this;
-
-      console.log('Deleting: ', favouriteMovie);
-
-      _axios.default.delete('https://rotten-potatoes3000.herokuapp.com/user/${username}/movies/${favouriteMovie}', {
-        headers: {
-          Authorization: 'Bearer ${token}'
+    /* WORK IN PROGRESS
+          deleteFavouriteMovie(movie._id) {
+            console.log('Deleting: ' + movie._id);
+            axios.delete('https://rotten-potatoes3000.herokuapp.com/user/${username}/movies/${movie._id}', {
+                headers: { Authorization: 'Bearer ${token}' }
+            })
+                .then((response) => {
+                    this.getUserProfile(localStorage.getItem('token'));
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
         }
-      }).then(function (response) {
-        _this3.getUserProfile(localStorage.getItem('token'));
-      }).catch(function (error) {
-        console.log(error);
-      });
-    }
+    */
+
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
@@ -38717,14 +38715,11 @@ function (_React$Component) {
           favourites = _this$props.favourites;
       return _react.default.createElement(_Card.default, {
         className: "profile-view"
-      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Profile"), _react.default.createElement(_Card.default.Text, null, "Username: ", username), _react.default.createElement(_Card.default.Text, null, "Password: not visible"), _react.default.createElement(_Card.default.Text, null, "Email: ", email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", birthday), _react.default.createElement(_Card.default.Text, null, "Favorites: ", favourites)), _react.default.createElement(_reactRouterDom.Link, null, _react.default.createElement(_Button.default, {
-        variant: "dark",
-        size: "sm",
-        onClick: this.deleteFavouriteMovie(favouriteMovie)
-      }, "Delete")), _react.default.createElement(_reactRouterDom.Link, {
-        to: '/user/:username'
+      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Profile"), _react.default.createElement(_Card.default.Text, null, "Username: ", username), _react.default.createElement(_Card.default.Text, null, "Email: ", email), _react.default.createElement(_Card.default.Text, null, "Birthday: ", birthday), _react.default.createElement(_Card.default.Text, null, "Favorites: ", favourites)), _react.default.createElement(_reactRouterDom.Link, {
+        to: '/user/${username}'
       }, _react.default.createElement(_Button.default, {
-        className: "edit-button"
+        className: "edit-button",
+        variant: "dark"
       }, "Edit profile")), _react.default.createElement(_reactRouterDom.Link, {
         to: '/'
       }, _react.default.createElement(_Button.default, {
@@ -38742,6 +38737,7 @@ function (_React$Component) {
 //};
 
 /*=================PropTypes=================*/
+// git commit -m "Delete favourite movie not working - looking for fix"
 
 
 exports.ProfileView = ProfileView;
@@ -39835,7 +39831,11 @@ var _loginView = require("../login-view/login-view");
 
 var _registrationView = require("../registartion-view/registration-view");
 
+var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
+
 var _Row = _interopRequireDefault(require("react-bootstrap/Row"));
+
+var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
 
 var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
 
@@ -39929,6 +39929,20 @@ function (_React$Component) {
       this.getMovies(authData.token);
     }
   }, {
+    key: "onLogout",
+    value: function onLogout() {
+      window.open('/', '_self');
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+    }
+    /*
+    <Link to={'/user/${user}'}>
+        <Button className="profile-button">Profile</Button>
+    </Link>
+      <Button variant="light" className="logout-button" onClick={() => this.onLogout()}>Logout</Button>
+    */
+
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
@@ -40002,14 +40016,7 @@ function (_React$Component) {
         path: "/user/:username",
         render: function render(_ref4) {
           var match = _ref4.match;
-          if (!movies) return _react.default.createElement("div", {
-            className: "main-view"
-          });
-          return _react.default.createElement(_profileView.ProfileView, {
-            genre: user.find(function (user) {
-              return user.username === match.params.name;
-            }).user
-          });
+          return _react.default.createElement(_profileView.ProfileView, null);
         }
       })))));
     }
@@ -40019,7 +40026,7 @@ function (_React$Component) {
 }(_react.default.Component);
 
 exports.MainView = MainView;
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx","../login-view/login-view":"components/login-view/login-view.jsx","../registartion-view/registration-view":"components/registartion-view/registration-view.jsx","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js"}],"index.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx","../director-view/director-view":"components/director-view/director-view.jsx","../genre-view/genre-view":"components/genre-view/genre-view.jsx","../profile-view/profile-view":"components/profile-view/profile-view.jsx","../login-view/login-view":"components/login-view/login-view.jsx","../registartion-view/registration-view":"components/registartion-view/registration-view.jsx","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Row":"../node_modules/react-bootstrap/esm/Row.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js"}],"index.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -40109,7 +40116,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58492" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57254" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
