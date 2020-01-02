@@ -5,9 +5,18 @@
 .director-view {
     align-items: center;
     max-width: 70%;
+    margin: auto;
+}
+
+.director-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.director-bio {
+    text-align: left;
 }
 
 .btn {
-    font-size: 20px;
     padding: 8px 16px;
 }
