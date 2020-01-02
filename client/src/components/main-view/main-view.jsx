@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
@@ -14,9 +14,9 @@ import { RegistrationView } from '../registartion-view/registration-view';
 
 /* =============react-bootstrap-imports=============*/
 //import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
+//import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+//import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 /* =============react-bootstrap-imports=============*/
 
@@ -56,13 +56,6 @@ export class MainView extends React.Component {
         }
     }
 
-    //Return button
-    onReturnClick() {
-        this.setState({
-            selectedMovie: null
-        });
-    }
-
     //Login with token
     onLoggedIn(authData) {
         console.log(authData);
@@ -79,13 +72,7 @@ export class MainView extends React.Component {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
     }
-    /*
-    <Link to={'/user/${user}'}>
-        <Button className="profile-button">Profile</Button>
-    </Link>
 
-    <Button variant="light" className="logout-button" onClick={() => this.onLogout()}>Logout</Button>
-    */
     render() {
         const { movies, user } = this.state;
 
