@@ -4,7 +4,8 @@ import {
 
 import {
     SET_FILTER,
-    SET_MOVIES
+    SET_MOVIES,
+    SET_LOGGED_IN_USER
 } from '../actions/actions';
 
 function visibilityFilter(state = '', action) {
@@ -25,10 +26,21 @@ function movies(state = [], action) {
     }
 }
 
+function loggedInUser(state = [], action) {
+    switch (action.type) {
+        case SET_LOGGED_IN_USER:
+            return action.value;
+        default:
+            return state;
+
+    }
+}
+
 function moviesApp(state = {}, action) {
     return {
         visibilityFilter: visibilityFilter(state.visibilityFilter, action),
-        movies: movies(state.movies, action)
+        movies: movies(state.movies, action),
+        loggedInUser: loggedInUser(state.loggedInUser, action)
     }
 }
 
