@@ -6,7 +6,7 @@
 .login-form {
     text-align: left;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    max-width: 400px;
+    max-width: 500px;
     font-size: 20px;
     width: 100%;
     padding: 3%;
@@ -15,7 +15,7 @@
 
 .login-intro {
     font-size: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .login-button {
@@ -23,13 +23,25 @@
     padding: 8px 16px;
 }
 
+.welcome-section {
+    margin-top: -1%;
+    text-align: center;
+}
+
+.welcome-logo {
+    text-align: center;
+    max-width: 220px;
+    max-height: 140px;
+    margin-top: -13%;
+}
+
 /*=====Register=====*/
 .register-text {
-    margin-top: 40px;
+    margin-top: 10%;
     font-size: 14px;
 }
 
 .register-button {
     font-size: 18px;
-    margin-bottom: -10px;
+    margin-bottom: -10%;
 }
