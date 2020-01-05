@@ -7,7 +7,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     text-align: left;
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     font-size: 20px;
     padding-left: 3%;
     padding-right: 3%;
@@ -17,7 +17,7 @@
 .registration-intro {
     text-align: center;
     font-size: 30px;
-    margin-bottom: 15px;
+    margin-bottom: 4%;
 }
 
 .registration-button {
@@ -27,10 +27,11 @@
 
 /*=====Login=====*/
 .login-text {
-    margin-top: 20px;
+    margin-top: 5%;
     font-size: 14px;
 }
 
 .login-button {
     font-size: 18px;
+    margin-bottom: 2%;
 }
