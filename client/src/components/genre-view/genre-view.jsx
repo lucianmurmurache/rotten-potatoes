@@ -28,7 +28,7 @@ export class GenreView extends React.Component {
                         Description: {genre.description}
                     </Card.Text>
                     <Link to={'/'}>
-                        <Button variant="dark" className="btn">
+                        <Button variant="outline-dark" className="btn">
                             Back
                         </Button>
                     </Link>
@@ -37,9 +37,3 @@ export class GenreView extends React.Component {
         )
     }
 }
-
-/*=================PropTypes=================*/
-//GenreView.propTypes = {
-//   no props yet!
-//};
-/*=================PropTypes=================*/
