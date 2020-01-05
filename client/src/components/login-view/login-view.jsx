@@ -6,14 +6,13 @@ import { Link } from 'react-router-dom';
 /* =============react-bootstrap-imports=============*/
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-//import Container from 'react-bootstrap/Container';
-//import Row from 'react-bootstrap/Row';
-//import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 /* =============react-bootstrap-imports=============*/
 
 import axios from 'axios';
 
 import './login-view.scss';
+import WelcomeLogo from '../../img/rotten-potatoes-3000.png';
 
 export function LoginView(props) {
     const [username, setUsername] = useState('');
@@ -26,9 +25,9 @@ export function LoginView(props) {
             username: username,
             password: password
         })
-            .then((response) => {
-                const authData = response.data;
-                props.onLoggedIn(authData);
+            .then(response => {
+                const data = response.data;
+                props.onLoggedIn(data);
             })
             .catch((e) => {
                 console.log('User not found! Please check your credentials.')
@@ -36,34 +35,63 @@ export function LoginView(props) {
     };
 
     return (
-        <Form className="login-form">
-            <Form.Label className="login-intro">Login</Form.Label>
+        <Container className="login-form">
+            <div className="welcome-section">
+                <img className="welcome-logo" src={WelcomeLogo} />
+                <h2>Welcome to RottenPotatoes</h2>
+            </div>
+            <Form>
+                <Form.Label className="login-intro">Login</Form.Label>
 
-            <Form.Group controlId="formGroupUsername">
-                <Form.Label>
-                    Username
+                <Form.Group controlId="formGroupUsername">
+                    <Form.Label>
+                        Username
                 </Form.Label>
-                <Form.Control type="text" placeholder="Enter username" value={username} autoComplete="on" onChange={(e) => setUsername(e.target.value)} />
-            </Form.Group>
+                    <Form.Control
+                        type="text"
+                        placeholder="Enter username"
+                        value={username}
+                        autoComplete="on"
+                        onChange={e => setUsername(e.target.value)}
+                    />
+                </Form.Group>
 
-            <Form.Group controlId="formGroupPassword">
-                <Form.Label>
-                    Password
+                <Form.Group controlId="formGroupPassword">
+                    <Form.Label>
+                        Password
                 </Form.Label>
-                <Form.Control type="password" placeholder="Enter password" value={password} autoComplete="off" onChange={(e) => setPassword(e.target.value)} />
-            </Form.Group>
+                    <Form.Control
+                        type="password"
+                        placeholder="Enter password"
+                        value={password}
+                        autoComplete="off"
+                        onChange={e => setPassword(e.target.value)}
+                    />
+                </Form.Group>
 
-            <Button className="login-button" variant="dark" type="submit" onClick={handleSubmit}>
-                Login
+                <Button
+                    className="login-button"
+                    variant="outline-dark"
+                    type="submit"
+                    onClick={handleSubmit}
+                >
+                    Login
             </Button>
 
-            <Form.Group controlId="formGroupRegister">
-                <Form.Text className="register-text">Don´t have an account?</Form.Text>
-                <Link to={'/register'}>
-                    <Button variant="link" className="register-button" type="link">Register</Button>
-                </Link>
-            </Form.Group>
-        </Form>
+                <Form.Group controlId="formGroupRegister">
+                    <Form.Text className="register-text">Don´t have an account?</Form.Text>
+                    <Link to={'/register'}>
+                        <Button
+                            variant="link"
+                            className="register-button"
+                            type="link"
+                        >
+                            Register
+                    </Button>
+                    </Link>
+                </Form.Group>
+            </Form>
+        </Container>
     );
 }
 
