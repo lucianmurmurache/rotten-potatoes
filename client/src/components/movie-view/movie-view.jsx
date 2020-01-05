@@ -3,19 +3,16 @@ import './movie-view.scss';
 import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 /* =============react-bootstrap-imports=============*/
-//import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-//import Row from 'react-bootstrap/Row';
-//import Col from 'react-bootstrap/Col';
-//import Container from 'react-bootstrap/Container';
 /* =============react-bootstrap-imports=============*/
 
 export class MovieView extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
 
         this.state = {};
     }
@@ -27,7 +24,7 @@ export class MovieView extends React.Component {
         return (
             <div className="movie-view">
                 <Card className="movie-view__card">
-                    <Card.Img variant="top" className="movie-poster" src={movie.imagePath} />
+                    <Card.Img alt="movie-poster" variant="top" className="movie-poster" src={movie.imagePath} />
                     <Card.Title className="movie-title">
                         {movie.title}
                     </Card.Title>
@@ -41,7 +38,7 @@ export class MovieView extends React.Component {
                         <Button variant="link">Director</Button>
                     </Link>
                     <Link to={'/'}>
-                        <Button variant="dark" className="return-button">
+                        <Button variant="outline-dark" className="return-button">
                             Return to list
                         </Button>
                     </Link>
