@@ -18,7 +18,7 @@ export function LoginView(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = e => {
         e.preventDefault();
         /* Send request to server for authentication */
         axios.post('https://rotten-potatoes3000.herokuapp.com/login', {
@@ -29,8 +29,8 @@ export function LoginView(props) {
                 const data = response.data;
                 props.onLoggedIn(data);
             })
-            .catch((e) => {
-                console.log('User not found! Please check your credentials.')
+            .catch(e => {
+                console.log(e, 'User not found! Please check your credentials.')
             });
     };
 
