@@ -42169,7 +42169,7 @@ function LoginView(props) {
       var data = response.data;
       props.onLoggedIn(data);
     }).catch(function (e) {
-      console.log('User not found! Please check your credentials.');
+      console.log(e, 'User not found! Please check your credentials.');
     });
   };
 
@@ -42747,7 +42747,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65179" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60888" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
