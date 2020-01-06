@@ -5,7 +5,7 @@ import axios from 'axios';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import { setMovies, loggedInUser } from '../../actions/actions';
+import { setMovies, setLoggedInUser } from '../../actions/actions';
 
 import MoviesList from '../movies-list/movies-list';
 import { MovieView } from '../movie-view/movie-view';
@@ -28,7 +28,7 @@ export class MainView extends React.Component {
 
     getMovies(token) {
         axios.get('https://rotten-potatoes3000.herokuapp.com/movies', {
-            headers: { Authorization: 'Bearer ${token}' }
+            headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
                 this.props.setMovies(response.data);
@@ -51,10 +51,10 @@ export class MainView extends React.Component {
     getUserProfile(token) {
         let username = localStorage.getItem('user')
         axios.get('https://rotten-potatoes3000.herokuapp.com/user/${username}', {
-            headers: { Authorization: 'Bearer ${token}' }
+            headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
-                this.props.loggedInUser(response.data);
+                this.props.setLoggedInUser(response.data);
             })
             .catch(function (error) {
                 console.log(error)
@@ -115,4 +115,4 @@ let mapStateToProps = state => {
     return { movies: state.movies }
 }
 
-export default connect(mapStateToProps, { setMovies, loggedInUser })(MainView);
+export default connect(mapStateToProps, { setMovies, setLoggedInUser })(MainView);
