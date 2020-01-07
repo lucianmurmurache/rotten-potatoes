@@ -1,3 +1,15 @@
+* {
+  box-sizing: border-box;
+}
+
+/*=====Main view=====*/
+.main-view {
+  text-align: start;
+  margin-top: 3%;
+  margin-right: auto;
+  margin-left: auto;
+  width: 80%;
+}
 .movies-container {
   max-width: 99%;
   max-height: 99%;
@@ -20,6 +32,34 @@
 .movie-card {
   align-items: center;
   width: 16rem;
+  height: 40rem;
+  max-height: 42rem;
+  margin-top: 10%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.movie-poster {
+  max-height: 20rem;
+}
+
+.movie-title {
+  text-align: center;
+  margin-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.movie-description {
+  text-align: left;
+}
+
+.movie-button__open {
+  display: flex;
+  justify-content: end;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 * {
   box-sizing: border-box;
@@ -30,13 +70,24 @@
   text-align: center;
 }
 
+.movie-view__card {
+  margin: auto;
+  max-width: 30%;
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .return-button {
   font-size: 20px;
   padding: 8px 16px;
 }
 
-.movie-view__card {
-  max-width: 70%;
+.movie-title {
+  text-align: center;
+}
+
+.movie-description {
+  text-indent: 10%;
 }
 * {
   box-sizing: border-box;
@@ -44,7 +95,8 @@
 
 .director-view {
   align-items: center;
-  max-width: 70%;
+  width: 18rem;
+  max-width: 19rem;
   margin: auto;
 }
 
@@ -163,6 +215,18 @@
 .registration-button {
   font-size: 20px;
   padding: 8px 16px;
+}
+
+.welcome-section {
+  margin-top: -1%;
+  text-align: center;
+}
+
+.welcome-logo {
+  text-align: center;
+  max-width: 220px;
+  max-height: 140px;
+  margin-top: -1%;
 }
 
 /*=====Login=====*/
