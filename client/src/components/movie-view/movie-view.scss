@@ -3,21 +3,28 @@
 }
 
 /*=====Movie view=====*/
+
 .movie-view {
     text-align: center;
+}
+
+.movie-view__card {
+    margin: auto;
+    max-width: 30%;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .return-button {
     font-size: 20px;
     padding: 8px 16px;
+
 }
 
-.movie-view__card {
-    max-width: 70%;
+.movie-title {
+    text-align: center;
 }
 
-.movie-poster {}
-
-.movie-title {}
-
-.movie-description {}
+.movie-description {
+    text-indent: 10%;
+}
