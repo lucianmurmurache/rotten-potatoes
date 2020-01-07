@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import axios from 'axios';
+import './main-view.scss'
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
@@ -96,12 +97,12 @@ export class MainView extends React.Component {
 
                     <Route path="/directors/:name" render={({ match }) => {
                         if (!movies) return <div className="main-view" />;
-                        return <DirectorView director={movies.find(m => m.directors.name === match.params.name).director} />
+                        return <DirectorView director={movies.find(m => m.director.name === match.params.name)} />
                     }} />
 
                     <Route path="/genres/:name" render={({ match }) => {
                         if (!movies) return <div className="main-view" />;
-                        return <GenreView genre={movies.find(m => m.genres.name === match.params.name).genre} />
+                        return <GenreView genre={movies.find(m => m.genre.name === match.params.name)} />
                     }} />
 
                     <Route path="/user/:username" render={() => <ProfileView />} />
