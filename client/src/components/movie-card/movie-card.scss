@@ -5,4 +5,32 @@
 .movie-card {
     align-items: center;
     width: 16rem;
+    height: 40rem;
+    max-height: 42rem;
+    margin-top: 10%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.movie-poster {
+    max-height: 20rem;
+}
+
+.movie-title {
+    text-align: center;
+    margin-top: 2%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.movie-description {
+    text-align: left;
+}
+
+.movie-button__open {
+    display: flex;
+    justify-content: end;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
