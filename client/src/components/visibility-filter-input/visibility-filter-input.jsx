@@ -3,16 +3,27 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './visibility-filter-input.scss';
 
+import { Link } from 'react-router-dom';
+
 import Form from 'react-bootstrap/Form';
+import Navbar from 'react-bootstrap/Navbar';
 
 import { setFilter } from '../../actions/actions';
 
 function VisibilityFilterInput(props) {
-    return <Form.Control className="visibility-filter"
-        onChange={e => props.setFilter(e.target.value)}
-        value={props.visibilityFilter}
-        placeholder="Filter"
-    />;
+    return <Navbar fixed="top" bg="light" variant="light" >
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+            <Navbar.Brand href="#">
+                RottenPotatoes
+            </Navbar.Brand>
+            <Form.Control className="visibility-filter"
+                onChange={e => props.setFilter(e.target.value)}
+                value={props.visibilityFilter}
+                placeholder="Filter"
+            />
+        </Navbar.Collapse>
+    </Navbar>;
 }
 
 export default connect(
