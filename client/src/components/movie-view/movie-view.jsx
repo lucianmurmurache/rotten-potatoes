@@ -2,7 +2,6 @@ import React from 'react';
 import './movie-view.scss';
 
 import { Link } from 'react-router-dom';
-//import { connect } from 'react-redux';
 
 /* =============react-bootstrap-imports=============*/
 import Button from 'react-bootstrap/Button';
@@ -25,24 +24,33 @@ export class MovieView extends React.Component {
                 <Card className="movie-view__card">
                     <Card.Img alt="movie-poster" variant="top" className="movie-poster" src={movie.imagePath} />
                     <Card.Body>
+
                         <Card.Title className="movie-title">
                             {movie.title}
                         </Card.Title>
+
                         <Card.Text className="movie-description">
-                            Description: {movie.description}
+                            {movie.description}
                         </Card.Text>
+
+                        <Card.Text className="genre-name">Genre: </Card.Text>
                         <Link to={`/genres/${movie.genre.name}`}>
-                            <Button variant="link">Genre</Button>
-                        </Link>
-                        <Link to={`/directors/${movie.director.name}`}>
-                            <Button variant="link">Director</Button>
+                            <Card.Text className="genre-name">{movie.genre.name}</Card.Text>
                         </Link>
                         <br></br>
+
+                        <Card.Text className="director-name">Director: </Card.Text>
+                        <Link to={`/directors/${movie.director.name}`}>
+                            <Card.Text className="director-name">{movie.director.name}</Card.Text>
+                        </Link>
+                        <br></br><br></br>
+
                         <Link to={'/'}>
                             <Button variant="outline-dark" className="return-button">
                                 Return to list
-                        </Button>
+                            </Button>
                         </Link>
+
                     </Card.Body>
                 </Card>
             </div >
