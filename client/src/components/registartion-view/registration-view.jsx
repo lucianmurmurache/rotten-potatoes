@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 /* =============react-bootstrap-imports=============*/
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
 /* =============react-bootstrap-imports=============*/
 
 export function RegistrationView(props) {
@@ -32,7 +31,8 @@ export function RegistrationView(props) {
                 window.open('/client', '_self');
             })
             .catch((e) => {
-                console.log('Unable to register user, try again.')
+                console.log('Unable to register user.');
+                alert('Unable to register, please try again. It is important to follow the recommendations in each field!')
             });
     };
 
