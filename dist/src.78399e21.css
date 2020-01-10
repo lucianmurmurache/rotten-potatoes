@@ -10,6 +10,19 @@
   margin-left: auto;
   width: 80%;
 }
+
+.action-buttons {
+  display: flex;
+  margin-top: 8%;
+}
+
+.profile-button {
+  margin-left: 1%;
+}
+
+.logout-button {
+  margin-left: 1%;
+}
 .movies-container {
   max-width: 99%;
   max-height: 99%;
@@ -72,7 +85,7 @@
 
 .movie-view__card {
   margin: auto;
-  max-width: 30%;
+  max-width: 35%;
   text-align: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -89,14 +102,18 @@
 .movie-description {
   text-indent: 10%;
 }
+
+.genre-name,
+.director-name {
+  display: inline;
+}
 * {
   box-sizing: border-box;
 }
 
 .director-view {
   align-items: center;
-  width: 18rem;
-  max-width: 19rem;
+  max-width: 50%;
   margin: auto;
 }
 
@@ -117,8 +134,8 @@
 }
 
 .genre-view {
-  align-items: center;
-  max-width: 70%;
+  text-align: center;
+  max-width: 50%;
   margin: auto;
 }
 
@@ -129,6 +146,7 @@
 
 .genre-description {
   text-align: left;
+  text-indent: 5%;
 }
 
 .btn {
@@ -138,10 +156,32 @@
   box-sizing: border-box;
 }
 
+.profile {
+  max-width: 90%;
+}
+
 /*=====Profile=====*/
 .profile-view {
-  align-items: right;
-  max-width: 70%;
+  display: flex;
+  max-width: 60%;
+  margin: 5%;
+}
+
+.return-button {
+  display: flex;
+  margin: 5%;
+}
+
+/*=====Update Profile=====*/
+.update-profile {
+  max-width: 60%;
+  margin: 5%;
+}
+
+.update-profile__title {
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 5%;
 }
 * {
   box-sizing: border-box;
@@ -155,7 +195,8 @@
   font-size: 20px;
   width: 100%;
   padding: 3%;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .login-intro {
