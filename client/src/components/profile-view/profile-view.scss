@@ -2,8 +2,31 @@
     box-sizing: border-box;
 }
 
+.profile {
+    max-width: 90%;
+}
+
 /*=====Profile=====*/
 .profile-view {
-    align-items: right;
-    max-width: 70%;
+    display: flex;
+    max-width: 60%;
+    margin: 5%;
+}
+
+.return-button {
+    display: flex;
+    margin: 5%;
+}
+
+/*=====Update Profile=====*/
+
+.update-profile {
+    max-width: 60%;
+    margin: 5%;
+}
+
+.update-profile__title {
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 5%;
 }
