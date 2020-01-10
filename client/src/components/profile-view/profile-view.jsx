@@ -7,6 +7,9 @@ import { connect } from 'react-redux';
 /* =============react-bootstrap-imports=============*/
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Form from 'react-bootstrap/Form';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Accordion from 'react-bootstrap/Accordion';
 /* =============react-bootstrap-imports=============*/
 
 import axios from 'axios';
@@ -37,7 +40,7 @@ export class ProfileView extends React.Component {
     getUserProfile(token) {
         let username = localStorage.getItem('user');
         axios.get(`https://rotten-potatoes3000.herokuapp.com/user/${username}`, {
-            headers: { Authorization: 'Bearer ${token}' }
+            headers: { Authorization: `Bearer ${token}` }
         })
             .then((response) => {
                 this.setState({
@@ -58,7 +61,7 @@ export class ProfileView extends React.Component {
         event.preventDefault();
         let username = localStorage.getItem('user');
         axios.delete(`https://rotten-potatoes3000.herokuapp.com/user/${username}`, {
-            headers: { Authorization: 'Bearer ${token}' }
+            headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
                 console.log('User account deleted.');
@@ -73,9 +76,9 @@ export class ProfileView extends React.Component {
 
     deleteFavouriteMovie(event, movieID) {
         event.preventDefault();
-        console.log('Deleting ' + movieID);
+        console.log(movieID + ' deleted');
         axios.delete(`https://rotten-potatoes3000.herokuapp.com/user/${username}/movies/${movieID}`, {
-            headers: { Authorization: 'Bearer ${token}' }
+            headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
                 this.getUserProfile(localStorage.getItem('token'));
@@ -105,7 +108,7 @@ export class ProfileView extends React.Component {
             email: this.state.emailNew,
             birthday: this.state.birthdayNew
         }, {
-            headers: { Authorization: 'Bearer ${token}' }
+            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
         })
             .then(response => {
                 console.log('User data has been successfuly updated.');
@@ -121,53 +124,141 @@ export class ProfileView extends React.Component {
         const { movies } = this.props;
 
         return (
-            <Card className="profile-view">
-                <Card.Body>
-                    <Card.Title>Profile</Card.Title>
-                    <Card.Text className="profile-username">Username: {username}</Card.Text>
-                    <Card.Text className="profile-password">Password: #h#a#s#h#e#d#</Card.Text>
-                    <Card.Text className="profile-email">Email: {email}</Card.Text>
-                    <Card.Text className="profile-birthday">Birthday: {birthday}</Card.Text>
-                    <Card.Text className="profile-favourites">Favorites: {favourites}</Card.Text>
-                    <Button
-                        variant="-outline-danger"
-                        size="sm"
-                        onClick={event => this.deleteFavouriteMovie(event, movieID._id)}
-                    >
-                        Delete movie
-                    </Button>
-                </Card.Body>
-
+            <div className="profile">
                 <Link to={'/'}>
-                    <Button variant="outline-dark" className="btn">
+                    <Button
+                        variant="outline-dark"
+                        className="return-button"
+                    >
                         Back to movie list
                     </Button>
                 </Link>
-            </Card>
-        )
+                <Card className="profile-view">
+                    <Card.Body>
+                        <Card.Title>Profile</Card.Title>
+                        <ListGroup className="list-group-flush" variant="flush">
+                            <ListGroup.Item className="profile-username">Username: {username}</ListGroup.Item>
+                            <ListGroup.Item className="profile-password">Password: -----------</ListGroup.Item>
+                            <ListGroup.Item className="profile-email">Email: {email}</ListGroup.Item>
+                            <ListGroup.Item className="profile-birthday">Birthday: {birthday}</ListGroup.Item>
+                            <ListGroup.Item className="profile-favourites">Favorites:
+                                <div>
+                                    {favourites.length === 0 && <div>No movies added yet</div>}
+                                    {favourites.length > 0 &&
+                                        <ul>
+                                            {favourites.map(movieID => (
+                                                <li key={movieID}>
+                                                    <p className="favourite-movies">
+                                                        {movies.find(movie => movie._id === movieID).title}
+                                                    </p>
+                                                    <Link to={`/movies/${movieID}`}>
+                                                        <Button size="sm" variant="outline-dark">Open</Button>
+                                                    </Link>
+                                                    <Button
+                                                        variant="outline-danger"
+                                                        className="delete-button"
+                                                        size="sm"
+                                                        onClick={event => this.deleteFavouriteMovie(event, movieID._id)}
+                                                    >
+                                                        Delete movie
+                                                    </Button>
+                                                </li>)
+                                            )}
+                                        </ul>
+                                    }
+                                </div>
+                            </ListGroup.Item>
+                        </ListGroup>
+                    </Card.Body>
+                </Card>
+                <br></br><br></br><br></br>
+                <Accordion defaultActiveKey="0">
+                    <Form className="update-profile">
+
+                        <Form.Label className="update-profile__title">Update profile data</Form.Label>
+
+                        <Form.Group controlId="formBasicUsername">
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter a new username"
+                                name="usernameNew"
+                                autoComplete="off"
+                                onChange={event => this.handleChange(event)}
+                            >
+                            </Form.Control>
+                        </Form.Group>
+
+                        <Form.Group controlId="formBasicPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control
+                                type="password"
+                                placeholder="Enter a new password"
+                                name="passwordNew"
+                                autoComplete="off"
+                                onChange={event => this.handleChange(event)}
+                            >
+                            </Form.Control>
+                        </Form.Group>
+
+                        <Form.Group controlId="formBasicEmail">
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter a new email"
+                                name="emailNew"
+                                onChange={event => this.handleChange(event)}
+                            >
+                            </Form.Control>
+                        </Form.Group>
+
+                        <Form.Group controlId="formBasicBirthday">
+                            <Form.Label>Birthday</Form.Label>
+                            <Form.Control
+                                type="date"
+                                placeholder="dd/mm/yyyy"
+                                name="birthdayNew"
+                                onChange={event => this.handleChange(event)}
+                            >
+                            </Form.Control>
+                        </Form.Group>
+                        <Button
+                            className="profile-update__btn"
+                            vatiant="outline-dark"
+                            type="button"
+                            onClick={event => this.handleProfileUpdate(event)}
+                        >
+                            Update
+                    </Button>
+                    </Form>
+                </Accordion>
+
+            </div>
+        );
     }
 }
+
 
 export default connect(mapStateToProps)(ProfileView);
 
 /*
     ====================BUTTONS====================
-    <div>
-            <Link to={'/user/${username}'}>
-                <Button
-                    className="profile-button"
-                    variant="outline-primary"
-                >
-                    Profile
-                </Button>
-            </Link>
-            <Button
-                className="logout-button"
-                variant="outline-primary"
-                onClick={() => this.onLogout()}
-            >
-                Logout
-            </Button>
-    </div>
+<div>
+                        <Link to={'/user/${username}'}>
+                            <Button
+                                className="profile-button"
+                                variant="outline-primary"
+                            >
+                                Profile
+                        </Button>
+                        </Link>
+                        <Button
+                            className="logout-button"
+                            variant="outline-primary"
+                            onClick={() => this.onLogout()}
+                        >
+                            Logout
+                        </Button>
+                    </div>
     ====================BUTTONS====================
 */
