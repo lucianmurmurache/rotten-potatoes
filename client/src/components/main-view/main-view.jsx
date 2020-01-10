@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import './main-view.scss'
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+/* =============react-bootstrap-imports=============*/
+import Button from 'react-bootstrap/Button';
+/* =============react-bootstrap-imports=============*/
+
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import { setMovies, setLoggedInUser } from '../../actions/actions';
 
@@ -51,7 +55,7 @@ export class MainView extends React.Component {
 
     getUserProfile(token) {
         let username = localStorage.getItem('user')
-        axios.get('https://rotten-potatoes3000.herokuapp.com/user/${username}', {
+        axios.get(`https://rotten-potatoes3000.herokuapp.com/user/${username}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
@@ -87,6 +91,23 @@ export class MainView extends React.Component {
         return (
             <Router basename="/client">
                 <div className="main-view">
+                    <div className="action-buttons">
+                        <Link to={`/user/${user}`}>
+                            <Button
+                                className="profile-button"
+                                variant="outline-dark"
+                            >
+                                Profile
+                            </Button>
+                        </Link>
+                        <Button
+                            className="logout-button"
+                            variant="outline-dark"
+                            onClick={() => this.onLogout()}
+                        >
+                            Logout
+                        </Button>
+                    </div>
                     <Route exact path="/" render={() => {
                         if (!user) return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
                         return <MoviesList movies={movies} />;
@@ -97,15 +118,16 @@ export class MainView extends React.Component {
 
                     <Route path="/directors/:name" render={({ match }) => {
                         if (!movies) return <div className="main-view" />;
-                        return <DirectorView director={movies.find(m => m.director.name === match.params.name)} />
+                        return <DirectorView director={movies.find(m => m.director.name === match.params.name).director} />
                     }} />
 
                     <Route path="/genres/:name" render={({ match }) => {
                         if (!movies) return <div className="main-view" />;
-                        return <GenreView genre={movies.find(m => m.genre.name === match.params.name)} />
+                        return <GenreView genre={movies.find(m => m.genre.name === match.params.name).genre} />
                     }} />
 
-                    <Route path="/user/:username" render={() => <ProfileView />} />
+                    <Route path="/user/:username" render={() => <ProfileView />}
+                    />
                 </div>
             </Router>
         );
