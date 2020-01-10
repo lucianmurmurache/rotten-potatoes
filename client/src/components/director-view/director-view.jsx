@@ -2,7 +2,6 @@ import React from 'react';
 import './director-view.scss';
 
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 /* =============react-bootstrap-imports=============*/
 import Button from 'react-bootstrap/Button';
@@ -38,8 +37,6 @@ export class DirectorView extends React.Component {
                     </Link>
                 </Card.Body>
             </Card>
-        )
+        );
     }
 }
-
-export default connect(({ director }) => ({ director }))(DirectorView);
