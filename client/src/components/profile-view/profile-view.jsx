@@ -10,6 +10,7 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Accordion from 'react-bootstrap/Accordion';
+import Alert from 'react-bootstrap/Alert';
 /* =============react-bootstrap-imports=============*/
 
 import axios from 'axios';
@@ -63,7 +64,7 @@ export class ProfileView extends React.Component {
         axios.delete(`https://rotten-potatoes3000.herokuapp.com/user/${username}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
-            .then(response => {
+            .then(res => {
                 console.log('User account deleted.');
                 localStorage.removeItem('user');
                 localStorage.removeItem('token');
@@ -74,17 +75,21 @@ export class ProfileView extends React.Component {
             });
     }
 
-    deleteFavouriteMovie(event, movieID) {
+    deleteFavouriteMovie(movieID) {
         event.preventDefault();
-        console.log(movieID + ' deleted');
         axios.delete(`https://rotten-potatoes3000.herokuapp.com/user/${username}/movies/${movieID}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
-            .then(response => {
+            .then(res => {
                 this.getUserProfile(localStorage.getItem('token'));
+            })
+            .then(res => {
+                console.log('Movie deleted frm favorites list');
+                alert(`${movie.title} has been deleted from your favorites list`)
             })
             .catch(function (error) {
                 console.log('Unable to delete movie: ' + error);
+                alert(`Unable to delete ${movie.title} from your favourites list. Please refresh the page and try again!`)
             });
     }
 
@@ -110,7 +115,7 @@ export class ProfileView extends React.Component {
         }, {
             headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
         })
-            .then(response => {
+            .then(res => {
                 console.log('User data has been successfuly updated.');
                 localStorage.setItem('user', this.state.usernameNew);
             })
@@ -240,25 +245,3 @@ export class ProfileView extends React.Component {
 
 
 export default connect(mapStateToProps)(ProfileView);
-
-/*
-    ====================BUTTONS====================
-<div>
-                        <Link to={'/user/${username}'}>
-                            <Button
-                                className="profile-button"
-                                variant="outline-primary"
-                            >
-                                Profile
-                        </Button>
-                        </Link>
-                        <Button
-                            className="logout-button"
-                            variant="outline-primary"
-                            onClick={() => this.onLogout()}
-                        >
-                            Logout
-                        </Button>
-                    </div>
-    ====================BUTTONS====================
-*/
