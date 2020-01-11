@@ -36,12 +36,10 @@ function loggedInUser(state = [], action) {
     }
 }
 
-function moviesApp(state = {}, action) {
-    return {
-        visibilityFilter: visibilityFilter(state.visibilityFilter, action),
-        movies: movies(state.movies, action),
-        loggedInUser: loggedInUser(state.loggedInUser, action)
-    }
-}
+const moviesApp = combineReducers({
+    visibilityFilter,
+    movies,
+    loggedInUser
+});
 
 export default moviesApp;
