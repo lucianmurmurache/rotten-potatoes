@@ -1,7 +1,11 @@
 .visibility-filter {
-    font-weight: 500;
     text-align: left;
-    margin: auto;
+
+}
+
+#formBasicFilterInput {
+    margin-left: auto;
+    font-weight: 500;
     max-width: 30%;
     padding: 3px;
 }
