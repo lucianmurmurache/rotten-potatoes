@@ -28,7 +28,8 @@ export function RegistrationView(props) {
             .then((response) => {
                 const data = response.data;
                 console.log(data);
-                window.open('/client', '_self');
+                alert('Registration completed successfully. You can now log in!')
+                window.open('/', '_self');
             })
             .catch((e) => {
                 console.log('Unable to register user.');
@@ -53,6 +54,7 @@ export function RegistrationView(props) {
                     value={username}
                     placeholder="Set username (min 5 characters)"
                     onChange={e => setUsername(e.target.value)}
+                    required
                 />
             </Form.Group>
 
@@ -66,6 +68,7 @@ export function RegistrationView(props) {
                     placeholder="Set password (min 8 characters)"
                     autoComplete="off"
                     onChange={e => setPassword(e.target.value)}
+                    required
                 />
             </Form.Group>
 
@@ -78,6 +81,7 @@ export function RegistrationView(props) {
                     value={email}
                     placeholder="Enter email address (eg: ex@ample.com)"
                     onChange={e => setEmail(e.target.value)}
+                    required
                 />
             </Form.Group>
 
@@ -90,6 +94,7 @@ export function RegistrationView(props) {
                     value={birthday}
                     placeholder="dd-mm-yyyy"
                     onChange={e => setBirthday(e.target.value)}
+                    required
                 />
             </Form.Group>
 
