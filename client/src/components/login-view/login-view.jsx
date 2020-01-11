@@ -53,6 +53,7 @@ export function LoginView(props) {
                         placeholder="Enter username"
                         value={username}
                         autoComplete="on"
+                        required
                         onChange={e => setUsername(e.target.value)}
                     />
                 </Form.Group>
@@ -66,6 +67,7 @@ export function LoginView(props) {
                         placeholder="Enter password"
                         value={password}
                         autoComplete="off"
+                        required
                         onChange={e => setPassword(e.target.value)}
                     />
                 </Form.Group>
