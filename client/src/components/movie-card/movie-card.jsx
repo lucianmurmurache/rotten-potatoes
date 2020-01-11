@@ -20,17 +20,17 @@ export class MovieCard extends React.Component {
                     <Card.Img variant="top" className="movie-poster" src={movie.imagePath} />
                     <Card.Title className="movie-title">{movie.title}</Card.Title>
                     <Card.Body>
-                        <Card.Text className="movie-description">{movie.description}</Card.Text>
-                    </Card.Body>
-                    <Link to={`/movies/${movie._id}`}>
-                        <Button
-                            variant="outline-dark"
-                            className="movie-button__open"
-                            size="sm"
-                        >
-                            Open
+                        <Card.Text className="movie-description">{movie.description.substring(0, 110)}...</Card.Text>
+                        <Link to={`/movies/${movie._id}`}>
+                            <Button
+                                variant="outline-dark"
+                                className="movie-button__open"
+                                size="sm"
+                            >
+                                Open
                         </Button>
-                    </Link>
+                        </Link>
+                    </Card.Body>
                 </Card >
             </Col>
         );
