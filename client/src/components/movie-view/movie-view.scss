@@ -10,9 +10,14 @@
 
 .movie-view__card {
     margin: auto;
-    max-width: 35%;
+    max-width: 50%;
     text-align: center;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.movie-poster {
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .return-button {
