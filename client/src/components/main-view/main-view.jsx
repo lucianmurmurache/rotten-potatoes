@@ -6,6 +6,9 @@ import './main-view.scss'
 
 /* =============react-bootstrap-imports=============*/
 import Button from 'react-bootstrap/Button';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 /* =============react-bootstrap-imports=============*/
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
@@ -75,62 +78,75 @@ export class MainView extends React.Component {
         localStorage.setItem('user', authData.user.username);
         localStorage.setItem('token', authData.token);
         this.getMovies(authData.token);
+        this.getUserProfile(authData.token);
     }
 
     onLogout() {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
-        window.open('/client', '_self');
+        this.setState({
+            user: null
+        });
+        window.open('/', '_self');
     }
 
     render() {
 
-        let { movies } = this.props;
+        let { movies, setLoggedInUser } = this.props;
         let { user } = this.state;
 
-        return (
-            <Router basename="/client">
-                <div className="main-view">
-                    <div className="action-buttons">
-                        <Link to={`/user/${user}`}>
-                            <Button
-                                className="profile-button"
-                                variant="outline-dark"
-                            >
-                                Profile
-                            </Button>
-                        </Link>
-                        <Button
-                            className="logout-button"
-                            variant="outline-dark"
-                            onClick={() => this.onLogout()}
-                        >
-                            Logout
-                        </Button>
+        if (!movies && !setLoggedInUser) return <div className="main-view" />;
+
+        if (!user) {
+            return (
+                <Router>
+                    <div className="main-view">
+                        <Route exact path="/" render={() => <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />} />
+                        <Route path="/register" render={() => <RegistrationView />} />
                     </div>
-                    <Route exact path="/" render={() => {
-                        if (!user) return <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />;
-                        return <MoviesList movies={movies} />;
-                    }} />
-                    <Route path="/register" render={() => <RegistrationView />} />
+                </Router >
+            );
+        } else {
+            return (
+                <Router>
+                    <Navbar sticky="top" bg="light" expand="lg" className="mb-4 shadow-sm p-2 mb-4">
+                        <Navbar.Brand href="http://localhost:1234/" className="navbar-brand navbar-title">RottenPotatoes</Navbar.Brand>
+                        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                        <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
+                            <Link to={`/user/${user}`} >
+                                <Button variant="outline-dark" size="lg" className="profile-button">Profile</Button>
+                            </Link>
+                            <Button variant="outline-danger" size="lg" className="logout-button" onClick={() => this.onLogout()}>Log out</Button>
+                        </Navbar.Collapse>
+                    </Navbar>
+                    <div className="main-view">
+                        <Container className="container-fluid">
+                            <Row>
+                                <Route exact path="/" render={() => <MoviesList movies={movies} />} />
 
-                    <Route path="/movies/:movieID" render={({ match }) => <MovieView movie={movies.find(m => m._id === match.params.movieID)} />} />
+                                <Route path="/movies/:movieID" render={({ match }) => <MovieView movie={movies.find(m => m._id === match.params.movieID)} />} />
 
-                    <Route path="/directors/:name" render={({ match }) => {
-                        if (!movies) return <div className="main-view" />;
-                        return <DirectorView director={movies.find(m => m.director.name === match.params.name).director} />
-                    }} />
+                                <Route exact path="/directors/:name" render={({ match }) => {
+                                    if (!movies || movies.length === 0) return <div className="main-view" />;
+                                    return <DirectorView director={movies.find(m => m.director.name === match.params.name).director} movies={movies} />
+                                }} />
 
-                    <Route path="/genres/:name" render={({ match }) => {
-                        if (!movies) return <div className="main-view" />;
-                        return <GenreView genre={movies.find(m => m.genre.name === match.params.name).genre} />
-                    }} />
+                                <Route exact path="/genres/:name" render={({ match }) => {
+                                    if (!movies || movies.length === 0) return <div className="main-view" />;
+                                    return <GenreView genre={movies.find(m => m.genre.name === match.params.name).genre} movies={movies} />
+                                }} />
 
-                    <Route path="/user/:username" render={() => <ProfileView />}
-                    />
-                </div>
-            </Router>
-        );
+                                <Route exact path="/user/:username" render={() => {
+                                    if (!setLoggedInUser) return <div className="main-view" />
+                                    return <ProfileView setLoggedInUser={setLoggedInUser} user={user} movies={movies} />
+                                }}
+                                />
+                            </Row>
+                        </Container>
+                    </div>
+                </Router>
+            );
+        }
     }
 }
 
