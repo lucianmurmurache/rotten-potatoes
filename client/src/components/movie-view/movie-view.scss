@@ -1,3 +1,6 @@
+$box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 * {
     box-sizing: border-box;
 }
@@ -8,11 +11,11 @@
     text-align: center;
 }
 
-.movie-view__card {
+.movie-view-card {
     margin: auto;
     max-width: 50%;
     text-align: center;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: $box-shadow-basic;
 }
 
 .movie-poster {
@@ -23,7 +26,6 @@
 .return-button {
     font-size: 20px;
     padding: 8px 16px;
-
 }
 
 .movie-title {
@@ -37,4 +39,8 @@
 .genre-name,
 .director-name {
     display: inline;
+}
+
+.add-favourite-button:hover {
+    box-shadow: $box-shadow-basic;
 }

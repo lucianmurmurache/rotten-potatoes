@@ -52,7 +52,7 @@ export class MovieView extends React.Component {
 
         return (
             <div className="movie-view">
-                <Card className="movie-view__card">
+                <Card className="movie-view-card">
                     <Card.Img alt="movie-poster" variant="top" className="movie-poster" src={movie.imagePath} />
                     <Card.Body>
 
@@ -77,7 +77,7 @@ export class MovieView extends React.Component {
                         <br></br>
                         <Button
                             variant="outline-primary"
-                            className="add-favourite__button"
+                            className="add-favourite-button"
                             onClick={e => this.addToFavourites(e)}
                         >
                             Add to favorites
