@@ -1,6 +1,5 @@
 import React from 'react';
 import './director-view.scss';
-import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 
@@ -82,11 +81,3 @@ export class DirectorView extends React.Component {
         );
     }
 }
-
-DirectorView.propTypes = {
-    director: PropTypes.shape({
-        name: PropTypes.string,
-        bio: PropTypes.string,
-        birth: PropTypes.string
-    }).isReqired
-};
