@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 /* =============react-bootstrap-imports=============*/
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Spinner from 'react-bootstrap/Spinner';
 /* =============react-bootstrap-imports=============*/
 
 export class MovieView extends React.Component {
@@ -43,7 +44,11 @@ export class MovieView extends React.Component {
     render() {
         const { movie } = this.props;
         console.log(this.props)
-        if (!movie) return null;
+        if (!movie) return <div>
+            <Spinner animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+            </Spinner>
+        </div>;
 
         return (
             <div className="movie-view">
