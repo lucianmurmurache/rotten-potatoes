@@ -8,14 +8,18 @@
 
 /*=====Profile=====*/
 .profile-view {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: flex;
     max-width: 50%;
     margin: 5%;
+    margin-top: -9.5%;
 }
 
 .return-button {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: flex;
     margin: 5%;
+    margin-left: auto;
 }
 
 /*=====Update Profile=====*/
@@ -25,8 +29,15 @@
     margin: 5%;
 }
 
-.update-profile__title {
+.update-profile-title,
+.delete-profile-title {
     font-weight: 500;
     font-size: 20px;
     margin-bottom: 5%;
+}
+
+.delete-profile-button,
+.update-profile-button {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-top: 5%;
 }
