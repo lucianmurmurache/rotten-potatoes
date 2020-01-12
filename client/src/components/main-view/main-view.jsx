@@ -9,13 +9,16 @@ import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Spinner from 'react-bootstrap/Spinner';
 /* =============react-bootstrap-imports=============*/
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { RouterLink } from 'react-router-dom';
 
 import { setMovies, setLoggedInUser } from '../../actions/actions';
 
 import MoviesList from '../movies-list/movies-list';
+
 import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
@@ -92,10 +95,10 @@ export class MainView extends React.Component {
 
     render() {
 
-        let { movies, setLoggedInUser } = this.props;
+        let { movies, loggedInUser } = this.props;
         let { user } = this.state;
 
-        if (!movies && !setLoggedInUser) return <div className="main-view" />;
+        if (!movies && !loggedInUser) return <div className="main-view" />;
 
         if (!user) {
             return (
@@ -113,7 +116,7 @@ export class MainView extends React.Component {
                         <Navbar.Brand href="http://localhost:1234/" className="navbar-brand navbar-title">RottenPotatoes</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
-                            <Link to={`/user/${user}`} >
+                            <Link component={RouterLink} to={`/user/${user}`} >
                                 <Button variant="outline-dark" size="lg" className="profile-button">Profile</Button>
                             </Link>
                             <Button variant="outline-danger" size="lg" className="logout-button" onClick={() => this.onLogout()}>Log out</Button>
@@ -137,8 +140,8 @@ export class MainView extends React.Component {
                                 }} />
 
                                 <Route exact path="/user/:username" render={() => {
-                                    if (!setLoggedInUser) return <div className="main-view" />
-                                    return <ProfileView setLoggedInUser={setLoggedInUser} user={user} movies={movies} />
+                                    if (!loggedInUser) return <div className="main-view" />
+                                    return <ProfileView loggedInUser={loggedInUser} user={user} movies={movies} />
                                 }}
                                 />
                             </Row>
@@ -151,7 +154,7 @@ export class MainView extends React.Component {
 }
 
 let mapStateToProps = state => {
-    return { movies: state.movies }
+    return { movies: state.movies, loggedInUser: state.loggedInUser }
 }
 
 export default connect(mapStateToProps, { setMovies, setLoggedInUser })(MainView);
