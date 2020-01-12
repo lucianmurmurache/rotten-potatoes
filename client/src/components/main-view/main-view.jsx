@@ -39,7 +39,7 @@ export class MainView extends React.Component {
 
     getMovies(token) {
         axios.get('https://rotten-potatoes3000.herokuapp.com/movies', {
-            headers: { Authorization: `Bearer ${token}` }
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         })
             .then(response => {
                 this.props.setMovies(response.data);
@@ -60,9 +60,8 @@ export class MainView extends React.Component {
     }
 
     getUserProfile(token) {
-        let username = localStorage.getItem('user')
-        axios.get(`https://rotten-potatoes3000.herokuapp.com/user/${username}`, {
-            headers: { Authorization: `Bearer ${token}` }
+        axios.get(`https://rotten-potatoes3000.herokuapp.com/user/${localStorage.getItem('user')}`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         })
             .then(response => {
                 this.props.setLoggedInUser(response.data);
@@ -117,9 +116,9 @@ export class MainView extends React.Component {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
                             <Link component={RouterLink} to={`/user/${user}`} >
-                                <Button variant="outline-dark" size="lg" className="profile-button">Profile</Button>
+                                <Button variant="outline-dark" size="md" className="profile-button">Profile</Button>
                             </Link>
-                            <Button variant="outline-danger" size="lg" className="logout-button" onClick={() => this.onLogout()}>Log out</Button>
+                            <Button variant="outline-dark" size="md" className="logout-button" onClick={() => this.onLogout()}>Log out</Button>
                         </Navbar.Collapse>
                     </Navbar>
                     <div className="main-view">
