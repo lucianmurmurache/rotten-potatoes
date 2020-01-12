@@ -1,14 +1,13 @@
 import React from 'react';
 import './genre-view.scss';
-import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 /* =============react-bootstrap-imports=============*/
+import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 /* =============react-bootstrap-imports=============*/
 
 export class GenreView extends React.Component {
@@ -38,7 +37,7 @@ export class GenreView extends React.Component {
                         <Link to={'/'}>
                             <Button
                                 variant="outline-dark"
-                                className="btn"
+                                className="back-button"
                             >
                                 Back to list
                             </Button>
