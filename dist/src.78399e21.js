@@ -43498,6 +43498,8 @@ var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
 
 var _Col = _interopRequireDefault(require("react-bootstrap/Col"));
 
+var _Spinner = _interopRequireDefault(require("react-bootstrap/Spinner"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -43534,6 +43536,12 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var movie = this.props.movie;
+      if (!movie) return _react.default.createElement("div", null, _react.default.createElement(_Spinner.default, {
+        animation: "border",
+        role: "status"
+      }, _react.default.createElement("span", {
+        className: "sr-only"
+      }, "Loading...")));
       return _react.default.createElement(_Col.default, null, _react.default.createElement(_Card.default, {
         className: "movie-card",
         bg: "light"
@@ -43569,7 +43577,7 @@ MovieCard.propTypes = {
   }).isRequired
 };
 /*=================PropTypes=================*/
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./movie-card.scss":"components/movie-card/movie-card.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js"}],"components/movies-list/movies-list.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","./movie-card.scss":"components/movie-card/movie-card.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/Col":"../node_modules/react-bootstrap/esm/Col.js","react-bootstrap/Spinner":"../node_modules/react-bootstrap/esm/Spinner.js"}],"components/movies-list/movies-list.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -43663,6 +43671,8 @@ var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
 var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
 
+var _Spinner = _interopRequireDefault(require("react-bootstrap/Spinner"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -43728,7 +43738,12 @@ function (_React$Component) {
 
       var movie = this.props.movie;
       console.log(this.props);
-      if (!movie) return null;
+      if (!movie) return _react.default.createElement("div", null, _react.default.createElement(_Spinner.default, {
+        animation: "border",
+        role: "status"
+      }, _react.default.createElement("span", {
+        className: "sr-only"
+      }, "Loading...")));
       return _react.default.createElement("div", {
         className: "movie-view"
       }, _react.default.createElement(_Card.default, {
@@ -43785,7 +43800,7 @@ MovieView.propTypes = {
   /*=================PropTypes=================*/
 
 };
-},{"react":"../node_modules/react/index.js","./movie-view.scss":"components/movie-view/movie-view.scss","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js"}],"components/director-view/director-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./movie-view.scss":"components/movie-view/movie-view.scss","prop-types":"../node_modules/prop-types/index.js","axios":"../node_modules/axios/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/Spinner":"../node_modules/react-bootstrap/esm/Spinner.js"}],"components/director-view/director-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -43883,14 +43898,7 @@ function (_React$Component) {
             src: movie.imagePath
           }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_reactRouterDom.Link, {
             to: "/movies/".concat(movie._id)
-          }, _react.default.createElement(_Card.default.Title, null, movie.title)), _react.default.createElement(_Card.default.Text, null, movie.description.substring(0, 100), "...")), _react.default.createElement(_Card.default.Footer, {
-            className: "border-top-0"
-          }, _react.default.createElement(_reactRouterDom.Link, {
-            to: "/movies/".concat(movie._id)
-          }, _react.default.createElement(_Button.default, {
-            variant: "link",
-            className: "pl-0"
-          }, "Open movie")))));
+          }, _react.default.createElement(_Card.default.Title, null, movie.title)), _react.default.createElement(_Card.default.Text, null, movie.description.substring(0, 100), "..."))));
         }
       }))));
     }
@@ -45342,7 +45350,7 @@ function (_React$Component) {
 
       _axios.default.get('https://rotten-potatoes3000.herokuapp.com/movies', {
         headers: {
-          Authorization: "Bearer ".concat(token)
+          Authorization: "Bearer ".concat(localStorage.getItem('token'))
         }
       }).then(function (response) {
         _this2.props.setMovies(response.data);
@@ -45367,11 +45375,9 @@ function (_React$Component) {
     value: function getUserProfile(token) {
       var _this3 = this;
 
-      var username = localStorage.getItem('user');
-
-      _axios.default.get("https://rotten-potatoes3000.herokuapp.com/user/".concat(username), {
+      _axios.default.get("https://rotten-potatoes3000.herokuapp.com/user/".concat(localStorage.getItem('user')), {
         headers: {
-          Authorization: "Bearer ".concat(token)
+          Authorization: "Bearer ".concat(localStorage.getItem('token'))
         }
       }).then(function (response) {
         _this3.props.setLoggedInUser(response.data);
@@ -45453,11 +45459,11 @@ function (_React$Component) {
           to: "/user/".concat(user)
         }, _react.default.createElement(_Button.default, {
           variant: "outline-dark",
-          size: "lg",
+          size: "md",
           className: "profile-button"
         }, "Profile")), _react.default.createElement(_Button.default, {
-          variant: "outline-danger",
-          size: "lg",
+          variant: "outline-dark",
+          size: "md",
           className: "logout-button",
           onClick: function onClick() {
             return _this4.onLogout();
@@ -45707,7 +45713,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51107" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53762" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
