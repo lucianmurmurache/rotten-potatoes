@@ -19,231 +19,17 @@
   margin-left: 1%;
 }
 
+.profile-button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .logout-button {
   margin-left: 1%;
 }
-.movies-container {
-  max-width: 99%;
-  max-height: 99%;
-}
 
-.movies-row {
-  margin: 1%;
-}
-.visibility-filter {
-  text-align: left;
-}
-
-#formBasicFilterInput {
-  margin-left: auto;
-  font-weight: 500;
-  max-width: 30%;
-  padding: 3px;
-}
-* {
-  box-sizing: border-box;
-}
-
-.movie-card {
-  align-items: center;
-  width: 16rem;
-  height: 39rem;
-  max-height: 40rem;
-  margin-top: 10%;
+.logout-button:hover {
+  background-color: #ff2400;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.movie-poster {
-  height: 22rem;
-  max-height: 22rem;
-}
-
-.movie-title {
-  text-align: center;
-  margin-top: 2%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.movie-description {
-  text-align: left;
-}
-
-.movie-button__open {
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-}
-* {
-  box-sizing: border-box;
-}
-
-/*=====Movie view=====*/
-.movie-view {
-  text-align: center;
-}
-
-.movie-view__card {
-  margin: auto;
-  max-width: 50%;
-  text-align: center;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.movie-poster {
-  max-height: 100%;
-  max-width: 100%;
-}
-
-.return-button {
-  font-size: 20px;
-  padding: 8px 16px;
-}
-
-.movie-title {
-  text-align: center;
-}
-
-.movie-description {
-  text-indent: 10%;
-}
-
-.genre-name,
-.director-name {
-  display: inline;
-}
-* {
-  box-sizing: border-box;
-}
-
-.director-view {
-  align-items: center;
-  max-width: 50%;
-  margin: auto;
-}
-
-.director-title {
-  text-align: center;
-  font-weight: bold;
-}
-
-.director-bio {
-  text-align: left;
-}
-
-.btn {
-  padding: 8px 16px;
-}
-* {
-  box-sizing: border-box;
-}
-
-.genre-view {
-  text-align: center;
-  max-width: 80%;
-  margin: auto;
-}
-
-.genre-title {
-  text-align: center;
-  font-weight: bold;
-}
-
-.genre-description {
-  text-align: left;
-  text-indent: 5%;
-}
-
-.btn {
-  padding: 8px 16px;
-}
-
-/*=======Movies=======*/
-.genre-movies {
-  max-width: 30%;
-  max-height: 40%;
-  margin: 2%;
-}
-
-/*=======Movies=======*/
-* {
-  box-sizing: border-box;
-}
-
-.profile {
-  width: 100%;
-}
-
-/*=====Profile=====*/
-.profile-view {
-  display: flex;
-  max-width: 50%;
-  margin: 5%;
-}
-
-.return-button {
-  display: flex;
-  margin: 5%;
-}
-
-/*=====Update Profile=====*/
-.update-profile {
-  max-width: 50%;
-  margin: 5%;
-}
-
-.update-profile__title {
-  font-weight: 500;
-  font-size: 20px;
-  margin-bottom: 5%;
-}
-* {
-  box-sizing: border-box;
-}
-
-/*=====Login=====*/
-.login-form {
-  text-align: left;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  max-width: 500px;
-  font-size: 20px;
-  width: 100%;
-  padding: 3%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.login-intro {
-  font-size: 30px;
-  margin-bottom: 20px;
-}
-
-.login-button {
-  font-size: 20px;
-  padding: 8px 16px;
-}
-
-.welcome-section {
-  margin-top: -1%;
-  text-align: center;
-}
-
-.welcome-logo {
-  text-align: center;
-  max-width: 220px;
-  max-height: 140px;
-  margin-top: -13%;
-}
-
-/*=====Register=====*/
-.register-text {
-  margin-top: 10%;
-  font-size: 14px;
-}
-
-.register-button {
-  font-size: 18px;
-  margin-bottom: -10%;
 }
 * {
   box-sizing: border-box;
@@ -293,6 +79,268 @@
 .login-button {
   font-size: 18px;
   margin-bottom: 2%;
+}
+* {
+  box-sizing: border-box;
+}
+
+.director-view {
+  align-items: center;
+  max-width: 50%;
+  margin: auto;
+}
+
+.director-title {
+  text-align: center;
+  font-weight: bold;
+}
+
+.director-bio {
+  text-align: left;
+}
+
+.back-button {
+  padding: 8px 16px;
+}
+
+.back-button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/*=======Movies=======*/
+.director-movies {
+  max-width: 30%;
+  max-height: 40%;
+  margin: 2%;
+}
+
+/*=======Movies=======*/
+* {
+  box-sizing: border-box;
+}
+
+.profile {
+  width: 100%;
+}
+
+/*=====Profile=====*/
+.profile-view {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  max-width: 50%;
+  margin: 5%;
+  margin-top: -9.5%;
+}
+
+.return-button {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  margin: 5%;
+  margin-left: auto;
+}
+
+/*=====Update Profile=====*/
+.update-profile {
+  max-width: 50%;
+  margin: 5%;
+}
+
+.update-profile-title,
+.delete-profile-title {
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 5%;
+}
+
+.delete-profile-button,
+.update-profile-button {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 5%;
+}
+* {
+  box-sizing: border-box;
+}
+
+/*=====Movie view=====*/
+.movie-view {
+  text-align: center;
+}
+
+.movie-view-card {
+  margin: auto;
+  max-width: 50%;
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.movie-poster {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.return-button {
+  font-size: 20px;
+  padding: 8px 16px;
+}
+
+.movie-title {
+  text-align: center;
+}
+
+.movie-description {
+  text-indent: 10%;
+}
+
+.genre-name,
+.director-name {
+  display: inline;
+}
+
+.add-favourite-button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+* {
+  box-sizing: border-box;
+}
+
+.genre-view {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+  max-width: 80%;
+  margin: auto;
+}
+
+.genre-title {
+  text-align: center;
+  font-weight: bold;
+}
+
+.genre-description {
+  text-align: left;
+  text-indent: 5%;
+}
+
+.back-button {
+  padding: 8px 16px;
+}
+
+.back-button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/*=======Movies=======*/
+.genre-movies {
+  max-width: 30%;
+  max-height: 40%;
+  margin: 2%;
+}
+
+/*=======Movies=======*/
+* {
+  box-sizing: border-box;
+}
+
+/*=====Login=====*/
+.login-form {
+  text-align: left;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  max-width: 500px;
+  font-size: 20px;
+  width: 100%;
+  padding: 3%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login-intro {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.login-button {
+  font-size: 20px;
+  padding: 8px 16px;
+}
+
+.welcome-section {
+  margin-top: -1%;
+  text-align: center;
+}
+
+.welcome-logo {
+  text-align: center;
+  max-width: 220px;
+  max-height: 140px;
+  margin-top: -13%;
+}
+
+/*=====Register=====*/
+.register-text {
+  margin-top: 10%;
+  font-size: 14px;
+}
+
+.register-button {
+  font-size: 18px;
+  margin-bottom: -10%;
+}
+.movies-container {
+  max-width: 99%;
+  max-height: 99%;
+}
+
+.movies-row {
+  margin: 1%;
+}
+.visibility-filter {
+  text-align: left;
+}
+
+#formBasicFilterInput {
+  margin-left: auto;
+  font-weight: 500;
+  max-width: 30%;
+  padding: 3px;
+}
+* {
+  box-sizing: border-box;
+}
+
+.movie-card {
+  justify-content: center;
+  align-items: center;
+  width: 16rem;
+  height: 41rem;
+  max-height: 42rem;
+  margin-top: 10%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.movie-poster {
+  height: 22rem;
+  max-height: 22rem;
+}
+
+.movie-title {
+  text-align: center;
+  margin-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.movie-description {
+  text-align: left;
+}
+
+.movie-button__open {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20%;
+}
+
+.movie-button__open:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .rotten-potatoes {
   color: black;
