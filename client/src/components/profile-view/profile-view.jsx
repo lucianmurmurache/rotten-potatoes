@@ -10,7 +10,7 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Accordion from 'react-bootstrap/Accordion';
-import Alert from 'react-bootstrap/Alert';
+import Spinner from 'react-bootstrap/Spinner';
 /* =============react-bootstrap-imports=============*/
 
 import axios from 'axios';
@@ -39,8 +39,7 @@ export class ProfileView extends React.Component {
     }
 
     getUserProfile(token) {
-        let username = localStorage.getItem('user');
-        axios.get(`https://rotten-potatoes3000.herokuapp.com/user/${username}`, {
+        axios.get(`https://rotten-potatoes3000.herokuapp.com/user/${localStorage.getItem('user')}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((response) => {
@@ -58,17 +57,18 @@ export class ProfileView extends React.Component {
             });
     }
 
-    deleteUserProfile(event) {
-        event.preventDefault();
-        let username = localStorage.getItem('user');
-        axios.delete(`https://rotten-potatoes3000.herokuapp.com/user/${username}`, {
-            headers: { Authorization: `Bearer ${token}` }
+    deleteUserProfile() {
+        axios.delete(`https://rotten-potatoes3000.herokuapp.com/user/${localStorage.getItem('user')}`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         })
+            .then(res => {
+                alert('Do you really want to delete your account?')
+            })
             .then(res => {
                 console.log('User account deleted.');
                 localStorage.removeItem('user');
                 localStorage.removeItem('token');
-                window.open('/client', '_self');
+                window.open('/', '_self');
             })
             .catch(function (error) {
                 console.log('Unable to delete user account: ' + error);
@@ -76,8 +76,7 @@ export class ProfileView extends React.Component {
     }
 
     deleteFavouriteMovie(movieID) {
-        event.preventDefault();
-        axios.delete(`https://rotten-potatoes3000.herokuapp.com/user/${username}/movies/${movieID}`, {
+        axios.delete(`https://rotten-potatoes3000.herokuapp.com/user/${localStorage.getItem('user')}/movies/${movieID}`, {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(res => {
@@ -106,8 +105,7 @@ export class ProfileView extends React.Component {
 
     handleProfileUpdate(event) {
         event.preventDefault();
-        let username = localStorage.getItem('user');
-        axios.put(`https://rotten-potatoes3000.herokuapp.com/user/${username}`, {
+        axios.put(`https://rotten-potatoes3000.herokuapp.com/user/${localStorage.getItem('user')}`, {
             username: this.state.usernameNew,
             password: this.state.passwordNew,
             email: this.state.emailNew,
@@ -128,6 +126,13 @@ export class ProfileView extends React.Component {
         const { username, email, birthday, favourites } = this.state;
         const { movies } = this.props;
 
+        if (!username || !movies) return <div>
+            <Spinner animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+            </Spinner>
+        </div>;
+
+
         return (
             <div className="profile">
                 <Link to={'/'}>
@@ -146,6 +151,13 @@ export class ProfileView extends React.Component {
                             <ListGroup.Item className="profile-password">Password: -----------</ListGroup.Item>
                             <ListGroup.Item className="profile-email">Email: {email}</ListGroup.Item>
                             <ListGroup.Item className="profile-birthday">Birthday: {birthday}</ListGroup.Item>
+                            <Button
+                                variant="outline-danger"
+                                className="delete-profile-button"
+                                onClick={() => this.deleteUserProfile()}
+                            >
+                                Delete Profile
+                            </Button>
                             <ListGroup.Item className="profile-favourites">Favorites:
                                 <div>
                                     {favourites.length === 0 && <div>No movies added yet</div>}
