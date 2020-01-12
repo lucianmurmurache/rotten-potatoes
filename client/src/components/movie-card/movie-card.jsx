@@ -8,11 +8,18 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
+import Spinner from 'react-bootstrap/Spinner';
 /* =============react-bootstrap-imports=============*/
 
 export class MovieCard extends React.Component {
     render() {
         const { movie } = this.props;
+
+        if (!movie) return <div>
+            <Spinner animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+            </Spinner>
+        </div>;
 
         return (
             <Col>
