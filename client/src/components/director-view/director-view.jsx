@@ -4,9 +4,9 @@ import './director-view.scss';
 import { Link } from 'react-router-dom';
 
 /* =============react-bootstrap-imports=============*/
+import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
 /* =============react-bootstrap-imports=============*/
 
 export class DirectorView extends React.Component {
@@ -38,7 +38,7 @@ export class DirectorView extends React.Component {
                         <Link to={'/'}>
                             <Button
                                 variant="outline-dark"
-                                className="btn"
+                                className="back-button"
                             >
                                 Back
                             </Button>
