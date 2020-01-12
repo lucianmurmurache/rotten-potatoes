@@ -15,7 +15,6 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import axios from 'axios';
 
-//Extract data with mapStateToProps passed to connect
 const mapStateToProps = state => {
     const { movies } = state;
     return { movies };
@@ -62,7 +61,7 @@ export class ProfileView extends React.Component {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         })
             .then(res => {
-                alert('Do you really want to delete your account?')
+                confirm('Do you really want to delete your account?')
             })
             .then(res => {
                 console.log('User account deleted.');
@@ -115,10 +114,12 @@ export class ProfileView extends React.Component {
         })
             .then(res => {
                 console.log('User data has been successfuly updated.');
+                alert('Profile successfuly updated!');
                 localStorage.setItem('user', this.state.usernameNew);
             })
             .catch(function (error) {
                 console.log('Unable to update user profile: ' + error);
+                alert('Unable to update user profile: ' + error);
             });
     }
 
@@ -150,14 +151,7 @@ export class ProfileView extends React.Component {
                             <ListGroup.Item className="profile-username">Username: {username}</ListGroup.Item>
                             <ListGroup.Item className="profile-password">Password: -----------</ListGroup.Item>
                             <ListGroup.Item className="profile-email">Email: {email}</ListGroup.Item>
-                            <ListGroup.Item className="profile-birthday">Birthday: {birthday}</ListGroup.Item>
-                            <Button
-                                variant="outline-danger"
-                                className="delete-profile-button"
-                                onClick={() => this.deleteUserProfile()}
-                            >
-                                Delete Profile
-                            </Button>
+                            <ListGroup.Item className="profile-birthday">Birthday: {birthday && birthday.slice(0, 10)}</ListGroup.Item>
                             <ListGroup.Item className="profile-favourites">Favorites:
                                 <div>
                                     {favourites.length === 0 && <div>No movies added yet</div>}
@@ -189,14 +183,18 @@ export class ProfileView extends React.Component {
                     </Card.Body>
                 </Card>
                 <br></br><br></br><br></br>
-                <Accordion defaultActiveKey="0">
+                <Card className="profile-view">
                     <Form className="update-profile">
 
-                        <Form.Label className="update-profile__title">Update profile data</Form.Label>
+                        <Form.Label className="update-profile-title">Update profile data</Form.Label><br></br>
+
+                        <small className="warning">*Please ensure that you fill in all input fields prior to pressing Update.
+                            If you wish to keep some details as they are, fill in the current data again.</small><br></br><br></br>
 
                         <Form.Group controlId="formBasicUsername">
                             <Form.Label>Username</Form.Label>
                             <Form.Control
+                                required
                                 type="text"
                                 placeholder="Enter a new username"
                                 name="usernameNew"
@@ -209,6 +207,7 @@ export class ProfileView extends React.Component {
                         <Form.Group controlId="formBasicPassword">
                             <Form.Label>Password</Form.Label>
                             <Form.Control
+                                required
                                 type="password"
                                 placeholder="Enter a new password"
                                 name="passwordNew"
@@ -221,6 +220,7 @@ export class ProfileView extends React.Component {
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Email</Form.Label>
                             <Form.Control
+                                required
                                 type="text"
                                 placeholder="Enter a new email"
                                 name="emailNew"
@@ -232,6 +232,7 @@ export class ProfileView extends React.Component {
                         <Form.Group controlId="formBasicBirthday">
                             <Form.Label>Birthday</Form.Label>
                             <Form.Control
+                                required
                                 type="date"
                                 placeholder="dd/mm/yyyy"
                                 name="birthdayNew"
@@ -240,16 +241,29 @@ export class ProfileView extends React.Component {
                             </Form.Control>
                         </Form.Group>
                         <Button
-                            className="profile-update__btn"
+                            className="update-profile-button"
                             vatiant="outline-dark"
                             type="button"
                             onClick={event => this.handleProfileUpdate(event)}
                         >
                             Update
-                    </Button>
+                        </Button>
+                        <br></br><br></br>
+                        <Form.Label className="delete-profile-title">Delete account</Form.Label><br></br>
+                        <small>
+                            *Should you decide to delete your profile, please be aware that once you do,
+                            your data will be deleted without any backup! It is not possible to revert this action!
+                    </small>
+                        <Button
+                            size="sm"
+                            variant="outline-danger"
+                            className="delete-profile-button"
+                            onClick={() => this.deleteUserProfile()}
+                        >
+                            Delete Profile
+                        </Button>
                     </Form>
-                </Accordion>
-
+                </Card>
             </div>
         );
     }
