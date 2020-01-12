@@ -60,16 +60,6 @@ export class DirectorView extends React.Component {
                                                 </Link>
                                                 <Card.Text>{movie.description.substring(0, 100)}...</Card.Text>
                                             </Card.Body>
-                                            <Card.Footer className="border-top-0">
-                                                <Link to={`/movies/${movie._id}`}>
-                                                    <Button
-                                                        variant="link"
-                                                        className="pl-0"
-                                                    >
-                                                        Open movie
-                                                    </Button>
-                                                </Link>
-                                            </Card.Footer>
                                         </Card>
                                     </div>
                                 )
