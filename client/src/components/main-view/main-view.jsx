@@ -5,11 +5,10 @@ import axios from 'axios';
 import './main-view.scss'
 
 /* =============react-bootstrap-imports=============*/
+import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import Spinner from 'react-bootstrap/Spinner';
 /* =============react-bootstrap-imports=============*/
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
@@ -17,14 +16,13 @@ import { RouterLink } from 'react-router-dom';
 
 import { setMovies, setLoggedInUser } from '../../actions/actions';
 
-import MoviesList from '../movies-list/movies-list';
-
-import { MovieView } from '../movie-view/movie-view';
-import { DirectorView } from '../director-view/director-view';
-import { GenreView } from '../genre-view/genre-view';
-import { ProfileView } from '../profile-view/profile-view';
-import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registartion-view/registration-view';
+import { DirectorView } from '../director-view/director-view';
+import { ProfileView } from '../profile-view/profile-view';
+import { MovieView } from '../movie-view/movie-view';
+import { GenreView } from '../genre-view/genre-view';
+import { LoginView } from '../login-view/login-view';
+import MoviesList from '../movies-list/movies-list';
 
 
 export class MainView extends React.Component {
@@ -39,13 +37,26 @@ export class MainView extends React.Component {
 
     getMovies(token) {
         axios.get('https://rotten-potatoes3000.herokuapp.com/movies', {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+            headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
                 this.props.setMovies(response.data);
+
             })
             .catch(function (error) {
                 console.log(error);
+            });
+    }
+
+    getUserProfile() {
+        axios.get(`https://rotten-potatoes3000.herokuapp.com/user/${localStorage.getItem('user')}`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        })
+            .then(response => {
+                this.props.setLoggedInUser(response.data);
+            })
+            .catch(function (error) {
+                console.log(error)
             });
     }
 
@@ -56,19 +67,8 @@ export class MainView extends React.Component {
                 user: localStorage.getItem('user')
             });
             this.getMovies(accessToken);
+            this.getUserProfile(accessToken);
         }
-    }
-
-    getUserProfile(token) {
-        axios.get(`https://rotten-potatoes3000.herokuapp.com/user/${localStorage.getItem('user')}`, {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-        })
-            .then(response => {
-                this.props.setLoggedInUser(response.data);
-            })
-            .catch(function (error) {
-                console.log(error)
-            });
     }
 
     //Login with token
@@ -111,7 +111,7 @@ export class MainView extends React.Component {
         } else {
             return (
                 <Router>
-                    <Navbar sticky="top" bg="light" expand="lg" className="mb-4 shadow-sm p-2 mb-4">
+                    <Navbar sticky="top" bg="light" expand="lg" className="shadow p-2">
                         <Navbar.Brand href="http://localhost:1234/" className="navbar-brand navbar-title">RottenPotatoes</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
