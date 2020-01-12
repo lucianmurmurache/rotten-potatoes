@@ -1,14 +1,18 @@
+$box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 * {
     box-sizing: border-box;
 }
 
 .movie-card {
+    justify-content: center;
     align-items: center;
     width: 16rem;
-    height: 39rem;
-    max-height: 40rem;
+    height: 41rem;
+    max-height: 42rem;
     margin-top: 10%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: $box-shadow-basic;
 }
 
 .movie-poster {
@@ -31,4 +35,9 @@
     display: flex;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 20%;
+}
+
+.movie-button__open:hover {
+    box-shadow: $box-shadow-basic;
 }

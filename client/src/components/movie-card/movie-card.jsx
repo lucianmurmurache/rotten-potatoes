@@ -32,7 +32,7 @@ export class MovieCard extends React.Component {
                             <Button
                                 variant="outline-dark"
                                 className="movie-button__open"
-                                size="sm"
+                                size="md"
                             >
                                 Open
                         </Button>
