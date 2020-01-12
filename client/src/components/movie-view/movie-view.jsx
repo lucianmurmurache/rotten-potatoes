@@ -1,5 +1,7 @@
 import React from 'react';
 import './movie-view.scss';
+
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import { Link } from 'react-router-dom';
@@ -40,8 +42,7 @@ export class MovieView extends React.Component {
 
     render() {
         const { movie } = this.props;
-        console.log(this.props);
-
+        console.log(this.props)
         if (!movie) return null;
 
         return (
@@ -90,3 +91,15 @@ export class MovieView extends React.Component {
         );
     }
 }
+
+/*=================PropTypes=================*/
+
+MovieView.propTypes = {
+    movie: PropTypes.shape({
+        _id: PropTypes.string,
+        title: PropTypes.string,
+        description: PropTypes.string,
+        imagePath: PropTypes.string
+    }).isRequired
+}
+/*=================PropTypes=================*/
