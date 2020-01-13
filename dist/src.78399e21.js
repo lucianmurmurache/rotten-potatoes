@@ -43546,6 +43546,8 @@ require("./director-view.scss");
 
 var _reactRouterDom = require("react-router-dom");
 
+var _propTypes = _interopRequireDefault(require("prop-types"));
+
 var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
 
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
@@ -43593,39 +43595,36 @@ function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           director = _this$props.director,
-          movies = _this$props.movies,
-          movie = _this$props.movie;
-      console.log(director);
-      console.log(movies);
-      if (!director) return null; // Render error between L25 and L47
-
+          movie = _this$props.movie,
+          movies = _this$props.movies;
+      if (!director) return null;
       return _react.default.createElement("div", {
-        className: "view"
+        className: "director-div"
       }, _react.default.createElement(_Container.default, null, _react.default.createElement(_Card.default, {
         className: "director-view"
       }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, {
         className: "director-title"
-      }, director.name), _react.default.createElement(_Card.default.text, {
-        className: "director-birth"
-      }, "Born in ", director.birth), _react.default.createElement(_Card.default.Text, {
+      }, director.name), _react.default.createElement(_Card.default.Text, {
         className: "director-bio"
-      }, "Biography: ", director.bio)), _react.default.createElement(_reactRouterDom.Link, {
+      }, director.bio), _react.default.createElement(_reactRouterDom.Link, {
         to: '/'
       }, _react.default.createElement(_Button.default, {
         variant: "outline-dark",
-        className: "back-button"
-      }, "Back"))), _react.default.createElement(_Container.default, null, _react.default.createElement("h2", null, "Here are a few movies by ", director.name), _react.default.createElement("div", {
+        className: "director-back-button"
+      }, "Back to list")))), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement(_Container.default, null, _react.default.createElement("h2", null, "Movies of ", director.name, " director"), _react.default.createElement("br", null), _react.default.createElement("div", {
         className: "row"
       }, movies.map(function (movie) {
         if (movie.director.name === director.name) {
           return _react.default.createElement("div", {
-            key: movie._id
-          }, _react.default.createElement(_Card.default, {
+            key: movie._id,
             className: "director-movies"
+          }, _react.default.createElement(_Card.default, {
+            className: "movie-card"
           }, _react.default.createElement(_Card.default.Img, {
             variant: "top",
             src: movie.imagePath
           }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_reactRouterDom.Link, {
+            className: "text-muted",
             to: "/movies/".concat(movie._id)
           }, _react.default.createElement(_Card.default.Title, null, movie.title)), _react.default.createElement(_Card.default.Text, null, movie.description.substring(0, 100), "..."))));
         }
@@ -43637,7 +43636,13 @@ function (_React$Component) {
 }(_react.default.Component);
 
 exports.DirectorView = DirectorView;
-},{"react":"../node_modules/react/index.js","./director-view.scss":"components/director-view/director-view.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js"}],"components/profile-view/profile-view.scss":[function(require,module,exports) {
+DirectorView.propTypes = {
+  director: _propTypes.default.shape({
+    name: _propTypes.default.string,
+    description: _propTypes.default.string
+  }).isRequired
+};
+},{"react":"../node_modules/react/index.js","./director-view.scss":"components/director-view/director-view.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js"}],"components/profile-view/profile-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -44712,9 +44717,6 @@ function (_React$Component) {
           genre = _this$props.genre,
           movie = _this$props.movie,
           movies = _this$props.movies;
-      console.log(genre);
-      console.log(movie);
-      console.log(movies);
       if (!genre) return null;
       return _react.default.createElement("div", {
         className: "view"
@@ -45564,7 +45566,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61337" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58700" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
