@@ -43593,13 +43593,15 @@ function (_React$Component) {
     value: function render() {
       var _this$props = this.props,
           director = _this$props.director,
-          movies = _this$props.movies;
+          movies = _this$props.movies,
+          movie = _this$props.movie;
       console.log(director);
       console.log(movies);
-      if (!director) return null;
+      if (!director) return null; // Render error between L25 and L47
+
       return _react.default.createElement("div", {
         className: "view"
-      }, _react.default.createElement(_Card.default, {
+      }, _react.default.createElement(_Container.default, null, _react.default.createElement(_Card.default, {
         className: "director-view"
       }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, {
         className: "director-title"
@@ -43607,13 +43609,13 @@ function (_React$Component) {
         className: "director-birth"
       }, "Born in ", director.birth), _react.default.createElement(_Card.default.Text, {
         className: "director-bio"
-      }, "Biography: ", director.bio), _react.default.createElement(_reactRouterDom.Link, {
+      }, "Biography: ", director.bio)), _react.default.createElement(_reactRouterDom.Link, {
         to: '/'
       }, _react.default.createElement(_Button.default, {
         variant: "outline-dark",
         className: "back-button"
-      }, "Back")))), _react.default.createElement(_Container.default, null, _react.default.createElement("h2", null, "Here are a few movies by ", director.name), _react.default.createElement("div", {
-        className: "row d-flex"
+      }, "Back"))), _react.default.createElement(_Container.default, null, _react.default.createElement("h2", null, "Here are a few movies by ", director.name), _react.default.createElement("div", {
+        className: "row"
       }, movies.map(function (movie) {
         if (movie.director.name === director.name) {
           return _react.default.createElement("div", {
@@ -43627,7 +43629,7 @@ function (_React$Component) {
             to: "/movies/".concat(movie._id)
           }, _react.default.createElement(_Card.default.Title, null, movie.title)), _react.default.createElement(_Card.default.Text, null, movie.description.substring(0, 100), "..."))));
         }
-      }))));
+      })))));
     }
   }]);
 
@@ -44114,174 +44116,7 @@ ListGroup.displayName = 'ListGroup';
 ListGroup.Item = _ListGroupItem.default;
 var _default = ListGroup;
 exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","classnames":"../node_modules/classnames/index.js","react":"../node_modules/react/index.js","warning":"../node_modules/warning/warning.js","uncontrollable":"../node_modules/uncontrollable/esm/index.js","./ThemeProvider":"../node_modules/react-bootstrap/esm/ThemeProvider.js","./AbstractNav":"../node_modules/react-bootstrap/esm/AbstractNav.js","./ListGroupItem":"../node_modules/react-bootstrap/esm/ListGroupItem.js"}],"../node_modules/react-bootstrap/esm/AccordionContext.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var _default = _react.default.createContext(null);
-
-exports.default = _default;
-},{"react":"../node_modules/react/index.js"}],"../node_modules/react-bootstrap/esm/AccordionToggle.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.useAccordionToggle = useAccordionToggle;
-exports.default = void 0;
-
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
-
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose"));
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _SelectableContext = _interopRequireDefault(require("./SelectableContext"));
-
-var _AccordionContext = _interopRequireDefault(require("./AccordionContext"));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function useAccordionToggle(eventKey, onClick) {
-  var contextEventKey = (0, _react.useContext)(_AccordionContext.default);
-  var onSelect = (0, _react.useContext)(_SelectableContext.default);
-  return function (e) {
-    /* 
-      Compare the event key in context with the given event key.
-      If they are the same, then collapse the component.
-    */
-    var eventKeyPassed = eventKey === contextEventKey ? null : eventKey;
-    onSelect(eventKeyPassed, e);
-    if (onClick) onClick(e);
-  };
-}
-
-var AccordionToggle = _react.default.forwardRef(function (_ref, ref) {
-  var _ref$as = _ref.as,
-      Component = _ref$as === void 0 ? 'button' : _ref$as,
-      children = _ref.children,
-      eventKey = _ref.eventKey,
-      onClick = _ref.onClick,
-      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["as", "children", "eventKey", "onClick"]);
-  var accordionOnClick = useAccordionToggle(eventKey, onClick);
-  return _react.default.createElement(Component, (0, _extends2.default)({
-    ref: ref,
-    onClick: accordionOnClick
-  }, props), children);
-});
-
-var _default = AccordionToggle;
-exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","react":"../node_modules/react/index.js","./SelectableContext":"../node_modules/react-bootstrap/esm/SelectableContext.js","./AccordionContext":"../node_modules/react-bootstrap/esm/AccordionContext.js"}],"../node_modules/react-bootstrap/esm/AccordionCollapse.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
-
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose"));
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _Collapse = _interopRequireDefault(require("./Collapse"));
-
-var _AccordionContext = _interopRequireDefault(require("./AccordionContext"));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var AccordionCollapse = _react.default.forwardRef(function (_ref, ref) {
-  var children = _ref.children,
-      eventKey = _ref.eventKey,
-      props = (0, _objectWithoutPropertiesLoose2.default)(_ref, ["children", "eventKey"]);
-  var contextEventKey = (0, _react.useContext)(_AccordionContext.default);
-  return _react.default.createElement(_Collapse.default, (0, _extends2.default)({
-    ref: ref,
-    in: contextEventKey === eventKey
-  }, props), _react.default.createElement("div", null, _react.default.Children.only(children)));
-});
-
-AccordionCollapse.displayName = 'AccordionCollapse';
-var _default = AccordionCollapse;
-exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","react":"../node_modules/react/index.js","./Collapse":"../node_modules/react-bootstrap/esm/Collapse.js","./AccordionContext":"../node_modules/react-bootstrap/esm/AccordionContext.js"}],"../node_modules/react-bootstrap/esm/Accordion.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _extends2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/extends"));
-
-var _objectWithoutPropertiesLoose2 = _interopRequireDefault(require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose"));
-
-var _classnames = _interopRequireDefault(require("classnames"));
-
-var _react = _interopRequireDefault(require("react"));
-
-var _uncontrollable = require("uncontrollable");
-
-var _ThemeProvider = require("./ThemeProvider");
-
-var _AccordionToggle = _interopRequireDefault(require("./AccordionToggle"));
-
-var _SelectableContext = _interopRequireDefault(require("./SelectableContext"));
-
-var _AccordionCollapse = _interopRequireDefault(require("./AccordionCollapse"));
-
-var _AccordionContext = _interopRequireDefault(require("./AccordionContext"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Accordion = _react.default.forwardRef(function (props, ref) {
-  var _useUncontrolled = (0, _uncontrollable.useUncontrolled)(props, {
-    activeKey: 'onSelect'
-  }),
-      _useUncontrolled$as = _useUncontrolled.as,
-      Component = _useUncontrolled$as === void 0 ? 'div' : _useUncontrolled$as,
-      activeKey = _useUncontrolled.activeKey,
-      bsPrefix = _useUncontrolled.bsPrefix,
-      children = _useUncontrolled.children,
-      className = _useUncontrolled.className,
-      onSelect = _useUncontrolled.onSelect,
-      controlledProps = (0, _objectWithoutPropertiesLoose2.default)(_useUncontrolled, ["as", "activeKey", "bsPrefix", "children", "className", "onSelect"]);
-
-  bsPrefix = (0, _ThemeProvider.useBootstrapPrefix)(bsPrefix, 'accordion');
-  return _react.default.createElement(_AccordionContext.default.Provider, {
-    value: activeKey
-  }, _react.default.createElement(_SelectableContext.default.Provider, {
-    value: onSelect
-  }, _react.default.createElement(Component, (0, _extends2.default)({
-    ref: ref
-  }, controlledProps, {
-    className: (0, _classnames.default)(className, bsPrefix)
-  }), children)));
-});
-
-Accordion.Toggle = _AccordionToggle.default;
-Accordion.Collapse = _AccordionCollapse.default;
-var _default = Accordion;
-exports.default = _default;
-},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","classnames":"../node_modules/classnames/index.js","react":"../node_modules/react/index.js","uncontrollable":"../node_modules/uncontrollable/esm/index.js","./ThemeProvider":"../node_modules/react-bootstrap/esm/ThemeProvider.js","./AccordionToggle":"../node_modules/react-bootstrap/esm/AccordionToggle.js","./SelectableContext":"../node_modules/react-bootstrap/esm/SelectableContext.js","./AccordionCollapse":"../node_modules/react-bootstrap/esm/AccordionCollapse.js","./AccordionContext":"../node_modules/react-bootstrap/esm/AccordionContext.js"}],"../node_modules/react-bootstrap/esm/Spinner.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","classnames":"../node_modules/classnames/index.js","react":"../node_modules/react/index.js","warning":"../node_modules/warning/warning.js","uncontrollable":"../node_modules/uncontrollable/esm/index.js","./ThemeProvider":"../node_modules/react-bootstrap/esm/ThemeProvider.js","./AbstractNav":"../node_modules/react-bootstrap/esm/AbstractNav.js","./ListGroupItem":"../node_modules/react-bootstrap/esm/ListGroupItem.js"}],"../node_modules/react-bootstrap/esm/Spinner.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -44329,7 +44164,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = exports.ProfileView = void 0;
+exports.ProfileView = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -44337,19 +44172,15 @@ require("./profile-view.scss");
 
 var _reactRouterDom = require("react-router-dom");
 
-var _reactRedux = require("react-redux");
+var _ListGroup = _interopRequireDefault(require("react-bootstrap/ListGroup"));
+
+var _Spinner = _interopRequireDefault(require("react-bootstrap/Spinner"));
 
 var _Button = _interopRequireDefault(require("react-bootstrap/Button"));
 
 var _Card = _interopRequireDefault(require("react-bootstrap/Card"));
 
 var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
-
-var _ListGroup = _interopRequireDefault(require("react-bootstrap/ListGroup"));
-
-var _Accordion = _interopRequireDefault(require("react-bootstrap/Accordion"));
-
-var _Spinner = _interopRequireDefault(require("react-bootstrap/Spinner"));
 
 var _axios = _interopRequireDefault(require("axios"));
 
@@ -44375,13 +44206,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var mapStateToProps = function mapStateToProps(state) {
-  var movies = state.movies;
-  return {
-    movies: movies
-  };
-};
-
 var ProfileView =
 /*#__PURE__*/
 function (_React$Component) {
@@ -44399,16 +44223,26 @@ function (_React$Component) {
       password: null,
       email: null,
       birthday: null,
-      favourites: [],
       usernameNew: null,
       passwordNew: null,
       emailNew: null,
-      birthdayNew: null
+      birthdayNew: null,
+      favourites: [],
+      movies: []
     };
     return _this;
   }
 
   _createClass(ProfileView, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var accessToken = localStorage.getItem('token');
+
+      if (accessToken !== null) {
+        this.getUserProfile(accessToken);
+      }
+    }
+  }, {
     key: "getUserProfile",
     value: function getUserProfile(token) {
       var _this2 = this;
@@ -44419,7 +44253,6 @@ function (_React$Component) {
         }
       }).then(function (response) {
         _this2.setState({
-          userData: response.data,
           username: response.data.username,
           password: response.data.password,
           email: response.data.email,
@@ -44448,34 +44281,49 @@ function (_React$Component) {
         console.log('Unable to delete user account: ' + error);
       });
     }
+    /*====================|=ERROR=STARTS=HERE=|====================*/
+    // deleteFavMovie does not work!! User token not recognised.
+
   }, {
     key: "deleteFavouriteMovie",
     value: function deleteFavouriteMovie(movieID) {
-      var _this3 = this;
-
       _axios.default.delete("https://rotten-potatoes3000.herokuapp.com/user/".concat(localStorage.getItem('user'), "/movies/").concat(movieID), {
+        username: localStorage.getItem('user')
+      }, {
         headers: {
-          Authorization: "Bearer ".concat(token)
+          Authorization: "Bearer ".concat(localStorage.getItem('token'))
         }
       }).then(function (res) {
-        _this3.getUserProfile(localStorage.getItem('token'));
+        console.log('Movie deleted from favorites list');
+        alert('The movie has been deleted from your favorites list');
       }).then(function (res) {
-        console.log('Movie deleted frm favorites list');
-        alert("".concat(movie.title, " has been deleted from your favorites list"));
+        document.location.reload(true);
       }).catch(function (error) {
         console.log('Unable to delete movie: ' + error);
-        alert("Unable to delete ".concat(movie.title, " from your favourites list. Please refresh the page and try again!"));
+        alert('Unable to delete movie from your favourites list. Please refresh the page and try again!');
       });
     }
-  }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var accessToken = localStorage.getItem('token');
+    /*====================|=ERROR=ENDS=HERE=|====================*/
 
-      if (accessToken !== null) {
-        this.getUserProfile(accessToken);
-      }
-    }
+    /* OLD VERSION - ALSO NOT WORKING
+        deleteFavouriteMovie(movieID) {
+        axios.delete(`https://rotten-potatoes3000.herokuapp.com/user/${localStorage.getItem('user')}/movies/${movieID}`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        })
+            .then(res => {
+                document.location.reload(true);
+            })
+            .then(res => {
+                console.log('Movie deleted from favorites list');
+                alert('The movie has been deleted from your favorites list');
+            })
+            .catch(function (error) {
+                console.log('Unable to delete movie: ' + error);
+                alert('Unable to delete movie from your favourites list. Please refresh the page and try again!');
+            });
+    } 
+    */
+
   }, {
     key: "handleChange",
     value: function handleChange(event) {
@@ -44484,7 +44332,7 @@ function (_React$Component) {
   }, {
     key: "handleProfileUpdate",
     value: function handleProfileUpdate(event) {
-      var _this4 = this;
+      var _this3 = this;
 
       event.preventDefault();
 
@@ -44495,12 +44343,12 @@ function (_React$Component) {
         birthday: this.state.birthdayNew
       }, {
         headers: {
-          Authorization: "Bearer ".concat(localStorage.getItem("token"))
+          Authorization: "Bearer ".concat(localStorage.getItem('token'))
         }
       }).then(function (res) {
         console.log('User data has been successfuly updated.');
         alert('Profile successfuly updated!');
-        localStorage.setItem('user', _this4.state.usernameNew);
+        localStorage.setItem('user', _this3.state.usernameNew);
       }).catch(function (error) {
         console.log('Unable to update user profile: ' + error);
         alert('Unable to update user profile: ' + error);
@@ -44509,7 +44357,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
+      var _this4 = this;
 
       var _this$state = this.state,
           username = _this$state.username,
@@ -44529,7 +44377,7 @@ function (_React$Component) {
         to: '/'
       }, _react.default.createElement(_Button.default, {
         variant: "outline-dark",
-        className: "return-button"
+        className: "profile-return-button"
       }, "Back to movie list")), _react.default.createElement(_Card.default, {
         className: "profile-view"
       }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Profile"), _react.default.createElement(_ListGroup.default, {
@@ -44538,16 +44386,15 @@ function (_React$Component) {
       }, _react.default.createElement(_ListGroup.default.Item, {
         className: "profile-username"
       }, "Username: ", username), _react.default.createElement(_ListGroup.default.Item, {
-        className: "profile-password"
-      }, "Password: -----------"), _react.default.createElement(_ListGroup.default.Item, {
         className: "profile-email"
       }, "Email: ", email), _react.default.createElement(_ListGroup.default.Item, {
         className: "profile-birthday"
       }, "Birthday: ", birthday && birthday.slice(0, 10)), _react.default.createElement(_ListGroup.default.Item, {
         className: "profile-favourites"
-      }, "Favorites:", _react.default.createElement("div", null, favourites.length === 0 && _react.default.createElement("div", null, "No movies added yet"), favourites.length > 0 && _react.default.createElement("ul", null, favourites.map(function (movieID) {
-        return _react.default.createElement("li", {
-          key: movieID
+      }, "Favorites:", _react.default.createElement("div", null, favourites.length === 0 && _react.default.createElement("p", null, "No movies added yet."), favourites.length > 0 && _react.default.createElement(_ListGroup.default, null, favourites.map(function (movieID) {
+        return _react.default.createElement(_ListGroup.default.Item, {
+          key: movieID,
+          variant: "flush"
         }, _react.default.createElement("p", {
           className: "favourite-movies"
         }, movies.find(function (movie) {
@@ -44561,8 +44408,8 @@ function (_React$Component) {
           variant: "outline-danger",
           className: "delete-button",
           size: "sm",
-          onClick: function onClick(event) {
-            return _this5.deleteFavouriteMovie(event, movieID._id);
+          onClick: function onClick(e) {
+            return _this4.deleteFavouriteMovie(e);
           }
         }, "Delete movie"));
       }))))))), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement(_Card.default, {
@@ -44582,7 +44429,7 @@ function (_React$Component) {
         name: "usernameNew",
         autoComplete: "off",
         onChange: function onChange(event) {
-          return _this5.handleChange(event);
+          return _this4.handleChange(event);
         }
       })), _react.default.createElement(_Form.default.Group, {
         controlId: "formBasicPassword"
@@ -44593,7 +44440,7 @@ function (_React$Component) {
         name: "passwordNew",
         autoComplete: "off",
         onChange: function onChange(event) {
-          return _this5.handleChange(event);
+          return _this4.handleChange(event);
         }
       })), _react.default.createElement(_Form.default.Group, {
         controlId: "formBasicEmail"
@@ -44603,7 +44450,7 @@ function (_React$Component) {
         placeholder: "Enter a new email",
         name: "emailNew",
         onChange: function onChange(event) {
-          return _this5.handleChange(event);
+          return _this4.handleChange(event);
         }
       })), _react.default.createElement(_Form.default.Group, {
         controlId: "formBasicBirthday"
@@ -44613,14 +44460,14 @@ function (_React$Component) {
         placeholder: "dd/mm/yyyy",
         name: "birthdayNew",
         onChange: function onChange(event) {
-          return _this5.handleChange(event);
+          return _this4.handleChange(event);
         }
       })), _react.default.createElement(_Button.default, {
         className: "update-profile-button",
         vatiant: "outline-dark",
         type: "button",
         onClick: function onClick(event) {
-          return _this5.handleProfileUpdate(event);
+          return _this4.handleProfileUpdate(event);
         }
       }, "Update"), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement(_Form.default.Label, {
         className: "delete-profile-title"
@@ -44629,7 +44476,7 @@ function (_React$Component) {
         variant: "outline-danger",
         className: "delete-profile-button",
         onClick: function onClick() {
-          return _this5.deleteUserProfile();
+          return _this4.deleteUserProfile();
         }
       }, "Delete Profile"))));
     }
@@ -44639,11 +44486,7 @@ function (_React$Component) {
 }(_react.default.Component);
 
 exports.ProfileView = ProfileView;
-
-var _default = (0, _reactRedux.connect)(mapStateToProps)(ProfileView);
-
-exports.default = _default;
-},{"react":"../node_modules/react/index.js","./profile-view.scss":"components/profile-view/profile-view.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-redux":"../node_modules/react-redux/es/index.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/ListGroup":"../node_modules/react-bootstrap/esm/ListGroup.js","react-bootstrap/Accordion":"../node_modules/react-bootstrap/esm/Accordion.js","react-bootstrap/Spinner":"../node_modules/react-bootstrap/esm/Spinner.js","axios":"../node_modules/axios/index.js"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./profile-view.scss":"components/profile-view/profile-view.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/ListGroup":"../node_modules/react-bootstrap/esm/ListGroup.js","react-bootstrap/Spinner":"../node_modules/react-bootstrap/esm/Spinner.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","axios":"../node_modules/axios/index.js"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -44875,7 +44718,7 @@ function (_React$Component) {
       if (!genre) return null;
       return _react.default.createElement("div", {
         className: "view"
-      }, _react.default.createElement(_Card.default, {
+      }, _react.default.createElement(_Container.default, null, _react.default.createElement(_Card.default, {
         className: "genre-view"
       }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, {
         className: "genre-title"
@@ -44903,7 +44746,7 @@ function (_React$Component) {
             to: "/movies/".concat(movie._id)
           }, _react.default.createElement(_Card.default.Title, null, movie.title)), _react.default.createElement(_Card.default.Text, null, movie.description.substring(0, 100), "..."))));
         }
-      }))));
+      })))));
     }
   }]);
 
@@ -45488,6 +45331,7 @@ function (_React$Component) {
             });
           }
         }), _react.default.createElement(_reactRouterDom.Route, {
+          exact: true,
           path: "/movies/:movieID",
           render: function render(_ref) {
             var match = _ref.match;
@@ -45720,7 +45564,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53762" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61337" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
