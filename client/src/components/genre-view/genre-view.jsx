@@ -26,48 +26,49 @@ export class GenreView extends React.Component {
 
         return (
             <div className="view">
-                <Card className="genre-view">
-                    <Card.Body>
-                        <Card.Title className="genre-title">
-                            {genre.name}
-                        </Card.Title>
-                        <Card.Text className="genre-description">
-                            {genre.description}
-                        </Card.Text>
-                        <Link to={'/'}>
-                            <Button
-                                variant="outline-dark"
-                                className="back-button"
-                            >
-                                Back to list
-                            </Button>
-                        </Link>
-                    </Card.Body>
-                </Card>
-                <br></br><br></br>
                 <Container>
-                    <h2>Movies of {genre.name} genre</h2><br></br>
-                    <div className="row">
-                        {movies.map(movie => {
-                            if (movie.genre.name === genre.name) {
-                                return (
-                                    <div key={movie._id} className="genre-movies">
-                                        <Card className="movie-card">
-                                            <Card.Img variant="top" src={movie.imagePath} />
-                                            <Card.Body>
-                                                <Link className="text-muted" to={`/movies/${movie._id}`}>
-                                                    <Card.Title>{movie.title}</Card.Title>
-                                                </Link>
-                                                <Card.Text>{movie.description.substring(0, 100)}...</Card.Text>
-                                            </Card.Body>
-                                        </Card>
-                                    </div>
-                                )
-                            }
-                        })}
-                    </div>
+                    <Card className="genre-view">
+                        <Card.Body>
+                            <Card.Title className="genre-title">
+                                {genre.name}
+                            </Card.Title>
+                            <Card.Text className="genre-description">
+                                {genre.description}
+                            </Card.Text>
+                            <Link to={'/'}>
+                                <Button
+                                    variant="outline-dark"
+                                    className="back-button"
+                                >
+                                    Back to list
+                            </Button>
+                            </Link>
+                        </Card.Body>
+                    </Card>
+                    <br></br><br></br>
+                    <Container>
+                        <h2>Movies of {genre.name} genre</h2><br></br>
+                        <div className="row">
+                            {movies.map(movie => {
+                                if (movie.genre.name === genre.name) {
+                                    return (
+                                        <div key={movie._id} className="genre-movies">
+                                            <Card className="movie-card">
+                                                <Card.Img variant="top" src={movie.imagePath} />
+                                                <Card.Body>
+                                                    <Link className="text-muted" to={`/movies/${movie._id}`}>
+                                                        <Card.Title>{movie.title}</Card.Title>
+                                                    </Link>
+                                                    <Card.Text>{movie.description.substring(0, 100)}...</Card.Text>
+                                                </Card.Body>
+                                            </Card>
+                                        </div>
+                                    )
+                                }
+                            })}
+                        </div>
+                    </Container>
                 </Container>
-
             </div>
         )
     }
