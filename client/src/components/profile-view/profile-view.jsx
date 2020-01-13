@@ -2,23 +2,16 @@ import React from 'react';
 import './profile-view.scss';
 
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 /* =============react-bootstrap-imports=============*/
+import ListGroup from 'react-bootstrap/ListGroup';
+import Spinner from 'react-bootstrap/Spinner';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Accordion from 'react-bootstrap/Accordion';
-import Spinner from 'react-bootstrap/Spinner';
 /* =============react-bootstrap-imports=============*/
 
 import axios from 'axios';
-
-const mapStateToProps = state => {
-    const { movies } = state;
-    return { movies };
-}
 
 export class ProfileView extends React.Component {
     constructor() {
@@ -29,12 +22,20 @@ export class ProfileView extends React.Component {
             password: null,
             email: null,
             birthday: null,
-            favourites: [],
             usernameNew: null,
             passwordNew: null,
             emailNew: null,
-            birthdayNew: null
+            birthdayNew: null,
+            favourites: [],
+            movies: []
         };
+    }
+
+    componentDidMount() {
+        let accessToken = localStorage.getItem('token');
+        if (accessToken !== null) {
+            this.getUserProfile(accessToken);
+        }
     }
 
     getUserProfile(token) {
@@ -43,7 +44,6 @@ export class ProfileView extends React.Component {
         })
             .then((response) => {
                 this.setState({
-                    userData: response.data,
                     username: response.data.username,
                     password: response.data.password,
                     email: response.data.email,
@@ -73,30 +73,46 @@ export class ProfileView extends React.Component {
                 console.log('Unable to delete user account: ' + error);
             });
     }
-
+    /*====================|=ERROR=STARTS=HERE=|====================*/
+    // deleteFavMovie does not work!! User token not recognised.
     deleteFavouriteMovie(movieID) {
         axios.delete(`https://rotten-potatoes3000.herokuapp.com/user/${localStorage.getItem('user')}/movies/${movieID}`, {
-            headers: { Authorization: `Bearer ${token}` }
+            username: localStorage.getItem('user')
+        }, {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         })
             .then(res => {
-                this.getUserProfile(localStorage.getItem('token'));
+                console.log('Movie deleted from favorites list');
+                alert('The movie has been deleted from your favorites list');
             })
             .then(res => {
-                console.log('Movie deleted frm favorites list');
-                alert(`${movie.title} has been deleted from your favorites list`)
+                document.location.reload(true);
             })
             .catch(function (error) {
                 console.log('Unable to delete movie: ' + error);
-                alert(`Unable to delete ${movie.title} from your favourites list. Please refresh the page and try again!`)
+                alert('Unable to delete movie from your favourites list. Please refresh the page and try again!');
             });
     }
+    /*====================|=ERROR=ENDS=HERE=|====================*/
 
-    componentDidMount() {
-        let accessToken = localStorage.getItem('token');
-        if (accessToken !== null) {
-            this.getUserProfile(accessToken);
-        }
-    }
+    /* OLD VERSION - ALSO NOT WORKING
+        deleteFavouriteMovie(movieID) {
+        axios.delete(`https://rotten-potatoes3000.herokuapp.com/user/${localStorage.getItem('user')}/movies/${movieID}`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        })
+            .then(res => {
+                document.location.reload(true);
+            })
+            .then(res => {
+                console.log('Movie deleted from favorites list');
+                alert('The movie has been deleted from your favorites list');
+            })
+            .catch(function (error) {
+                console.log('Unable to delete movie: ' + error);
+                alert('Unable to delete movie from your favourites list. Please refresh the page and try again!');
+            });
+    } 
+    */
 
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value });
@@ -110,7 +126,7 @@ export class ProfileView extends React.Component {
             email: this.state.emailNew,
             birthday: this.state.birthdayNew
         }, {
-            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         })
             .then(res => {
                 console.log('User data has been successfuly updated.');
@@ -132,14 +148,12 @@ export class ProfileView extends React.Component {
                 <span className="sr-only">Loading...</span>
             </Spinner>
         </div>;
-
-
         return (
             <div className="profile">
                 <Link to={'/'}>
                     <Button
                         variant="outline-dark"
-                        className="return-button"
+                        className="profile-return-button"
                     >
                         Back to movie list
                     </Button>
@@ -149,16 +163,15 @@ export class ProfileView extends React.Component {
                         <Card.Title>Profile</Card.Title>
                         <ListGroup className="list-group-flush" variant="flush">
                             <ListGroup.Item className="profile-username">Username: {username}</ListGroup.Item>
-                            <ListGroup.Item className="profile-password">Password: -----------</ListGroup.Item>
                             <ListGroup.Item className="profile-email">Email: {email}</ListGroup.Item>
                             <ListGroup.Item className="profile-birthday">Birthday: {birthday && birthday.slice(0, 10)}</ListGroup.Item>
                             <ListGroup.Item className="profile-favourites">Favorites:
                                 <div>
-                                    {favourites.length === 0 && <div>No movies added yet</div>}
+                                    {favourites.length === 0 && <p>No movies added yet.</p>}
                                     {favourites.length > 0 &&
-                                        <ul>
+                                        <ListGroup>
                                             {favourites.map(movieID => (
-                                                <li key={movieID}>
+                                                <ListGroup.Item key={movieID} variant="flush">
                                                     <p className="favourite-movies">
                                                         {movies.find(movie => movie._id === movieID).title}
                                                     </p>
@@ -169,13 +182,13 @@ export class ProfileView extends React.Component {
                                                         variant="outline-danger"
                                                         className="delete-button"
                                                         size="sm"
-                                                        onClick={event => this.deleteFavouriteMovie(event, movieID._id)}
+                                                        onClick={e => this.deleteFavouriteMovie(e)}
                                                     >
                                                         Delete movie
                                                     </Button>
-                                                </li>)
+                                                </ListGroup.Item>)
                                             )}
-                                        </ul>
+                                        </ListGroup>
                                     }
                                 </div>
                             </ListGroup.Item>
@@ -253,7 +266,7 @@ export class ProfileView extends React.Component {
                         <small>
                             *Should you decide to delete your profile, please be aware that once you do,
                             your data will be deleted without any backup! It is not possible to revert this action!
-                    </small>
+                        </small>
                         <Button
                             size="sm"
                             variant="outline-danger"
@@ -268,6 +281,3 @@ export class ProfileView extends React.Component {
         );
     }
 }
-
-
-export default connect(mapStateToProps)(ProfileView);
