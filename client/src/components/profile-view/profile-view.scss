@@ -1,3 +1,6 @@
+$box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 * {
     box-sizing: border-box;
 }
@@ -8,18 +11,21 @@
 
 /*=====Profile=====*/
 .profile-view {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: $box-shadow-basic;
     display: flex;
     max-width: 50%;
     margin: 5%;
     margin-top: -9.5%;
 }
 
-.return-button {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.profile-return-button {
     display: flex;
     margin: 5%;
     margin-left: auto;
+}
+
+.profile-return-button:hover {
+    box-shadow: $box-shadow-basic;
 }
 
 /*=====Update Profile=====*/
@@ -38,6 +44,10 @@
 
 .delete-profile-button,
 .update-profile-button {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-top: 5%;
+}
+
+.delete-profile-button:hover,
+.update-profile-button:hover {
+    box-shadow: $box-shadow-basic;
 }
