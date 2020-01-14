@@ -109,6 +109,10 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.director-movies-container {
+  margin-top: 20%;
+}
+
 /*=======Movies=======*/
 .director-movies {
   max-width: 30%;
@@ -252,6 +256,10 @@
 }
 
 /*=======Movies=======*/
+.genre-movies-container {
+  margin-top: 20%;
+}
+
 .genre-movies {
   max-width: 30%;
   max-height: 40%;

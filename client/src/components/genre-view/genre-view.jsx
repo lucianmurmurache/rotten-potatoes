@@ -42,9 +42,9 @@ export class GenreView extends React.Component {
                             </Link>
                         </Card.Body>
                     </Card>
-                    <br></br><br></br>
-                    <Container>
-                        <h2>Movies of {genre.name} genre</h2><br></br>
+                    <br></br>
+                    <Container className="genre-movies-container">
+                        <h4>Movies of {genre.name} genre:</h4><br></br>
                         <div className="row">
                             {movies.map(movie => {
                                 if (movie.genre.name === genre.name) {

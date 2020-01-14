@@ -43611,7 +43611,9 @@ function (_React$Component) {
       }, _react.default.createElement(_Button.default, {
         variant: "outline-dark",
         className: "director-back-button"
-      }, "Back to list")))), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement(_Container.default, null, _react.default.createElement("h2", null, "Movies of ", director.name, " director"), _react.default.createElement("br", null), _react.default.createElement("div", {
+      }, "Back to list")))), _react.default.createElement("br", null), _react.default.createElement(_Container.default, {
+        className: "director-movies-container"
+      }, _react.default.createElement("h4", null, "Movies directed by ", director.name, ":"), _react.default.createElement("br", null), _react.default.createElement("div", {
         className: "row"
       }, movies.map(function (movie) {
         if (movie.director.name === director.name) {
@@ -45014,7 +45016,9 @@ function (_React$Component) {
       }, _react.default.createElement(_Button.default, {
         variant: "outline-dark",
         className: "back-button"
-      }, "Back to list")))), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement(_Container.default, null, _react.default.createElement("h2", null, "Movies of ", genre.name, " genre"), _react.default.createElement("br", null), _react.default.createElement("div", {
+      }, "Back to list")))), _react.default.createElement("br", null), _react.default.createElement(_Container.default, {
+        className: "genre-movies-container"
+      }, _react.default.createElement("h4", null, "Movies of ", genre.name, " genre:"), _react.default.createElement("br", null), _react.default.createElement("div", {
         className: "row"
       }, movies.map(function (movie) {
         if (movie.genre.name === genre.name) {

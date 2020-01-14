@@ -42,9 +42,9 @@ export class DirectorView extends React.Component {
                             </Link>
                         </Card.Body>
                     </Card>
-                    <br></br><br></br>
-                    <Container>
-                        <h2>Movies of {director.name} director</h2><br></br>
+                    <br></br>
+                    <Container className="director-movies-container">
+                        <h4>Movies directed by {director.name}:</h4><br></br>
                         <div className="row">
                             {movies.map(movie => {
                                 if (movie.director.name === director.name) {
