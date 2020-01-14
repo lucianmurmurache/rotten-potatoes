@@ -44229,8 +44229,6 @@ function (_React$Component) {
   _createClass(ProfileInfo, [{
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       var _this$props = this.props,
           user = _this$props.user,
           movies = _this$props.movies;
@@ -44262,16 +44260,7 @@ function (_React$Component) {
       }, _react.default.createElement(Button, {
         variant: "outline-dark",
         className: "profile-return-button"
-      }, "Back to movie list")), _react.default.createElement(Form.Label, {
-        className: "delete-profile-title"
-      }, "Delete account"), _react.default.createElement("br", null), _react.default.createElement("small", null, "*Should you decide to delete your profile, please be aware that once you do, your data will be deleted without any backup! It is not possible to revert this action!"), _react.default.createElement(Button, {
-        size: "sm",
-        variant: "outline-danger",
-        className: "delete-profile-button",
-        onClick: function onClick() {
-          return _this2.deleteUserProfile();
-        }
-      }, "Delete Profile")))));
+      }, "Back to movie list"))))));
     }
   }]);
 
@@ -44429,6 +44418,8 @@ function (_React$Component) {
   _createClass(ProfileForm, [{
     key: "render",
     value: function render() {
+      var _this = this;
+
       var _useState = (0, _react.useState)(''),
           _useState2 = _slicedToArray(_useState, 2),
           username = _useState2[0],
@@ -44507,7 +44498,16 @@ function (_React$Component) {
         vatiant: "outline-dark",
         type: "button",
         onClick: handleProfileUpdate
-      }, "Update profile"))));
+      }, "Update profile"), _react.default.createElement(_Form.default.Label, {
+        className: "delete-profile-title"
+      }, "Delete account"), _react.default.createElement("br", null), _react.default.createElement("small", null, "*Should you decide to delete your profile, please be aware that once you do, your data will be deleted without any backup! It is not possible to revert this action!"), _react.default.createElement(_Button.default, {
+        size: "sm",
+        variant: "outline-danger",
+        className: "delete-profile-button",
+        onClick: function onClick() {
+          return _this.deleteUserProfile();
+        }
+      }, "Delete Profile"))));
     }
   }]);
 

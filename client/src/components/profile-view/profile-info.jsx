@@ -65,26 +65,11 @@ export class ProfileInfo extends React.Component {
                                 >
                                     Back to movie list
                                 </Button>
-
                             </Link>
-                            <Form.Label className="delete-profile-title">Delete account</Form.Label><br></br>
-                            <small>
-                                *Should you decide to delete your profile, please be aware that once you do,
-                                your data will be deleted without any backup! It is not possible to revert this action!
-                            </small>
-                            <Button
-                                size="sm"
-                                variant="outline-danger"
-                                className="delete-profile-button"
-                                onClick={() => this.deleteUserProfile()}
-                            >
-                                Delete Profile
-                            </Button>
                         </Form>
                     </Card >
                 </Container>
             </div>
-
         )
     }
 }
