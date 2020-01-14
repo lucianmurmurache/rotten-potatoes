@@ -13,12 +13,7 @@ import axios from 'axios';
 export class ProfileView extends React.Component {
     constructor() {
         super();
-        this.state = {
-            usernameNew: null,
-            passwordNew: null,
-            emailNew: null,
-            birthdayNew: null,
-        };
+        this.state = {};
     }
 
     componentDidMount() {
@@ -34,7 +29,7 @@ export class ProfileView extends React.Component {
         })
             .then((response) => {
                 this.setState({
-                    uerData: reseponse.data,
+                    userData: response.data,
                     username: response.data.username,
                     password: response.data.password,
                     email: response.data.email,
@@ -109,14 +104,14 @@ export class ProfileView extends React.Component {
     render() {
         const { movies } = this.props;
 
-        if (!movies) return <div>
+        if (movies.length) return <div>
             <Spinner className="profile-view-spinner" animation="border" role="status">
                 <span className="sr-only">Loading...</span>
             </Spinner>
         </div>;
         return (
             <div className="profile-view">
-                <ProfileInfo user={userData} movies={movies} />
+                <ProfileInfo movies={movies} user={this.state} />
             </div >
         );
     }

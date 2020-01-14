@@ -44188,6 +44188,8 @@ var _Spinner = _interopRequireDefault(require("react-bootstrap/Spinner"));
 
 var _ListGroup = _interopRequireDefault(require("react-bootstrap/ListGroup"));
 
+var _Container = _interopRequireDefault(require("react-bootstrap/Container"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -44232,13 +44234,14 @@ function (_React$Component) {
       var _this$props = this.props,
           user = _this$props.user,
           movies = _this$props.movies;
+      console.log(user);
+      console.log(movies);
       var favouritesList = movies.filter(function (movie) {
         return user.favourites.includes(movie._id);
       });
-      console.log(favouritesList);
       return _react.default.createElement("div", {
         className: "profile-info"
-      }, _react.default.createElement(Container, null, _react.default.createElement(_Card.default, null, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, {
+      }, _react.default.createElement(_Container.default, null, _react.default.createElement(_Card.default, null, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, {
         className: "profile-info-title"
       }, "Profile Info"), _react.default.createElement(_ListGroup.default, {
         className: "list-group-flush",
@@ -44354,7 +44357,7 @@ export function ProfileInfo() {
 
 
 exports.ProfileInfo = ProfileInfo;
-},{"react":"../node_modules/react/index.js","./profile-info.scss":"components/profile-view/profile-info.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/Spinner":"../node_modules/react-bootstrap/esm/Spinner.js","react-bootstrap/ListGroup":"../node_modules/react-bootstrap/esm/ListGroup.js"}],"components/profile-view/profile-form.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./profile-info.scss":"components/profile-view/profile-info.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/Spinner":"../node_modules/react-bootstrap/esm/Spinner.js","react-bootstrap/ListGroup":"../node_modules/react-bootstrap/esm/ListGroup.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js"}],"components/profile-view/profile-form.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -44674,12 +44677,7 @@ function (_React$Component) {
       });
     };
 
-    _this.state = {
-      usernameNew: null,
-      passwordNew: null,
-      emailNew: null,
-      birthdayNew: null
-    };
+    _this.state = {};
     return _this;
   }
 
@@ -44703,7 +44701,7 @@ function (_React$Component) {
         }
       }).then(function (response) {
         _this2.setState({
-          uerData: reseponse.data,
+          userData: response.data,
           username: response.data.username,
           password: response.data.password,
           email: response.data.email,
@@ -44756,7 +44754,7 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var movies = this.props.movies;
-      if (!movies) return _react.default.createElement("div", null, _react.default.createElement(_Spinner.default, {
+      if (movies.length) return _react.default.createElement("div", null, _react.default.createElement(_Spinner.default, {
         className: "profile-view-spinner",
         animation: "border",
         role: "status"
@@ -44766,8 +44764,8 @@ function (_React$Component) {
       return _react.default.createElement("div", {
         className: "profile-view"
       }, _react.default.createElement(_profileInfo.ProfileInfo, {
-        user: userData,
-        movies: movies
+        movies: movies,
+        user: this.state
       }));
     }
   }]);

@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Spinner from 'react-bootstrap/Spinner';
 import ListGroup from 'react-bootstrap/ListGroup';
+import Container from 'react-bootstrap/Container';
 /* =============react-bootstrap-imports=============*/
 
 export class ProfileInfo extends React.Component {
@@ -18,8 +19,9 @@ export class ProfileInfo extends React.Component {
     render() {
 
         const { user, movies } = this.props;
+        console.log(user);
+        console.log(movies);
         const favouritesList = movies.filter(movie => user.favourites.includes(movie._id));
-        console.log(favouritesList);
 
         return (
             <div className="profile-info">
