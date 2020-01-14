@@ -121,27 +121,23 @@
   box-sizing: border-box;
 }
 
-.profile {
+.profile-view {
   width: 100%;
 }
 
 /*=====Profile=====*/
-.profile-view {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  display: flex;
-  max-width: 50%;
-  margin: 5%;
-  margin-top: -9.5%;
-}
-
 .profile-return-button {
   display: flex;
-  margin: 5%;
+  margin-right: 5%;
   margin-left: auto;
 }
 
 .profile-return-button:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.profile-view-spinner {
+  margin: auto;
 }
 
 /*=====Update Profile=====*/
@@ -165,6 +161,22 @@
 .delete-profile-button:hover,
 .update-profile-button:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.loading-spinner {
+  margin: auto;
+}
+
+.profile-info {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  max-width: 50%;
+  margin: 5%;
+  margin-top: -9.5%;
+}
+
+.profile-info-title {
+  font-size: 20px;
+  font-weight: bold;
 }
 * {
   box-sizing: border-box;

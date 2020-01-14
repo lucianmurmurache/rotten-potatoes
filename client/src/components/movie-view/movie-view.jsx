@@ -31,9 +31,6 @@ export class MovieView extends React.Component {
                 console.log('movie added to favourite list.');
                 alert(`${movie.title} has been added to your favorites list!`);
             })
-            .then(res => {
-                document.location.reload(true);
-            })
             .catch(error => {
                 console.log('Failed to add movie to list');
                 alert(`Unable to add ${movie.title} to your favorites list!` + error)
