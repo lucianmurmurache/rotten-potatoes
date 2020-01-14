@@ -28,6 +28,7 @@ export class ProfileView extends React.Component {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then((response) => {
+                console.log(response);
                 this.setState({
                     userData: response.data,
                     username: response.data.username,
@@ -44,7 +45,6 @@ export class ProfileView extends React.Component {
 
     handleProfileUpdate = (event) => {
         event.preventDefault();
-        console.log();
         axios.put(`https://rotten-potatoes3000.herokuapp.com/user/${localStorage.getItem('user')}`, {
             username: username,
             password: password,

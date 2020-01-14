@@ -44246,7 +44246,7 @@ function (_React$Component) {
       }, "Profile Info"), _react.default.createElement(_ListGroup.default, {
         className: "list-group-flush",
         variant: "flush"
-      }, _react.default.createElement(_ListGroup.default.Item, null, "Username: ", user.username), _react.default.createElement(_ListGroup.default.Item, null, "Email: ", user.email), _react.default.createElement(_ListGroup.default.Item, null, "Birthday: ", user.birthday && birthday.slice(0, 10)), _react.default.createElement(_ListGroup.default.Item, null, "Favorites:", _react.default.createElement("div", null, user.favourites.length === 0 && _react.default.createElement("p", null, "No movies added yet."), user.favourites.length > 0 && _react.default.createElement(_ListGroup.default, null, favouritesList.map(function (movie) {
+      }, _react.default.createElement(_ListGroup.default.Item, null, "Username: ", user.username), _react.default.createElement(_ListGroup.default.Item, null, "Email: ", user.email), _react.default.createElement(_ListGroup.default.Item, null, "Birthday: ", user.birthday && birthday.slice(0, 10)), _react.default.createElement(_ListGroup.default.Item, null, "Favorites:", _react.default.createElement("div", null, user && user.favourites.length === 0 && _react.default.createElement("p", null, "No movies added yet."), user && user.favourites.length > 0 && _react.default.createElement(_ListGroup.default, null, favouritesList.map(function (movie) {
         return _react.default.createElement("li", {
           key: movie._id,
           variant: "flush"
@@ -44655,7 +44655,6 @@ function (_React$Component) {
 
     _this.handleProfileUpdate = function (event) {
       event.preventDefault();
-      console.log();
 
       _axios.default.put("https://rotten-potatoes3000.herokuapp.com/user/".concat(localStorage.getItem('user')), {
         username: username,
@@ -44700,6 +44699,8 @@ function (_React$Component) {
           Authorization: "Bearer ".concat(token)
         }
       }).then(function (response) {
+        console.log(response);
+
         _this2.setState({
           userData: response.data,
           username: response.data.username,

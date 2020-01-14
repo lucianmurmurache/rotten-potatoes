@@ -35,8 +35,8 @@ export class ProfileInfo extends React.Component {
                                 <ListGroup.Item>Birthday: {user.birthday && birthday.slice(0, 10)}</ListGroup.Item>
                                 <ListGroup.Item>Favorites:
                                     <div>
-                                        {user.favourites.length === 0 && <p>No movies added yet.</p>}
-                                        {user.favourites.length > 0 &&
+                                        {user && user.favourites.length === 0 && <p>No movies added yet.</p>}
+                                        {user && user.favourites.length > 0 &&
                                             <ListGroup>
                                                 {favouritesList.map(movie => (
                                                     <li key={movie._id} variant="flush">
