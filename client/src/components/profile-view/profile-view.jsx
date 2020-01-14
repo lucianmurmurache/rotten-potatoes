@@ -116,7 +116,7 @@ export class ProfileView extends React.Component {
         </div>;
         return (
             <div className="profile-view">
-                <ProfileInfo getUserProfile={getUserProfile} user={userData} />
+                <ProfileInfo getUserProfile={getUserProfile} user={userData} movies={movies} />
                 <ProfileForm handleProfileUpdate={handleProfileUpdate} deleteUserProfile={deleteUserProfile} deleteFavouriteMovie={deleteFavouriteMovie} />
             </div >
         );

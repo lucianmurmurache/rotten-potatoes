@@ -44174,7 +44174,7 @@ exports.default = _default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ProfileInfo = ProfileInfo;
+exports.ProfileInfo = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -44190,60 +44190,170 @@ var _ListGroup = _interopRequireDefault(require("react-bootstrap/ListGroup"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* =============react-bootstrap-imports=============*/
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 /* =============react-bootstrap-imports=============*/
-function ProfileInfo() {
-  var _this = this;
+var ProfileInfo =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(ProfileInfo, _React$Component);
 
-  var _this$props = this.props,
-      user = _this$props.user,
-      movies = _this$props.movies;
-  var favouritesList = movies.filter(function (movie) {
-    return user.favourites.includes(movie._id);
-  });
-  console.log(favouritesList);
-  if (!user || !movies) return _react.default.createElement("div", null, _react.default.createElement(_Spinner.default, {
-    className: "loading-spinner",
-    animation: "border",
-    role: "status"
-  }, _react.default.createElement("span", {
-    className: "sr-only"
-  }, "Loading...")));
-  return _react.default.createElement("div", {
-    className: "profile-info"
-  }, _react.default.createElement(Container, null, _react.default.createElement(_Card.default, null, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, {
-    className: "profile-info-title"
-  }, "Profile Info"), _react.default.createElement(_ListGroup.default, {
-    className: "list-group-flush",
-    variant: "flush"
-  }, _react.default.createElement(_ListGroup.default.Item, null, "Username: ", user.username), _react.default.createElement(_ListGroup.default.Item, null, "Email: ", user.email), _react.default.createElement(_ListGroup.default.Item, null, "Birthday: ", user.birthday && birthday.slice(0, 10)), _react.default.createElement(_ListGroup.default.Item, null, "Favorites:", _react.default.createElement("div", null, user.favourites.length === 0 && _react.default.createElement("p", null, "No movies added yet."), user.favourites.length > 0 && _react.default.createElement(_ListGroup.default, null, favouritesList.map(function (movie) {
-    return _react.default.createElement("li", {
-      key: movie._id,
-      variant: "flush"
-    }, _react.default.createElement("span", {
-      className: "d-flex align-items-center"
-    }, _react.default.createElement(_reactRouterDom.Link, {
-      to: "/movies/".concat(movie._id)
-    }, _react.default.createElement("h4", {
-      className: "link movie-acccess"
-    }, movie.title))));
-  }))))))), _react.default.createElement(_Card.default, null, _react.default.createElement(Form, null, _react.default.createElement(_reactRouterDom.Link, {
-    to: '/'
-  }, _react.default.createElement(Button, {
-    variant: "outline-dark",
-    className: "profile-return-button"
-  }, "Back to movie list")), _react.default.createElement(Form.Label, {
-    className: "delete-profile-title"
-  }, "Delete account"), _react.default.createElement("br", null), _react.default.createElement("small", null, "*Should you decide to delete your profile, please be aware that once you do, your data will be deleted without any backup! It is not possible to revert this action!"), _react.default.createElement(Button, {
-    size: "sm",
-    variant: "outline-danger",
-    className: "delete-profile-button",
-    onClick: function onClick() {
-      return _this.deleteUserProfile();
+  function ProfileInfo() {
+    var _this;
+
+    _classCallCheck(this, ProfileInfo);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProfileInfo).call(this));
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(ProfileInfo, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _this$props = this.props,
+          user = _this$props.user,
+          movies = _this$props.movies;
+      var favouritesList = movies.filter(function (movie) {
+        return user.favourites.includes(movie._id);
+      });
+      console.log(favouritesList);
+      return _react.default.createElement("div", {
+        className: "profile-info"
+      }, _react.default.createElement(Container, null, _react.default.createElement(_Card.default, null, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, {
+        className: "profile-info-title"
+      }, "Profile Info"), _react.default.createElement(_ListGroup.default, {
+        className: "list-group-flush",
+        variant: "flush"
+      }, _react.default.createElement(_ListGroup.default.Item, null, "Username: ", user.username), _react.default.createElement(_ListGroup.default.Item, null, "Email: ", user.email), _react.default.createElement(_ListGroup.default.Item, null, "Birthday: ", user.birthday && birthday.slice(0, 10)), _react.default.createElement(_ListGroup.default.Item, null, "Favorites:", _react.default.createElement("div", null, user.favourites.length === 0 && _react.default.createElement("p", null, "No movies added yet."), user.favourites.length > 0 && _react.default.createElement(_ListGroup.default, null, favouritesList.map(function (movie) {
+        return _react.default.createElement("li", {
+          key: movie._id,
+          variant: "flush"
+        }, _react.default.createElement("span", {
+          className: "d-flex align-items-center"
+        }, _react.default.createElement(_reactRouterDom.Link, {
+          to: "/movies/".concat(movie._id)
+        }, _react.default.createElement("h4", {
+          className: "link movie-acccess"
+        }, movie.title))));
+      }))))))), _react.default.createElement(_Card.default, null, _react.default.createElement(Form, null, _react.default.createElement(_reactRouterDom.Link, {
+        to: '/'
+      }, _react.default.createElement(Button, {
+        variant: "outline-dark",
+        className: "profile-return-button"
+      }, "Back to movie list")), _react.default.createElement(Form.Label, {
+        className: "delete-profile-title"
+      }, "Delete account"), _react.default.createElement("br", null), _react.default.createElement("small", null, "*Should you decide to delete your profile, please be aware that once you do, your data will be deleted without any backup! It is not possible to revert this action!"), _react.default.createElement(Button, {
+        size: "sm",
+        variant: "outline-danger",
+        className: "delete-profile-button",
+        onClick: function onClick() {
+          return _this2.deleteUserProfile();
+        }
+      }, "Delete Profile")))));
     }
-  }, "Delete Profile")))));
+  }]);
+
+  return ProfileInfo;
+}(_react.default.Component);
+/*
+export function ProfileInfo() {
+    const { user, movies } = this.props;
+    const favouritesList = movies.filter(movie => user.favourites.includes(movie._id));
+    console.log(favouritesList);
+
+    if (!user || !movies) return <div>
+        <Spinner className="loading-spinner" animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+        </Spinner>
+    </div>;
+
+    return (
+        <div className="profile-info">
+            <Container>
+                <Card>
+                    <Card.Body>
+                        <Card.Title className="profile-info-title">Profile Info</Card.Title>
+                        <ListGroup className="list-group-flush" variant="flush">
+                            <ListGroup.Item>Username: {user.username}</ListGroup.Item>
+                            <ListGroup.Item>Email: {user.email}</ListGroup.Item>
+                            <ListGroup.Item>Birthday: {user.birthday && birthday.slice(0, 10)}</ListGroup.Item>
+                            <ListGroup.Item>Favorites:
+                                <div>
+                                    {user.favourites.length === 0 && <p>No movies added yet.</p>}
+                                    {user.favourites.length > 0 &&
+                                        <ListGroup>
+                                            {favouritesList.map(movie => (
+                                                <li key={movie._id} variant="flush">
+                                                    <span className="d-flex align-items-center">
+                                                        <Link to={`/movies/${movie._id}`}>
+                                                            <h4 className="link movie-acccess">
+                                                                {movie.title}
+                                                            </h4>
+                                                        </Link>
+                                                    </span>
+                                                </li>
+                                            ))}
+                                        </ListGroup>
+                                    }
+                                </div>
+                            </ListGroup.Item>
+                        </ListGroup>
+                    </Card.Body>
+                </Card>
+                <Card>
+                    <Form>
+                        <Link to={'/'}>
+                            <Button
+                                variant="outline-dark"
+                                className="profile-return-button"
+                            >
+                                Back to movie list
+                                </Button>
+
+                        </Link>
+                        <Form.Label className="delete-profile-title">Delete account</Form.Label><br></br>
+                        <small>
+                            *Should you decide to delete your profile, please be aware that once you do,
+                            your data will be deleted without any backup! It is not possible to revert this action!
+                            </small>
+                        <Button
+                            size="sm"
+                            variant="outline-danger"
+                            className="delete-profile-button"
+                            onClick={() => this.deleteUserProfile()}
+                        >
+                            Delete Profile
+                            </Button>
+                    </Form>
+                </Card >
+            </Container>
+        </div>
+
+    )
 }
+*/
+
+
+exports.ProfileInfo = ProfileInfo;
 },{"react":"../node_modules/react/index.js","./profile-info.scss":"components/profile-view/profile-info.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/Spinner":"../node_modules/react-bootstrap/esm/Spinner.js","react-bootstrap/ListGroup":"../node_modules/react-bootstrap/esm/ListGroup.js"}],"components/profile-view/profile-form.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -44255,7 +44365,7 @@ module.hot.accept(reloadCSS);
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.ProfileForm = ProfileForm;
+exports.ProfileForm = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
@@ -44275,6 +44385,8 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -44283,88 +44395,209 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 /* =============react-bootstrap-imports=============*/
-function ProfileForm() {
-  var _useState = (0, _react.useState)(''),
-      _useState2 = _slicedToArray(_useState, 2),
-      username = _useState2[0],
-      newUsername = _useState2[1];
+var ProfileForm =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(ProfileForm, _React$Component);
 
-  var _useState3 = (0, _react.useState)(''),
-      _useState4 = _slicedToArray(_useState3, 2),
-      password = _useState4[0],
-      newPassword = _useState4[1];
+  function ProfileForm() {
+    _classCallCheck(this, ProfileForm);
 
-  var _useState5 = (0, _react.useState)(''),
-      _useState6 = _slicedToArray(_useState5, 2),
-      email = _useState6[0],
-      newEmail = _useState6[1];
+    return _possibleConstructorReturn(this, _getPrototypeOf(ProfileForm).call(this));
+  }
 
-  var _useState7 = (0, _react.useState)(''),
-      _useState8 = _slicedToArray(_useState7, 2),
-      birthday = _useState8[0],
-      newBirthday = _useState8[1];
+  _createClass(ProfileForm, [{
+    key: "render",
+    value: function render() {
+      var _useState = (0, _react.useState)(''),
+          _useState2 = _slicedToArray(_useState, 2),
+          username = _useState2[0],
+          newUsername = _useState2[1];
 
-  return _react.default.createElement("div", {
-    className: "profile-form"
-  }, _react.default.createElement(_reactRouterDom.Link, {
-    to: '/'
-  }, _react.default.createElement(_Button.default, {
-    variant: "outline-dark",
-    className: "profile-return-button"
-  }, "Back to movie list")), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement(_Card.default, {
-    className: "profile-form-card"
-  }, _react.default.createElement(_Form.default, {
-    className: "update-profile-form"
-  }, _react.default.createElement(_Form.default.Label, {
-    className: "update-profile-title"
-  }, "Update profile data"), _react.default.createElement("br", null), _react.default.createElement("small", {
-    className: "warning"
-  }, "*Please ensure that you fill in all input fields prior to pressing Update. If you wish to keep some details as they are, fill in the current data again."), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement(_Form.default.Group, {
-    controlId: "formBasicUsername"
-  }, _react.default.createElement(_Form.default.Label, null, "Username"), _react.default.createElement(_Form.default.Control, {
-    required: true,
-    type: "text",
-    placeholder: "Enter a new username",
-    autoComplete: "off",
-    onChange: function onChange(event) {
-      return newUsername(event.target.value);
+      var _useState3 = (0, _react.useState)(''),
+          _useState4 = _slicedToArray(_useState3, 2),
+          password = _useState4[0],
+          newPassword = _useState4[1];
+
+      var _useState5 = (0, _react.useState)(''),
+          _useState6 = _slicedToArray(_useState5, 2),
+          email = _useState6[0],
+          newEmail = _useState6[1];
+
+      var _useState7 = (0, _react.useState)(''),
+          _useState8 = _slicedToArray(_useState7, 2),
+          birthday = _useState8[0],
+          newBirthday = _useState8[1];
+
+      return _react.default.createElement("div", {
+        className: "profile-form"
+      }, _react.default.createElement(_reactRouterDom.Link, {
+        to: '/'
+      }, _react.default.createElement(_Button.default, {
+        variant: "outline-dark",
+        className: "profile-return-button"
+      }, "Back to movie list")), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement(_Card.default, {
+        className: "profile-form-card"
+      }, _react.default.createElement(_Form.default, {
+        className: "update-profile-form"
+      }, _react.default.createElement(_Form.default.Label, {
+        className: "update-profile-title"
+      }, "Update profile data"), _react.default.createElement("br", null), _react.default.createElement("small", {
+        className: "warning"
+      }, "*Please ensure that you fill in all input fields prior to pressing Update. If you wish to keep some details as they are, fill in the current data again."), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement(_Form.default.Group, {
+        controlId: "formBasicUsername"
+      }, _react.default.createElement(_Form.default.Label, null, "Username"), _react.default.createElement(_Form.default.Control, {
+        required: true,
+        type: "text",
+        placeholder: "Enter a new username",
+        autoComplete: "off",
+        onChange: function onChange(event) {
+          return newUsername(event.target.value);
+        }
+      })), _react.default.createElement(_Form.default.Group, {
+        controlId: "formBasicPassword"
+      }, _react.default.createElement(_Form.default.Label, null, "Password"), _react.default.createElement(_Form.default.Control, {
+        required: true,
+        type: "password",
+        placeholder: "Enter a new password",
+        autoComplete: "off",
+        onChange: function onChange(event) {
+          return newPassword(event.target.value);
+        }
+      })), _react.default.createElement(_Form.default.Group, {
+        controlId: "formBasicEmail"
+      }, _react.default.createElement(_Form.default.Label, null, "Email"), _react.default.createElement(_Form.default.Control, {
+        required: true,
+        type: "text",
+        placeholder: "Enter a new email",
+        onChange: function onChange(event) {
+          return newEmail(event.target.value);
+        }
+      })), _react.default.createElement(_Form.default.Group, {
+        controlId: "formBasicBirthday"
+      }, _react.default.createElement(_Form.default.Label, null, "Birthday"), _react.default.createElement(_Form.default.Control, {
+        required: true,
+        type: "date",
+        placeholder: "dd/mm/yyyy",
+        onChange: function onChange(event) {
+          return newBirthday(event.target.value);
+        }
+      })), _react.default.createElement(_Button.default, {
+        className: "update-profile-button",
+        vatiant: "outline-dark",
+        type: "button",
+        onClick: handleProfileUpdate
+      }, "Update profile"))));
     }
-  })), _react.default.createElement(_Form.default.Group, {
-    controlId: "formBasicPassword"
-  }, _react.default.createElement(_Form.default.Label, null, "Password"), _react.default.createElement(_Form.default.Control, {
-    required: true,
-    type: "password",
-    placeholder: "Enter a new password",
-    autoComplete: "off",
-    onChange: function onChange(event) {
-      return newPassword(event.target.value);
-    }
-  })), _react.default.createElement(_Form.default.Group, {
-    controlId: "formBasicEmail"
-  }, _react.default.createElement(_Form.default.Label, null, "Email"), _react.default.createElement(_Form.default.Control, {
-    required: true,
-    type: "text",
-    placeholder: "Enter a new email",
-    onChange: function onChange(event) {
-      return newEmail(event.target.value);
-    }
-  })), _react.default.createElement(_Form.default.Group, {
-    controlId: "formBasicBirthday"
-  }, _react.default.createElement(_Form.default.Label, null, "Birthday"), _react.default.createElement(_Form.default.Control, {
-    required: true,
-    type: "date",
-    placeholder: "dd/mm/yyyy",
-    onChange: function onChange(event) {
-      return newBirthday(event.target.value);
-    }
-  })), _react.default.createElement(_Button.default, {
-    className: "update-profile-button",
-    vatiant: "outline-dark",
-    type: "button",
-    onClick: handleProfileUpdate
-  }, "Update profile"))));
+  }]);
+
+  return ProfileForm;
+}(_react.default.Component);
+/*
+export function ProfileForm() {
+    const [username, newUsername] = useState('');
+    const [password, newPassword] = useState('');
+    const [email, newEmail] = useState('');
+    const [birthday, newBirthday] = useState('');
+
+    return (
+        <div className="profile-form">
+            <Link to={'/'}>
+                <Button
+                    variant="outline-dark"
+                    className="profile-return-button"
+                >
+                    Back to movie list
+            </Button>
+            </Link>
+            <br></br><br></br><br></br>
+            <Card className="profile-form-card">
+                <Form className="update-profile-form">
+
+                    <Form.Label className="update-profile-title">Update profile data</Form.Label><br></br>
+
+                    <small className="warning">*Please ensure that you fill in all input fields prior to pressing Update.
+                    If you wish to keep some details as they are, fill in the current data again.</small><br></br><br></br>
+
+                    <Form.Group controlId="formBasicUsername">
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control
+                            required
+                            type="text"
+                            placeholder="Enter a new username"
+                            autoComplete="off"
+                            onChange={event => newUsername(event.target.value)}
+                        >
+                        </Form.Control>
+                    </Form.Group>
+
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            required
+                            type="password"
+                            placeholder="Enter a new password"
+                            autoComplete="off"
+                            onChange={event => newPassword(event.target.value)}
+                        >
+                        </Form.Control>
+                    </Form.Group>
+
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control
+                            required
+                            type="text"
+                            placeholder="Enter a new email"
+                            onChange={event => newEmail(event.target.value)}
+                        >
+                        </Form.Control>
+                    </Form.Group>
+
+                    <Form.Group controlId="formBasicBirthday">
+                        <Form.Label>Birthday</Form.Label>
+                        <Form.Control
+                            required
+                            type="date"
+                            placeholder="dd/mm/yyyy"
+                            onChange={event => newBirthday(event.target.value)}
+                        >
+                        </Form.Control>
+                    </Form.Group>
+                    <Button
+                        className="update-profile-button"
+                        vatiant="outline-dark"
+                        type="button"
+                        onClick={handleProfileUpdate}
+                    >
+                        Update profile
+                </Button>
+                </Form>
+            </Card>
+        </div>
+    );
 }
+*/
+
+
+exports.ProfileForm = ProfileForm;
 },{"react":"../node_modules/react/index.js","./profile-form.scss":"components/profile-view/profile-form.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"components/profile-view/profile-view.jsx":[function(require,module,exports) {
 "use strict";
 
@@ -44534,7 +44767,8 @@ function (_React$Component) {
         className: "profile-view"
       }, _react.default.createElement(_profileInfo.ProfileInfo, {
         getUserProfile: getUserProfile,
-        user: userData
+        user: userData,
+        movies: movies
       }), _react.default.createElement(_profileForm.ProfileForm, {
         handleProfileUpdate: handleProfileUpdate,
         deleteUserProfile: deleteUserProfile,
