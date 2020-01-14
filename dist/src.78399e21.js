@@ -44766,19 +44766,15 @@ function (_React$Component) {
       return _react.default.createElement("div", {
         className: "profile-view"
       }, _react.default.createElement(_profileInfo.ProfileInfo, {
-        getUserProfile: getUserProfile,
         user: userData,
         movies: movies
-      }), _react.default.createElement(_profileForm.ProfileForm, {
-        handleProfileUpdate: handleProfileUpdate,
-        deleteUserProfile: deleteUserProfile,
-        deleteFavouriteMovie: deleteFavouriteMovie
       }));
     }
   }]);
 
   return ProfileView;
-}(_react.default.Component);
+}(_react.default.Component); //                <ProfileForm handleProfileUpdate={handleProfileUpdate} deleteUserProfile={deleteUserProfile} deleteFavouriteMovie={deleteFavouriteMovie} />
+
 
 exports.ProfileView = ProfileView;
 },{"react":"../node_modules/react/index.js","./profile-view.scss":"components/profile-view/profile-view.scss","./profile-info":"components/profile-view/profile-info.jsx","./profile-form":"components/profile-view/profile-form.jsx","react-bootstrap/Spinner":"../node_modules/react-bootstrap/esm/Spinner.js","axios":"../node_modules/axios/index.js"}],"components/movie-view/movie-view.scss":[function(require,module,exports) {
