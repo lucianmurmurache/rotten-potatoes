@@ -11,14 +11,16 @@ import Navbar from 'react-bootstrap/Navbar';
 import Row from 'react-bootstrap/Row';
 /* =============react-bootstrap-imports=============*/
 
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { RouterLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { setMovies, setLoggedInUser } from '../../actions/actions';
 
 import { RegistrationView } from '../registartion-view/registration-view';
 import { DirectorView } from '../director-view/director-view';
 import { ProfileView } from '../profile-view/profile-view';
+import { ProfileUpdate } from '../profile-view/profile-update';
 import { MovieView } from '../movie-view/movie-view';
 import { GenreView } from '../genre-view/genre-view';
 import { LoginView } from '../login-view/login-view';
@@ -32,6 +34,10 @@ export class MainView extends React.Component {
 
         this.state = {
             user: null,
+            email: "",
+            birthday: "",
+            movies: [],
+            userInfo: {}
         };
     }
 
@@ -40,24 +46,38 @@ export class MainView extends React.Component {
             headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
+                this.setState({
+                    movies: response.data
+                });
+                localStorage.setItem('movies', JSON.stringify(response.data));
                 this.props.setMovies(response.data);
-
             })
             .catch(function (error) {
-                console.log(error);
+                alert('An error occured, unable to get movies!' + error);
             });
     }
 
-    getUserProfile() {
-        axios.get(`https://rotten-potatoes3000.herokuapp.com/user/${localStorage.getItem('user')}`, {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    getUserProfile(token) {
+        let username = localStorage.getItem('user');
+        axios.get(`https://rotten-potatoes3000.herokuapp.com/user/${username}`, {
+            headers: { Authorization: `Bearer ${token}` }
         })
             .then(response => {
+                this.setState({
+                    userInfo: response.data,
+                });
                 this.props.setLoggedInUser(response.data);
             })
             .catch(function (error) {
-                console.log(error)
+                alert('An error occured when getting the profile data!' + error);
             });
+    }
+
+    updateUserProfile(data) {
+        this.setState({
+            userInfo: data
+        });
+        localStorage.setItem('user', data.username);
     }
 
     componentDidMount() {
@@ -71,9 +91,7 @@ export class MainView extends React.Component {
         }
     }
 
-    //Login with token
     onLoggedIn(authData) {
-        console.log(authData);
         this.setState({
             user: authData.user.username
         });
@@ -81,11 +99,15 @@ export class MainView extends React.Component {
         localStorage.setItem('token', authData.token);
         this.getMovies(authData.token);
         this.getUserProfile(authData.token);
+        this.setState({
+            userInfo: authData.user
+        });
     }
 
     onLogout() {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
+        localStorage.removeItem('movies');
         this.setState({
             user: null
         });
@@ -93,18 +115,22 @@ export class MainView extends React.Component {
     }
 
     render() {
+        const { movies, user, userInfo, token } = this.state;
 
-        let { movies, loggedInUser } = this.props;
-        let { user } = this.state;
-
-        if (!movies && !loggedInUser) return <div className="main-view" />;
+        if (!movies) return <div className="main-view" />;
 
         if (!user) {
             return (
                 <Router>
                     <div className="main-view">
-                        <Route exact path="/" render={() => <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />} />
-                        <Route path="/register" render={() => <RegistrationView />} />
+                        <Route
+                            exact path="/"
+                            render={() => <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />}
+                        />
+                        <Route
+                            path="/register"
+                            render={() => <RegistrationView />}
+                        />
                     </div>
                 </Router >
             );
@@ -116,33 +142,66 @@ export class MainView extends React.Component {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
                             <Link component={RouterLink} to={`/user/${user}`} >
-                                <Button variant="outline-dark" size="md" className="profile-button">Profile</Button>
+                                <Button
+                                    variant="outline-dark"
+                                    size="md"
+                                    className="profile-button"
+                                >
+                                    Profile
+                                </Button>
                             </Link>
-                            <Button variant="outline-dark" size="md" className="logout-button" onClick={() => this.onLogout()}>Log out</Button>
+                            <Button
+                                variant="outline-dark"
+                                size="md"
+                                className="logout-button"
+                                onClick={() => this.onLogout()}
+                            >
+                                Log out
+                            </Button>
                         </Navbar.Collapse>
                     </Navbar>
                     <div className="main-view">
                         <Container className="container-fluid">
                             <Row>
-                                <Route exact path="/" render={() => <MoviesList movies={movies} />} />
-
-                                <Route exact path="/movies/:movieID" render={({ match }) => <MovieView movie={movies.find(m => m._id === match.params.movieID)} />} />
-
-                                <Route exact path="/directors/:name" render={({ match }) => {
-                                    if (!movies || movies.length === 0) return <div className="main-view" />;
-                                    return <DirectorView director={movies.find(m => m.director.name === match.params.name).director} movies={movies} />
-                                }} />
-
-                                <Route exact path="/genres/:name" render={({ match }) => {
-                                    if (!movies || movies.length === 0) return <div className="main-view" />;
-                                    return <GenreView genre={movies.find(m => m.genre.name === match.params.name).genre} movies={movies} />
-                                }} />
-
-                                <Route exact path="/user/:username" render={() => {
-                                    if (!loggedInUser) return <div className="main-view" />
-                                    return <ProfileView loggedInUser={loggedInUser} user={user} movies={movies} />
-                                }}
+                                <Route
+                                    exact path="/"
+                                    render={() => <MoviesList movies={movies} />}
                                 />
+
+                                <Route
+                                    exact path="/movies/:movieID"
+                                    render={({ match }) => <MovieView movie={movies.find(m => m._id === match.params.movieID)} />}
+                                />
+
+                                <Route
+                                    exact path="/directors/:name"
+                                    render={({ match }) => {
+                                        if (!movies || movies.length === 0) return <div className="main-view" />;
+                                        return <DirectorView director={movies.find(m => m.director.name === match.params.name).director} movies={movies} />
+                                    }}
+                                />
+
+                                <Route
+                                    exact path="/genres/:name"
+                                    render={({ match }) => {
+                                        if (!movies || movies.length === 0) return <div className="main-view" />;
+                                        return <GenreView genre={movies.find(m => m.genre.name === match.params.name).genre} movies={movies} />
+                                    }}
+                                />
+
+                                <Route
+                                    path="/user/:username"
+                                    render={() => {
+                                        return <ProfileView userInfo={userInfo} />
+                                    }}
+                                />
+
+                                <Route
+                                    path="/update/:username"
+                                    render={() => (<ProfileUpdate user={user} userInfo={userInfo} token={token} updateUserProfile={data => this.updateUserProfile(data)} />
+                                    )}
+                                />
+
                             </Row>
                         </Container>
                     </div>
@@ -156,4 +215,9 @@ let mapStateToProps = state => {
     return { movies: state.movies, loggedInUser: state.loggedInUser }
 }
 
-export default connect(mapStateToProps, { setMovies, setLoggedInUser })(MainView);
+const mapDispatchToProps = {
+    setMovies,
+    setLoggedInUser
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainView);
