@@ -3,6 +3,7 @@ $box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
 
 * {
     box-sizing: border-box;
+    font-family: 'Ubuntu Condensed', sans-serif;
 }
 
 .genre-view {
@@ -22,11 +23,11 @@ $box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
     text-indent: 5%;
 }
 
-.back-button {
+.genre-back-button {
     padding: 8px 16px;
 }
 
-.back-button:hover {
+.genre-back-button:hover {
     box-shadow: $box-shadow-basic;
 }
 
@@ -36,5 +37,3 @@ $box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
     max-height: 40%;
     margin: 2%;
 }
-
-/*=======Movies=======*/
