@@ -3,6 +3,7 @@ $box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
 
 * {
     box-sizing: border-box;
+    font-family: 'Ubuntu Condensed', sans-serif;
 }
 
 /*=====Movie view=====*/
@@ -23,7 +24,7 @@ $box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
     max-width: 100%;
 }
 
-.return-button {
+.movie-view-return-button {
     margin-left: auto;
     margin-right: auto;
     font-size: 20px;
@@ -41,6 +42,10 @@ $box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
 .genre-name,
 .director-name {
     display: inline;
+}
+
+.movie-view-return-button:hover {
+    box-shadow: $box-shadow-basic;
 }
 
 .add-favourite-button:hover {
