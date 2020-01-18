@@ -31,7 +31,7 @@ export class MovieCard extends React.Component {
                         <Link to={`/movies/${movie._id}`}>
                             <Button
                                 variant="outline-dark"
-                                className="movie-button__open"
+                                className="movie-open-button"
                                 size="md"
                             >
                                 Open
