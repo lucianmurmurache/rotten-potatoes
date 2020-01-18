@@ -1,10 +1,14 @@
+$box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 * {
     box-sizing: border-box;
+    font-family: 'Ubuntu Condensed', sans-serif;
 }
 
 /*=====Register=====*/
 .registration-form {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: $box-shadow-basic;
     text-align: left;
     width: 100%;
     max-width: 500px;
@@ -23,6 +27,10 @@
 .registration-button {
     font-size: 20px;
     padding: 8px 16px;
+}
+
+.registration-button:hover {
+    box-shadow: $box-shadow-basic;
 }
 
 .welcome-section {
