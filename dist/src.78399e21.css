@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: "Ubuntu Condensed", sans-serif;
 }
 
 /*=====Main view=====*/
@@ -33,6 +34,7 @@
 }
 * {
   box-sizing: border-box;
+  font-family: "Ubuntu Condensed", sans-serif;
 }
 
 /*=====Register=====*/
@@ -56,6 +58,10 @@
 .registration-button {
   font-size: 20px;
   padding: 8px 16px;
+}
+
+.registration-button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .welcome-section {
@@ -82,6 +88,7 @@
 }
 * {
   box-sizing: border-box;
+  font-family: "Ubuntu Condensed", sans-serif;
 }
 
 .director-view {
@@ -96,7 +103,8 @@
   font-weight: bold;
 }
 
-.director-bio {
+.director-bio,
+.director-birth {
   text-align: left;
   text-indent: 5%;
 }
@@ -119,55 +127,74 @@
 /*=======Movies=======*/
 * {
   box-sizing: border-box;
+  font-family: "Ubuntu Condensed", sans-serif;
 }
 
-.profile {
-  width: 100%;
-}
-
-/*=====Profile=====*/
 .profile-view {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  display: flex;
-  max-width: 50%;
-  margin: 5%;
-  margin-top: -9.5%;
+  width: 90%;
+  justify-content: center;
+  text-align: left;
 }
 
-.profile-return-button {
-  display: flex;
-  margin: 5%;
+.profile-view-return-button,
+.profile-view-update-button {
   margin-left: auto;
+  margin-top: 1%;
+  max-width: 25%;
+  display: flex;
 }
 
-.profile-return-button:hover {
+.delete-movie-button {
+  margin-left: 5%;
+}
+
+.delete-movie-button:hover,
+.profile-view-return-button:hover,
+.profile-view-update-button:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-/*=====Update Profile=====*/
-.update-profile {
-  max-width: 50%;
-  margin: 5%;
-}
-
-.update-profile-title,
-.delete-profile-title {
-  font-weight: 500;
-  font-size: 20px;
-  margin-bottom: 5%;
-}
-
-.delete-profile-button,
-.update-profile-button {
-  margin-top: 5%;
-}
-
-.delete-profile-button:hover,
-.update-profile-button:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.profile-view-card {
+  max-width: 60%;
+  margin: 1%;
 }
 * {
   box-sizing: border-box;
+  font-family: "Ubuntu Condensed", sans-serif;
+}
+
+.profile-update-return-button {
+  display: flex;
+  margin-left: auto;
+}
+
+.profile-update-return-button:hover,
+.profile-update-button:hover,
+.delete-profile-button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.update-profile-form-title,
+.delete-profile-title {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.profile-update-container {
+  max-width: 90%;
+}
+
+.profile-update-form {
+  max-width: 50%;
+}
+
+.delete-account {
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+* {
+  box-sizing: border-box;
+  font-family: "Ubuntu Condensed", sans-serif;
 }
 
 /*=====Movie view=====*/
@@ -187,7 +214,7 @@
   max-width: 100%;
 }
 
-.return-button {
+.movie-view-return-button {
   margin-left: auto;
   margin-right: auto;
   font-size: 20px;
@@ -207,11 +234,16 @@
   display: inline;
 }
 
+.movie-view-return-button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
 .add-favourite-button:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 * {
   box-sizing: border-box;
+  font-family: "Ubuntu Condensed", sans-serif;
 }
 
 .genre-view {
@@ -231,11 +263,11 @@
   text-indent: 5%;
 }
 
-.back-button {
+.genre-back-button {
   padding: 8px 16px;
 }
 
-.back-button:hover {
+.genre-back-button:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -245,10 +277,9 @@
   max-height: 40%;
   margin: 2%;
 }
-
-/*=======Movies=======*/
 * {
   box-sizing: border-box;
+  font-family: "Ubuntu Condensed", sans-serif;
 }
 
 /*=====Login=====*/
@@ -295,6 +326,11 @@
   font-size: 18px;
   margin-bottom: -10%;
 }
+* {
+  box-sizing: border-box;
+  font-family: "Ubuntu Condensed", sans-serif;
+}
+
 .movies-container {
   max-width: 99%;
   max-height: 99%;
@@ -303,6 +339,11 @@
 .movies-row {
   margin: 1%;
 }
+* {
+  box-sizing: border-box;
+  font-family: "Ubuntu Condensed", sans-serif;
+}
+
 .visibility-filter {
   text-align: left;
 }
@@ -315,6 +356,7 @@
 }
 * {
   box-sizing: border-box;
+  font-family: "Ubuntu Condensed", sans-serif;
 }
 
 .movie-card {
@@ -343,14 +385,14 @@
   text-align: left;
 }
 
-.movie-button__open {
+.movie-open-button {
   display: flex;
   margin-left: auto;
   margin-right: auto;
   margin-top: 20%;
 }
 
-.movie-button__open:hover {
+.movie-open-button:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .rotten-potatoes {
