@@ -17,8 +17,7 @@ export class DirectorView extends React.Component {
     }
 
     render() {
-        const { director, movie, movies } = this.props;
-
+        const { director, movies } = this.props;
         if (!director) return null;
 
         return (
@@ -31,6 +30,9 @@ export class DirectorView extends React.Component {
                             </Card.Title>
                             <Card.Text className="director-bio">
                                 {director.bio}
+                            </Card.Text>
+                            <Card.Text className="director-birth">
+                                Born in {director.birth}
                             </Card.Text>
                             <Link to={'/'}>
                                 <Button
@@ -74,6 +76,8 @@ export class DirectorView extends React.Component {
 DirectorView.propTypes = {
     director: PropTypes.shape({
         name: PropTypes.string,
-        description: PropTypes.string
+        bio: PropTypes.string,
+        description: PropTypes.string,
+        birth: PropTypes.string
     }).isRequired
 };
