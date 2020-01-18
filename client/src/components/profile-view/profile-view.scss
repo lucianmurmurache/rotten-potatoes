@@ -3,51 +3,34 @@ $box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
 
 * {
     box-sizing: border-box;
+    font-family: 'Ubuntu Condensed', sans-serif;
 }
 
-.profile {
-    width: 100%;
-}
-
-/*=====Profile=====*/
 .profile-view {
-    box-shadow: $box-shadow-basic;
-    display: flex;
-    max-width: 50%;
-    margin: 5%;
-    margin-top: -9.5%;
+    width: 90%;
+    justify-content: center;
+    text-align: left;
 }
 
-.profile-return-button {
-    display: flex;
-    margin: 5%;
+.profile-view-return-button,
+.profile-view-update-button {
     margin-left: auto;
+    margin-top: 1%;
+    max-width: 25%;
+    display: flex;
 }
 
-.profile-return-button:hover {
+.delete-movie-button {
+    margin-left: 5%;
+}
+
+.delete-movie-button:hover,
+.profile-view-return-button:hover,
+.profile-view-update-button:hover {
     box-shadow: $box-shadow-basic;
 }
 
-/*=====Update Profile=====*/
-
-.update-profile {
-    max-width: 50%;
-    margin: 5%;
-}
-
-.update-profile-title,
-.delete-profile-title {
-    font-weight: 500;
-    font-size: 20px;
-    margin-bottom: 5%;
-}
-
-.delete-profile-button,
-.update-profile-button {
-    margin-top: 5%;
-}
-
-.delete-profile-button:hover,
-.update-profile-button:hover {
-    box-shadow: $box-shadow-basic;
+.profile-view-card {
+    max-width: 60%;
+    margin: 1%;
 }
