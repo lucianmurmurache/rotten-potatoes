@@ -3,6 +3,7 @@ $box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
 
 * {
     box-sizing: border-box;
+    font-family: 'Ubuntu Condensed', sans-serif;
 }
 
 .director-view {
@@ -17,7 +18,8 @@ $box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
     font-weight: bold;
 }
 
-.director-bio {
+.director-bio,
+.director-birth {
     text-align: left;
     text-indent: 5%;
 }
