@@ -28,14 +28,9 @@ export class MovieView extends React.Component {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         })
             .then(res => {
-                console.log('movie added to favourite list.');
                 alert(`${movie.title} has been added to your favorites list!`);
             })
-            .then(res => {
-                document.location.reload(true);
-            })
             .catch(error => {
-                console.log('Failed to add movie to list');
                 alert(`Unable to add ${movie.title} to your favorites list!` + error)
             });
     }
@@ -43,7 +38,6 @@ export class MovieView extends React.Component {
 
     render() {
         const { movie } = this.props;
-        console.log(this.props)
         if (!movie) return <div>
             <Spinner animation="border" role="status">
                 <span className="sr-only">Loading...</span>
@@ -74,18 +68,22 @@ export class MovieView extends React.Component {
                         <Link to={`/directors/${movie.director.name}`}>
                             <Card.Text className="director-name">{movie.director.name}</Card.Text>
                         </Link>
-                        <br></br>
+                        <br></br><br></br>
                         <Button
+                            size="sm"
                             variant="outline-primary"
                             className="add-favourite-button"
                             onClick={e => this.addToFavourites(e)}
                         >
                             Add to favorites
                         </Button>
-                        <br></br>
+                        <br></br><br></br>
+
 
                         <Link to={'/'}>
-                            <Button variant="outline-dark" className="return-button">
+                            <Button
+                                variant="outline-dark"
+                                className="movie-view-return-button">
                                 Return to list
                             </Button>
                         </Link>
