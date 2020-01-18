@@ -17,7 +17,7 @@ export class GenreView extends React.Component {
     }
 
     render() {
-        const { genre, movie, movies } = this.props;
+        const { genre, movies } = this.props;
 
         if (!genre) return null;
 
@@ -35,7 +35,7 @@ export class GenreView extends React.Component {
                             <Link to={'/'}>
                                 <Button
                                     variant="outline-dark"
-                                    className="back-button"
+                                    className="genre-back-button"
                                 >
                                     Back to list
                             </Button>
