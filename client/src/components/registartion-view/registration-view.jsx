@@ -27,12 +27,10 @@ export function RegistrationView(props) {
         })
             .then((response) => {
                 const data = response.data;
-                console.log(data);
                 alert('Registration completed successfully. You can now log in!')
                 window.open('/', '_self');
             })
             .catch((e) => {
-                console.log('Unable to register user.');
                 alert('Unable to register, please try again. It is important to follow the recommendations in each field!')
             });
     };
