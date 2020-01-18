@@ -1,0 +1,37 @@
+$box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+* {
+    box-sizing: border-box;
+    font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+.profile-update-return-button {
+    display: flex;
+    margin-left: auto;
+}
+
+.profile-update-return-button:hover,
+.profile-update-button:hover,
+.delete-profile-button:hover {
+    box-shadow: $box-shadow-basic;
+}
+
+.update-profile-form-title,
+.delete-profile-title {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.profile-update-container {
+    max-width: 90%;
+}
+
+.profile-update-form {
+    max-width: 50%;
+}
+
+.delete-account {
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
