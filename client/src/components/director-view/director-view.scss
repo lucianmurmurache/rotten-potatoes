@@ -32,6 +32,14 @@ $box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
     box-shadow: $box-shadow-basic;
 }
 
+.director-movie-title {
+    color: #000;
+}
+
+.director-movie-title:hover {
+    text-decoration: none;
+}
+
 /*=======Movies=======*/
 .director-movies {
     max-width: 30%;

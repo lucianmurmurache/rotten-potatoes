@@ -1,3 +1,6 @@
+$box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
 * {
     box-sizing: border-box;
     font-family: 'Ubuntu Condensed', sans-serif;
@@ -9,7 +12,6 @@
     margin-top: 3%;
     margin-right: auto;
     margin-left: auto;
-    width: 80%;
 }
 
 .navbar-title {
@@ -21,7 +23,7 @@
 }
 
 .profile-button:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: $box-shadow-basic;
 }
 
 .logout-button {
@@ -30,5 +32,5 @@
 
 .logout-button:hover {
     background-color: #ff2400;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: $box-shadow-basic;
 }

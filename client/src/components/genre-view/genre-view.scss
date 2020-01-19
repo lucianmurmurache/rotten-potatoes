@@ -37,3 +37,11 @@ $box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
     max-height: 40%;
     margin: 2%;
 }
+
+.genre-movie-title {
+    color: #000;
+}
+
+.genre-movie-title:hover {
+    text-decoration: none;
+}

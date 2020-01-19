@@ -84,7 +84,7 @@ export function ProfileUpdate(props) {
     return (
         <div className="profile-update">
             <div className="profile-update-return">
-                <Link to={`/user/${user}`}>
+                <Link className="profile-update-return-link" to={`/user/${user}`}>
                     <Button
                         variant="outline-dark"
                         className="profile-update-return-button"
@@ -100,7 +100,7 @@ export function ProfileUpdate(props) {
                         <Form className="profile-update-form">
                             <Form.Label className="update-profile-form-title">Update account</Form.Label><br></br>
                             <small className="profile-update-warning">
-                                *Please ensure that you fill in all input fields prior to pressing Update.
+                                *Please ensure that you fill in all input fields prior to pressing "Update profile".
                                 If you wish to keep some details as they are, fill in the current data again.
                             </small><br></br><br></br>
                             <Form.Group controlId="formBasicUsername">

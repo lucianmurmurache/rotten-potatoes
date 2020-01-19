@@ -17,6 +17,10 @@ $box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
     box-shadow: $box-shadow-basic;
 }
 
+.profile-update-return-link:hover {
+    text-decoration: none;
+}
+
 .update-profile-form-title,
 .delete-profile-title {
     font-weight: bold;

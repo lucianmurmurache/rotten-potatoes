@@ -78,59 +78,57 @@ export class ProfileView extends React.Component {
         return (
             <div className="profile-view">
                 <div className="update-profile-buttons">
-                    <Link to={'/'}>
+                    <Link className="profile-view-link" to={'/'}>
                         <Button
                             variant="outline-dark"
                             className="profile-view-return-button"
                         >
-                            Back to movie list
+                            Return to movie list
                         </Button>
                     </Link>
 
-                    <Link to={`/update/:username`}>
+                    <Link className="profile-view-link" to={`/update/:username`}>
                         <Button
                             variant="outline-dark"
                             className="profile-view-update-button"
                         >
-                            Update profile
+                            Update your profile
                         </Button>
                     </Link>
                 </div>
 
                 <Card className="profile-view-card">
                     <Card.Body>
-                        <Card.Title>Profile</Card.Title>
+                        <Card.Title className="profile-view-title">Profile</Card.Title>
                         <ListGroup className="list-group-flush" variant="flush">
                             <ListGroup.Item className="profile-username">Username: {username}</ListGroup.Item>
                             <ListGroup.Item className="profile-email">Email: {email}</ListGroup.Item>
-                            <ListGroup.Item className="profile-birthday">Birthday:<span>{birthday && birthday.slice(0, 10)}</span></ListGroup.Item>
-                            <ListGroup.Item className="profile-favourites">Favorites:
+                            <ListGroup.Item className="profile-birthday">Birthday: <span>{birthday && birthday.slice(0, 10)}</span></ListGroup.Item>
+                            <ListGroup.Item className="profile-favourites">Favorites:<br /><br />
                                 <div>
                                     {favourites.length === 0 && <p>No movies added yet.</p>}
                                     {favourites.length > 0 &&
-                                        <ListGroup>
+                                        <ul>
                                             {favourites.map(favouriteMovie => (
-                                                <ListGroup.Item key={favouriteMovie}>
-                                                    <p>
-                                                        <Link to={`/movies/${favouriteMovie}`}>
-                                                            {
-                                                                JSON.parse(localStorage.getItem('movies')).find(
-                                                                    movie => movie._id === favouriteMovie
-                                                                ).title
-                                                            }
-                                                        </Link>
-                                                        <Button
-                                                            variant="outline-danger"
-                                                            className="delete-movie-button"
-                                                            size="sm"
-                                                            onClick={e => this.deleteFavouriteMovie(event, favouriteMovie)}
-                                                        >
-                                                            Delete
+                                                <ListGroup.Item className="profile-view-fav-movies" key={favouriteMovie}>
+                                                    <Link className="profile-view-link" to={`/movies/${favouriteMovie}`}>
+                                                        {
+                                                            JSON.parse(localStorage.getItem('movies')).find(
+                                                                movie => movie._id === favouriteMovie
+                                                            ).title
+                                                        }
+                                                    </Link>
+                                                    <Button
+                                                        variant="outline-danger"
+                                                        className="delete-movie-button"
+                                                        size="sm"
+                                                        onClick={event => this.deleteFavouriteMovie(event, favouriteMovie)}
+                                                    >
+                                                        Remove
                                                     </Button>
-                                                    </p>
                                                 </ListGroup.Item>)
                                             )}
-                                        </ListGroup>
+                                        </ul>
                                     }
                                 </div>
                             </ListGroup.Item>

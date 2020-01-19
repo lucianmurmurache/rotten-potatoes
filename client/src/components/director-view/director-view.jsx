@@ -1,6 +1,7 @@
 import React from 'react';
 import './director-view.scss';
 
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -22,7 +23,7 @@ export class DirectorView extends React.Component {
 
         return (
             <div className="director-div">
-                <Container>
+                <Container fluid>
                     <Card className="director-view">
                         <Card.Body>
                             <Card.Title className="director-title">
@@ -45,17 +46,19 @@ export class DirectorView extends React.Component {
                         </Card.Body>
                     </Card>
                     <br></br><br></br>
-                    <Container>
-                        <h2>Movies of {director.name} director</h2><br></br>
+                    <Container fluid>
+                        <h2>Movies directed by {director.name} </h2><br></br>
                         <div className="row">
                             {movies.map(movie => {
                                 if (movie.director.name === director.name) {
                                     return (
                                         <div key={movie._id} className="director-movies">
                                             <Card className="movie-card">
-                                                <Card.Img variant="top" src={movie.imagePath} />
+                                                <Link to={`/movies/${movie._id}`}>
+                                                    <Card.Img variant="top" src={movie.imagePath} />
+                                                </Link>
                                                 <Card.Body>
-                                                    <Link className="text-muted" to={`/movies/${movie._id}`}>
+                                                    <Link className="director-movie-title" to={`/movies/${movie._id}`}>
                                                         <Card.Title>{movie.title}</Card.Title>
                                                     </Link>
                                                     <Card.Text>{movie.description.substring(0, 100)}...</Card.Text>

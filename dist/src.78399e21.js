@@ -43283,8 +43283,8 @@ function RegistrationView(props) {
       var data = response.data;
       alert('Registration completed successfully. You can now log in!');
       window.open('/', '_self');
-    }).catch(function (e) {
-      alert('Unable to register, please try again. It is important to follow the recommendations in each field!');
+    }).catch(function (error) {
+      alert('Unable to register, please try again. It is important to follow the recommendations in each field!' + error);
     });
   };
 
@@ -43302,7 +43302,7 @@ function RegistrationView(props) {
   }, _react.default.createElement(_Form.default.Label, null, "Username"), _react.default.createElement(_Form.default.Control, {
     type: "text",
     value: username,
-    placeholder: "Set username (min 5 characters)",
+    placeholder: "Set username (min. 5 characters)",
     onChange: function onChange(e) {
       return setUsername(e.target.value);
     },
@@ -43312,7 +43312,7 @@ function RegistrationView(props) {
   }, _react.default.createElement(_Form.default.Label, null, "Password"), _react.default.createElement(_Form.default.Control, {
     type: "password",
     value: password,
-    placeholder: "Set password (min 8 characters)",
+    placeholder: "Set password (min. 8 characters)",
     autoComplete: "off",
     onChange: function onChange(e) {
       return setPassword(e.target.value);
@@ -43323,7 +43323,7 @@ function RegistrationView(props) {
   }, _react.default.createElement(_Form.default.Label, null, "Email"), _react.default.createElement(_Form.default.Control, {
     type: "text",
     value: email,
-    placeholder: "Enter email address (eg: ex@ample.com)",
+    placeholder: "Enter your email address (example: ex@ample.com)",
     onChange: function onChange(e) {
       return setEmail(e.target.value);
     },
@@ -43542,6 +43542,8 @@ var _react = _interopRequireDefault(require("react"));
 
 require("./director-view.scss");
 
+var _reactRedux = require("react-redux");
+
 var _reactRouterDom = require("react-router-dom");
 
 var _propTypes = _interopRequireDefault(require("prop-types"));
@@ -43597,7 +43599,9 @@ function (_React$Component) {
       if (!director) return null;
       return _react.default.createElement("div", {
         className: "director-div"
-      }, _react.default.createElement(_Container.default, null, _react.default.createElement(_Card.default, {
+      }, _react.default.createElement(_Container.default, {
+        fluid: true
+      }, _react.default.createElement(_Card.default, {
         className: "director-view"
       }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, {
         className: "director-title"
@@ -43610,7 +43614,9 @@ function (_React$Component) {
       }, _react.default.createElement(_Button.default, {
         variant: "outline-dark",
         className: "director-back-button"
-      }, "Back to list")))), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement(_Container.default, null, _react.default.createElement("h2", null, "Movies of ", director.name, " director"), _react.default.createElement("br", null), _react.default.createElement("div", {
+      }, "Back to list")))), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement(_Container.default, {
+        fluid: true
+      }, _react.default.createElement("h2", null, "Movies directed by ", director.name, " "), _react.default.createElement("br", null), _react.default.createElement("div", {
         className: "row"
       }, movies.map(function (movie) {
         if (movie.director.name === director.name) {
@@ -43619,11 +43625,13 @@ function (_React$Component) {
             className: "director-movies"
           }, _react.default.createElement(_Card.default, {
             className: "movie-card"
+          }, _react.default.createElement(_reactRouterDom.Link, {
+            to: "/movies/".concat(movie._id)
           }, _react.default.createElement(_Card.default.Img, {
             variant: "top",
             src: movie.imagePath
-          }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_reactRouterDom.Link, {
-            className: "text-muted",
+          })), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_reactRouterDom.Link, {
+            className: "director-movie-title",
             to: "/movies/".concat(movie._id)
           }, _react.default.createElement(_Card.default.Title, null, movie.title)), _react.default.createElement(_Card.default.Text, null, movie.description.substring(0, 100), "..."))));
         }
@@ -43643,7 +43651,7 @@ DirectorView.propTypes = {
     birth: _propTypes.default.string
   }).isRequired
 };
-},{"react":"../node_modules/react/index.js","./director-view.scss":"components/director-view/director-view.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js"}],"components/profile-view/profile-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./director-view.scss":"components/director-view/director-view.scss","react-redux":"../node_modules/react-redux/es/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","prop-types":"../node_modules/prop-types/index.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Card":"../node_modules/react-bootstrap/esm/Card.js"}],"components/profile-view/profile-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -44266,18 +44274,22 @@ function (_React$Component) {
       }, _react.default.createElement("div", {
         className: "update-profile-buttons"
       }, _react.default.createElement(_reactRouterDom.Link, {
+        className: "profile-view-link",
         to: '/'
       }, _react.default.createElement(_Button.default, {
         variant: "outline-dark",
         className: "profile-view-return-button"
-      }, "Back to movie list")), _react.default.createElement(_reactRouterDom.Link, {
+      }, "Return to movie list")), _react.default.createElement(_reactRouterDom.Link, {
+        className: "profile-view-link",
         to: "/update/:username"
       }, _react.default.createElement(_Button.default, {
         variant: "outline-dark",
         className: "profile-view-update-button"
-      }, "Update profile"))), _react.default.createElement(_Card.default, {
+      }, "Update your profile"))), _react.default.createElement(_Card.default, {
         className: "profile-view-card"
-      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, null, "Profile"), _react.default.createElement(_ListGroup.default, {
+      }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, {
+        className: "profile-view-title"
+      }, "Profile"), _react.default.createElement(_ListGroup.default, {
         className: "list-group-flush",
         variant: "flush"
       }, _react.default.createElement(_ListGroup.default.Item, {
@@ -44286,12 +44298,14 @@ function (_React$Component) {
         className: "profile-email"
       }, "Email: ", email), _react.default.createElement(_ListGroup.default.Item, {
         className: "profile-birthday"
-      }, "Birthday:", _react.default.createElement("span", null, birthday && birthday.slice(0, 10))), _react.default.createElement(_ListGroup.default.Item, {
+      }, "Birthday: ", _react.default.createElement("span", null, birthday && birthday.slice(0, 10))), _react.default.createElement(_ListGroup.default.Item, {
         className: "profile-favourites"
-      }, "Favorites:", _react.default.createElement("div", null, favourites.length === 0 && _react.default.createElement("p", null, "No movies added yet."), favourites.length > 0 && _react.default.createElement(_ListGroup.default, null, favourites.map(function (favouriteMovie) {
+      }, "Favorites:", _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement("div", null, favourites.length === 0 && _react.default.createElement("p", null, "No movies added yet."), favourites.length > 0 && _react.default.createElement("ul", null, favourites.map(function (favouriteMovie) {
         return _react.default.createElement(_ListGroup.default.Item, {
+          className: "profile-view-fav-movies",
           key: favouriteMovie
-        }, _react.default.createElement("p", null, _react.default.createElement(_reactRouterDom.Link, {
+        }, _react.default.createElement(_reactRouterDom.Link, {
+          className: "profile-view-link",
           to: "/movies/".concat(favouriteMovie)
         }, JSON.parse(localStorage.getItem('movies')).find(function (movie) {
           return movie._id === favouriteMovie;
@@ -44299,10 +44313,10 @@ function (_React$Component) {
           variant: "outline-danger",
           className: "delete-movie-button",
           size: "sm",
-          onClick: function onClick(e) {
+          onClick: function onClick(event) {
             return _this4.deleteFavouriteMovie(event, favouriteMovie);
           }
-        }, "Delete")));
+        }, "Remove"));
       }))))))));
     }
   }]);
@@ -44458,6 +44472,7 @@ function ProfileUpdate(props) {
   }, _react.default.createElement("div", {
     className: "profile-update-return"
   }, _react.default.createElement(_reactRouterDom.Link, {
+    className: "profile-update-return-link",
     to: "/user/".concat(user)
   }, _react.default.createElement(_Button.default, {
     variant: "outline-dark",
@@ -44470,7 +44485,7 @@ function ProfileUpdate(props) {
     className: "update-profile-form-title"
   }, "Update account"), _react.default.createElement("br", null), _react.default.createElement("small", {
     className: "profile-update-warning"
-  }, "*Please ensure that you fill in all input fields prior to pressing Update. If you wish to keep some details as they are, fill in the current data again."), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement(_Form.default.Group, {
+  }, "*Please ensure that you fill in all input fields prior to pressing \"Update profile\". If you wish to keep some details as they are, fill in the current data again."), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement(_Form.default.Group, {
     controlId: "formBasicUsername"
   }, _react.default.createElement(_Form.default.Label, null, "Username"), _react.default.createElement(_Form.default.Control, {
     required: true,
@@ -44680,12 +44695,14 @@ function (_React$Component) {
       }, movie.description), _react.default.createElement(_Card.default.Text, {
         className: "genre-name"
       }, "Genre: "), _react.default.createElement(_reactRouterDom.Link, {
+        className: "movie-view-link",
         to: "/genres/".concat(movie.genre.name)
       }, _react.default.createElement(_Card.default.Text, {
         className: "genre-name"
       }, movie.genre.name)), _react.default.createElement("br", null), _react.default.createElement(_Card.default.Text, {
         className: "director-name"
       }, "Director: "), _react.default.createElement(_reactRouterDom.Link, {
+        className: "movie-view-link",
         to: "/directors/".concat(movie.director.name)
       }, _react.default.createElement(_Card.default.Text, {
         className: "director-name"
@@ -44793,7 +44810,9 @@ function (_React$Component) {
       if (!genre) return null;
       return _react.default.createElement("div", {
         className: "view"
-      }, _react.default.createElement(_Container.default, null, _react.default.createElement(_Card.default, {
+      }, _react.default.createElement(_Container.default, {
+        fluid: true
+      }, _react.default.createElement(_Card.default, {
         className: "genre-view"
       }, _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Title, {
         className: "genre-title"
@@ -44804,7 +44823,9 @@ function (_React$Component) {
       }, _react.default.createElement(_Button.default, {
         variant: "outline-dark",
         className: "genre-back-button"
-      }, "Back to list")))), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement(_Container.default, null, _react.default.createElement("h2", null, "Movies of ", genre.name, " genre"), _react.default.createElement("br", null), _react.default.createElement("div", {
+      }, "Back to list")))), _react.default.createElement("br", null), _react.default.createElement("br", null), _react.default.createElement(_Container.default, {
+        fluid: true
+      }, _react.default.createElement("h2", null, "Movies of ", genre.name, " genre"), _react.default.createElement("br", null), _react.default.createElement("div", {
         className: "row"
       }, movies.map(function (movie) {
         if (movie.genre.name === genre.name) {
@@ -44813,11 +44834,13 @@ function (_React$Component) {
             className: "genre-movies"
           }, _react.default.createElement(_Card.default, {
             className: "movie-card"
+          }, _react.default.createElement(_reactRouterDom.Link, {
+            to: "/movies/".concat(movie._id)
           }, _react.default.createElement(_Card.default.Img, {
             variant: "top",
             src: movie.imagePath
-          }), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_reactRouterDom.Link, {
-            className: "text-muted",
+          })), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_reactRouterDom.Link, {
+            className: "genre-movie-title",
             to: "/movies/".concat(movie._id)
           }, _react.default.createElement(_Card.default.Title, null, movie.title)), _react.default.createElement(_Card.default.Text, null, movie.description.substring(0, 100), "..."))));
         }
@@ -45088,15 +45111,22 @@ function (_React$Component) {
       return _react.default.createElement(_Col.default, null, _react.default.createElement(_Card.default, {
         className: "movie-card",
         bg: "light"
+      }, _react.default.createElement(_reactRouterDom.Link, {
+        className: "movie-title-link",
+        to: "/movies/".concat(movie._id)
       }, _react.default.createElement(_Card.default.Img, {
         variant: "top",
         className: "movie-poster",
         src: movie.imagePath
-      }), _react.default.createElement(_Card.default.Title, {
+      })), _react.default.createElement(_reactRouterDom.Link, {
+        className: "movie-title-link",
+        to: "/movies/".concat(movie._id)
+      }, _react.default.createElement(_Card.default.Title, {
         className: "movie-title"
-      }, movie.title), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, {
+      }, movie.title)), _react.default.createElement(_Card.default.Body, null, _react.default.createElement(_Card.default.Text, {
         className: "movie-description"
       }, movie.description.substring(0, 110), "..."), _react.default.createElement(_reactRouterDom.Link, {
+        className: "movie-title-link",
         to: "/movies/".concat(movie._id)
       }, _react.default.createElement(_Button.default, {
         variant: "outline-dark",
@@ -45173,9 +45203,9 @@ function MoviesList(props) {
   }, _react.default.createElement(_visibilityFilterInput.default, {
     visibilityFilter: visibilityFilter
   }), _react.default.createElement(_Container.default, {
-    className: "movies-container"
+    className: "movies-list-container"
   }, _react.default.createElement(_Row.default, {
-    className: "movies-row"
+    className: "movies-list-row"
   }, filteredMovies.map(function (m) {
     return _react.default.createElement(_movieCard.MovieCard, {
       key: m._id,
@@ -45644,7 +45674,7 @@ function (_React$Component) {
 }(_react.default.Component); //Find the root of the app
 
 
-var container = document.getElementsByClassName("app-container")[0]; // Tell React to render the app in the room DOM element
+var container = document.getElementsByClassName('app-container')[0]; // Tell React to render the app in the room DOM element
 
 _reactDom.default.render(_react.default.createElement(RottenPotatoes), container);
 },{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","redux":"../node_modules/redux/es/redux.js","react-redux":"../node_modules/react-redux/es/index.js","./components/main-view/main-view":"components/main-view/main-view.jsx","./reducers/reducers":"reducers/reducers.js","./index.scss":"index.scss"}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -45675,7 +45705,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54158" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55842" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

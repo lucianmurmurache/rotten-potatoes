@@ -12,6 +12,15 @@ $box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
     text-align: left;
 }
 
+.profile-view-title {
+    font-weight: bold;
+}
+
+.profile-view-fav-movies {
+    max-width: 90%;
+    text-align: right;
+}
+
 .profile-view-return-button,
 .profile-view-update-button {
     margin-left: auto;
@@ -21,7 +30,7 @@ $box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
 }
 
 .delete-movie-button {
-    margin-left: 5%;
+    margin-left: 20%;
 }
 
 .delete-movie-button:hover,
@@ -33,4 +42,8 @@ $box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
 .profile-view-card {
     max-width: 60%;
     margin: 1%;
+}
+
+.profile-view-link:hover {
+    text-decoration: none;
 }

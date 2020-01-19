@@ -27,11 +27,11 @@ export function RegistrationView(props) {
         })
             .then((response) => {
                 const data = response.data;
-                alert('Registration completed successfully. You can now log in!')
+                alert('Registration completed successfully. You can now log in!');
                 window.open('/', '_self');
             })
-            .catch((e) => {
-                alert('Unable to register, please try again. It is important to follow the recommendations in each field!')
+            .catch(error => {
+                alert('Unable to register, please try again. It is important to follow the recommendations in each field!' + error);
             });
     };
 
@@ -50,7 +50,7 @@ export function RegistrationView(props) {
                 <Form.Control
                     type="text"
                     value={username}
-                    placeholder="Set username (min 5 characters)"
+                    placeholder="Set username (min. 5 characters)"
                     onChange={e => setUsername(e.target.value)}
                     required
                 />
@@ -63,7 +63,7 @@ export function RegistrationView(props) {
                 <Form.Control
                     type="password"
                     value={password}
-                    placeholder="Set password (min 8 characters)"
+                    placeholder="Set password (min. 8 characters)"
                     autoComplete="off"
                     onChange={e => setPassword(e.target.value)}
                     required
@@ -77,7 +77,7 @@ export function RegistrationView(props) {
                 <Form.Control
                     type="text"
                     value={email}
-                    placeholder="Enter email address (eg: ex@ample.com)"
+                    placeholder="Enter your email address (example: ex@ample.com)"
                     onChange={e => setEmail(e.target.value)}
                     required
                 />

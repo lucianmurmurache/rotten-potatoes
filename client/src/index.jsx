@@ -23,7 +23,7 @@ class RottenPotatoes extends React.Component {
 }
 
 //Find the root of the app
-const container = document.getElementsByClassName("app-container")[0];
+const container = document.getElementsByClassName('app-container')[0];
 
 // Tell React to render the app in the room DOM element
 ReactDOM.render(React.createElement(RottenPotatoes), container);

@@ -9,7 +9,7 @@ $box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
 .movie-card {
     justify-content: center;
     align-items: center;
-    width: 16rem;
+    width: 19rem;
     height: 41rem;
     max-height: 42rem;
     margin-top: 10%;
@@ -28,6 +28,14 @@ $box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
     margin-right: auto;
 }
 
+.movie-title-link {
+    color: #000;
+}
+
+.movie-title-link:hover {
+    text-decoration: none;
+}
+
 .movie-description {
     text-align: left;
 }
@@ -41,4 +49,5 @@ $box-shadow-basic: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
 
 .movie-open-button:hover {
     box-shadow: $box-shadow-basic;
+    text-decoration: none;
 }

@@ -24,11 +24,15 @@ export class MovieCard extends React.Component {
         return (
             <Col>
                 <Card className="movie-card" bg="light">
-                    <Card.Img variant="top" className="movie-poster" src={movie.imagePath} />
-                    <Card.Title className="movie-title">{movie.title}</Card.Title>
+                    <Link className="movie-title-link" to={`/movies/${movie._id}`}>
+                        <Card.Img variant="top" className="movie-poster" src={movie.imagePath} />
+                    </Link>
+                    <Link className="movie-title-link" to={`/movies/${movie._id}`}>
+                        <Card.Title className="movie-title">{movie.title}</Card.Title>
+                    </Link>
                     <Card.Body>
                         <Card.Text className="movie-description">{movie.description.substring(0, 110)}...</Card.Text>
-                        <Link to={`/movies/${movie._id}`}>
+                        <Link className="movie-title-link" to={`/movies/${movie._id}`}>
                             <Button
                                 variant="outline-dark"
                                 className="movie-open-button"
