@@ -28,7 +28,7 @@ export function RegistrationView(props) {
             .then((response) => {
                 const data = response.data;
                 alert('Registration completed successfully. You can now log in!');
-                window.open('/', '_self');
+                window.open('/client', '_self');
             })
             .catch(error => {
                 alert('Unable to register, please try again. It is important to follow the recommendations in each field!' + error);

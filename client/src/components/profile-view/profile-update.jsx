@@ -74,7 +74,7 @@ export function ProfileUpdate(props) {
                 this.setState({
                     user: null
                 });
-                window.open('/', '_self');
+                window.open('/client', '_self');
             })
             .catch(function (error) {
                 alert('An error occured during deletion, please refresh the page and try again!');

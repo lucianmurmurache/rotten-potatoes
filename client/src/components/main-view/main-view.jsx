@@ -136,7 +136,7 @@ export class MainView extends React.Component {
             );
         } else {
             return (
-                <Router>
+                <Router basename="/client">
                     <Navbar sticky="top" bg="light" expand="lg" className="shadow p-2">
                         <Navbar.Brand href="http://localhost:1234/" className="navbar-brand navbar-title">RottenPotatoes</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
