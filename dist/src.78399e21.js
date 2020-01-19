@@ -44223,7 +44223,7 @@ function (_React$Component) {
           favourites: response.data.favourites
         });
       }).catch(function (error) {
-        console.log(error);
+        alert('Unable to get profile data!' + error);
       });
     }
   }, {
@@ -44232,7 +44232,6 @@ function (_React$Component) {
       var _this3 = this;
 
       event.preventDefault();
-      console.log(favouriteMovie);
       var username = localStorage.getItem('user');
 
       _axios.default.delete("https://rotten-potatoes3000.herokuapp.com/user/".concat(username, "/movies/").concat(favouriteMovie), {
@@ -44242,11 +44241,9 @@ function (_React$Component) {
       }).then(function (res) {
         _this3.getUserProfile(localStorage.getItem('token'));
 
-        console.log('movie deleted successfully.');
         alert('Movie deleted!');
       }).catch(function (error) {
-        console.log('Error deleting movie: ' + error);
-        alert('Unable to delete movie, reload the page and try again!');
+        alert('Unable to delete movie, reload the page and try again!' + error);
       });
     }
   }, {
@@ -44905,8 +44902,7 @@ function LoginView(props) {
       var data = response.data;
       props.onLoggedIn(data);
     }).catch(function (e) {
-      console.log(e, 'User not found.');
-      alert('Username or password incorrect! Please try again.');
+      alert('Username or password incorrect. Please try again!');
     });
   };
 
@@ -45294,7 +45290,6 @@ function (_React$Component) {
 
         _this2.props.setMovies(response.data);
       }).catch(function (error) {
-        console.log(error);
         alert('An error occured, unable to get movies!' + error);
       });
     }
@@ -45316,7 +45311,6 @@ function (_React$Component) {
 
         _this3.props.setLoggedInUser(response.data);
       }).catch(function (error) {
-        console.log(error);
         alert('An error occured when getting the profile data!' + error);
       });
     }
@@ -45681,7 +45675,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52165" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54158" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
