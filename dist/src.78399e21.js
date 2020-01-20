@@ -42389,9 +42389,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"img/rotten-potatoes-3000.png":[function(require,module,exports) {
-module.exports = "/rotten-potatoes-3000.17ddca2f.png";
-},{}],"../node_modules/prop-types-extra/lib/utils/createChainableTypeChecker.js":[function(require,module,exports) {
+},{"_css_loader":"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/prop-types-extra/lib/utils/createChainableTypeChecker.js":[function(require,module,exports) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -43227,8 +43225,6 @@ var _axios = _interopRequireDefault(require("axios"));
 
 require("./registration-view.scss");
 
-var _rottenPotatoes = _interopRequireDefault(require("../../img/rotten-potatoes-3000.png"));
-
 var _reactRouterDom = require("react-router-dom");
 
 var _Form = _interopRequireDefault(require("react-bootstrap/Form"));
@@ -43282,7 +43278,7 @@ function RegistrationView(props) {
     }).then(function (response) {
       var data = response.data;
       alert('Registration completed successfully. You can now log in!');
-      window.open('/', '_self');
+      window.open('/client', '_self');
     }).catch(function (error) {
       alert('Unable to register, please try again. It is important to follow the recommendations in each field!' + error);
     });
@@ -43292,10 +43288,7 @@ function RegistrationView(props) {
     className: "registration-form"
   }, _react.default.createElement("div", {
     className: "welcome-section"
-  }, _react.default.createElement("img", {
-    className: "welcome-logo",
-    src: _rottenPotatoes.default
-  }), _react.default.createElement("h2", null, "Welcome to RottenPotatoes")), _react.default.createElement(_Form.default.Label, {
+  }, _react.default.createElement("h2", null, "Welcome to RottenPotatoes")), _react.default.createElement(_Form.default.Label, {
     className: "registration-intro"
   }, "Register"), _react.default.createElement(_Form.default.Group, {
     controlId: "formBasicUsername"
@@ -43355,7 +43348,7 @@ function RegistrationView(props) {
     type: "link"
   }, "Login"))));
 }
-},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","./registration-view.scss":"components/registartion-view/registration-view.scss","../../img/rotten-potatoes-3000.png":"img/rotten-potatoes-3000.png","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"components/director-view/director-view.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","axios":"../node_modules/axios/index.js","./registration-view.scss":"components/registartion-view/registration-view.scss","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js"}],"components/director-view/director-view.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -44461,7 +44454,7 @@ function ProfileUpdate(props) {
         user: null
       });
 
-      window.open('/', '_self');
+      window.open('/client', '_self');
     }).catch(function (error) {
       alert('An error occured during deletion, please refresh the page and try again!');
     });
@@ -44887,8 +44880,6 @@ var _axios = _interopRequireDefault(require("axios"));
 
 require("./login-view.scss");
 
-var _rottenPotatoes = _interopRequireDefault(require("../../img/rotten-potatoes-3000.png"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -44933,10 +44924,7 @@ function LoginView(props) {
     className: "login-form"
   }, _react.default.createElement("div", {
     className: "welcome-section"
-  }, _react.default.createElement("img", {
-    className: "welcome-logo",
-    src: _rottenPotatoes.default
-  }), _react.default.createElement("h2", null, "Welcome to RottenPotatoes")), _react.default.createElement(_Form.default, null, _react.default.createElement(_Form.default.Label, {
+  }, _react.default.createElement("h2", null, "Welcome to RottenPotatoes")), _react.default.createElement(_Form.default, null, _react.default.createElement(_Form.default.Label, {
     className: "login-intro"
   }, "Login"), _react.default.createElement(_Form.default.Group, {
     controlId: "formGroupUsername"
@@ -44984,7 +44972,7 @@ LoginView.propTypes = {
   onLoggedIn: _propTypes.default.func.isRequired
 };
 /*=================PropTypes=================*/
-},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","axios":"../node_modules/axios/index.js","./login-view.scss":"components/login-view/login-view.scss","../../img/rotten-potatoes-3000.png":"img/rotten-potatoes-3000.png"}],"components/movies-list/movies-list.scss":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","prop-types":"../node_modules/prop-types/index.js","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","react-bootstrap/Form":"../node_modules/react-bootstrap/esm/Form.js","react-bootstrap/Button":"../node_modules/react-bootstrap/esm/Button.js","react-bootstrap/Container":"../node_modules/react-bootstrap/esm/Container.js","axios":"../node_modules/axios/index.js","./login-view.scss":"components/login-view/login-view.scss"}],"components/movies-list/movies-list.scss":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -45424,7 +45412,9 @@ function (_React$Component) {
           }
         })));
       } else {
-        return _react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement(_Navbar.default, {
+        return _react.default.createElement(_reactRouterDom.BrowserRouter, {
+          basename: "/client"
+        }, _react.default.createElement(_Navbar.default, {
           sticky: "top",
           bg: "light",
           expand: "lg",
@@ -45705,7 +45695,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55842" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49710" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
