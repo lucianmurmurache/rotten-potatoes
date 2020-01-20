@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './registration-view.scss';
-import WelcomeLogo from '../../img/rotten-potatoes-3000.png';
 
 import { Link } from 'react-router-dom';
 
@@ -39,7 +38,6 @@ export function RegistrationView(props) {
     return (
         <Form className="registration-form">
             <div className="welcome-section">
-                <img className="welcome-logo" src={WelcomeLogo} />
                 <h2>Welcome to RottenPotatoes</h2>
             </div>
             <Form.Label className="registration-intro">Register</Form.Label>
