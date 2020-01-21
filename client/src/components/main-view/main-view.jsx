@@ -121,7 +121,7 @@ export class MainView extends React.Component {
 
         if (!user) {
             return (
-                <Router>
+                <Router basename="/client">
                     <div className="main-view">
                         <Route
                             exact path="/"
@@ -138,7 +138,7 @@ export class MainView extends React.Component {
             return (
                 <Router basename="/client">
                     <Navbar sticky="top" bg="light" expand="lg" className="shadow p-2">
-                        <Navbar.Brand href="http://localhost:1234/" className="navbar-brand navbar-title">RottenPotatoes</Navbar.Brand>
+                        <Navbar.Brand href="https://rotten-potatoes3000.herokuapp.com/client/" className="navbar-brand navbar-title">RottenPotatoes</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
                             <Link component={RouterLink} to={`/user/${user}`} >
