@@ -12,6 +12,7 @@ import Container from 'react-bootstrap/Container';
 import axios from 'axios';
 
 import './login-view.scss';
+import WelcomeLogo from '../../img/rotten-potatoes-3000.png';
 
 export function LoginView(props) {
     const [username, setUsername] = useState('');
@@ -36,6 +37,7 @@ export function LoginView(props) {
     return (
         <Container className="login-form">
             <div className="welcome-section">
+                <img className="welcome-logo" src={WelcomeLogo} />
                 <h2>Welcome to RottenPotatoes</h2>
             </div>
             <Form>
