@@ -1,5 +1,5 @@
 # rotten-potatoes
-
+[Demo](http://rotten-potatoes3000.herokuapp.com/client)
 ## Project Description: 
 #### RottenPotatoes provides users with access to information related to different movies, directors, movie genres and actors. Users will be able to register, update their information and create a list of their favourite movies.
 
