@@ -63,4 +63,4 @@
 ### Images
 
 <img src="images/rotten-potatoes.jpg" width="100%">
-<img src="images/rotten-potatoes2.jpg" width="100%">
+<img src="images/rottenpotatoes2.jpg" width="100%">
