@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "docs": "jsdoc -c jsdoc.conf.json",
     "start": "node index.js"
   },
   "repository": {
@@ -50,6 +51,7 @@
     "uuid": "^3.3.3"
   },
   "devDependencies": {
-    "eslint": "^6.6.0"
+    "eslint": "^6.6.0",
+    "jsdoc-jsx": "^0.1.0"
   }
 }

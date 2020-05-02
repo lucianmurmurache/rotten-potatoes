@@ -10,6 +10,14 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 /* =============react-bootstrap-imports=============*/
 
+/**
+ * Genre information view - renders the genre description and a list of movies of this genre that
+ * are available in the database.
+ * @function GenreView
+ * @param {string} props - genre, movies
+ * @returns {GenreView}
+ */
+
 export class GenreView extends React.Component {
     constructor() {
         super();

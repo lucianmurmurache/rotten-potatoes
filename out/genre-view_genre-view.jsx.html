@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: genre-view/genre-view.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+    <div id="main">
+
+        <h1 class="page-title">Source: genre-view/genre-view.jsx</h1>
+
+        <section>
+            <article>
+                <pre class="prettyprint source linenums"><code>import React from 'react';
+import './genre-view.scss';
+
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+/* =============react-bootstrap-imports=============*/
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+/* =============react-bootstrap-imports=============*/
+
+/**
+ * Genre information view - renders the genre description and a list of movies of this genre that
+ * are available in the database.
+ * @function GenreView
+ * @param {string} props - genre, movies
+ * @returns {GenreView}
+ */
+
+export class GenreView extends React.Component {
+    constructor() {
+        super();
+        this.state = {};
+    }
+
+    render() {
+        const { genre, movies } = this.props;
+
+        if (!genre) return null;
+
+        return (
+            &lt;div className="view">
+                &lt;Container fluid>
+                    &lt;Card className="genre-view">
+                        &lt;Card.Body>
+                            &lt;Card.Title className="genre-title">
+                                {genre.name}
+                            &lt;/Card.Title>
+                            &lt;Card.Text className="genre-description">
+                                {genre.description}
+                            &lt;/Card.Text>
+                            &lt;Link to={'/'}>
+                                &lt;Button
+                                    variant="outline-dark"
+                                    className="genre-back-button"
+                                >
+                                    Back to list
+                            &lt;/Button>
+                            &lt;/Link>
+                        &lt;/Card.Body>
+                    &lt;/Card>
+                    &lt;br>&lt;/br>&lt;br>&lt;/br>
+                    &lt;Container fluid>
+                        &lt;h2>Movies of {genre.name} genre&lt;/h2>&lt;br>&lt;/br>
+                        &lt;div className="row">
+                            {movies.map(movie => {
+                                if (movie.genre.name === genre.name) {
+                                    return (
+                                        &lt;div key={movie._id} className="genre-movies">
+                                            &lt;Card className="movie-card">
+                                                &lt;Link to={`/movies/${movie._id}`}>
+                                                    &lt;Card.Img variant="top" src={movie.imagePath} />
+                                                &lt;/Link>
+                                                &lt;Card.Body>
+                                                    &lt;Link className="genre-movie-title" to={`/movies/${movie._id}`}>
+                                                        &lt;Card.Title>{movie.title}&lt;/Card.Title>
+                                                    &lt;/Link>
+                                                    &lt;Card.Text>{movie.description.substring(0, 100)}...&lt;/Card.Text>
+                                                &lt;/Card.Body>
+                                            &lt;/Card>
+                                        &lt;/div>
+                                    )
+                                }
+                            })}
+                        &lt;/div>
+                    &lt;/Container>
+                &lt;/Container>
+            &lt;/div>
+        )
+    }
+}
+
+GenreView.propTypes = {
+    genre: PropTypes.shape({
+        name: PropTypes.string,
+        description: PropTypes.string
+    }).isRequired
+};</code></pre>
+            </article>
+        </section>
+
+    </div>
+
+    <nav>
+        <h2><a href="index.html">Home</a></h2>
+        <h3>Global</h3>
+        <ul>
+            <li><a href="global.html#addToFavourites">addToFavourites</a></li>
+            <li><a href="global.html#deleteFavouriteMovie">deleteFavouriteMovie</a></li>
+            <li><a href="global.html#deleteUserProfile">deleteUserProfile</a></li>
+            <li><a href="global.html#DirectorView">DirectorView</a></li>
+            <li><a href="global.html#GenreView">GenreView</a></li>
+            <li><a href="global.html#getMovies">getMovies</a></li>
+            <li><a href="global.html#getUserProfile">getUserProfile</a></li>
+            <li><a href="global.html#handleProfileUpdate">handleProfileUpdate</a></li>
+            <li><a href="global.html#handleRegister">handleRegister</a></li>
+            <li><a href="global.html#handleSubmit">handleSubmit</a></li>
+            <li><a href="global.html#MovieCard">MovieCard</a></li>
+            <li><a href="global.html#MoviesList">MoviesList</a></li>
+            <li><a href="global.html#onLoggedIn">onLoggedIn</a></li>
+            <li><a href="global.html#onLogout">onLogout</a></li>
+            <li><a href="global.html#updateUserProfile">updateUserProfile</a></li>
+            <li><a href="global.html#VisibilityFilterInput">VisibilityFilterInput</a></li>
+        </ul>
+    </nav>
+
+    <br class="clear">
+
+    <footer>
+        <p>
+            Documentation generated by
+            <a href="https://github.com/lucianmurmurache" target="_blank"> Lucian Murmurache </a>
+            using <a href="https://github.com/jsdoc/jsdoc" target="_blank"> JSDoc </a> on the 2nd of May 2020
+        </p>
+    </footer>
+
+    <script> prettyPrint(); </script>
+    <script src="scripts/linenumber.js"> </script>
+</body>
+
+</html>

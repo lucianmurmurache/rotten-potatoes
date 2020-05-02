@@ -10,6 +10,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 /* =============react-bootstrap-imports=============*/
 
+
 export function RegistrationView(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -17,6 +18,13 @@ export function RegistrationView(props) {
     const [birthday, setBirthday] = useState('');
 
 
+    /**
+     * Handles the data during the user registration process and sends the data to the database
+     * @function handleRegister
+     * @param {*} props 
+     * @returns {alert} It alerts the user whether their registration was successful
+     * @returns {LoginView} If the registration was successful, it redirects the user to the login view
+     */
     const handleRegister = e => {
         e.preventDefault();
         axios.post('https://rotten-potatoes3000.herokuapp.com/user', {

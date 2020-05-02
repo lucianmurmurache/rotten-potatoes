@@ -18,6 +18,13 @@ export function LoginView(props) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    /**
+    * Post username and password to login
+    * @function handleSubmit
+    * @param {event}
+    * @returns {object} - user login data
+    */
+
     const handleSubmit = e => {
         e.preventDefault();
         /* Send request to server for authentication */
@@ -30,7 +37,7 @@ export function LoginView(props) {
                 props.onLoggedIn(data);
             })
             .catch(e => {
-                alert('Username or password incorrect. Please try again!')
+                alert(`Username or password incorrect. Please try again! ${e}`);
             });
     };
 

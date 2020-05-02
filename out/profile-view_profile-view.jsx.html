@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: profile-view/profile-view.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+    <div id="main">
+
+        <h1 class="page-title">Source: profile-view/profile-view.jsx</h1>
+
+        <section>
+            <article>
+                <pre class="prettyprint source linenums"><code>import React from 'react';
+import './profile-view.scss';
+
+import { connect } from 'react-redux';
+
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+/* =============react-bootstrap-imports=============*/
+import ListGroup from 'react-bootstrap/ListGroup';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+/* =============react-bootstrap-imports=============*/
+
+export class ProfileView extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            userData: null,
+            username: null,
+            password: null,
+            email: null,
+            birthday: null,
+            favourites: []
+        };
+    }
+
+    componentDidMount() {
+        let accessToken = localStorage.getItem('token');
+        if (accessToken !== null) {
+            this.getUserProfile(accessToken);
+        }
+    }
+
+    /**
+     * Gets the user data to be displayed and sets the state.
+     * @function getUserProfile
+     * @param {string} token 
+     * @returns {object} user data
+     */
+    getUserProfile(token) {
+        let username = localStorage.getItem('user');
+        axios.get(`https://rotten-potatoes3000.herokuapp.com/user/${username}`, {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then(response => {
+                this.setState({
+                    userData: response.data,
+                    username: response.data.username,
+                    password: response.data.password,
+                    email: response.data.email,
+                    birthday: response.data.birthday,
+                    favourites: response.data.favourites
+                });
+            })
+            .catch(function (error) {
+                alert('Unable to get profile data!' + error)
+            });
+    }
+
+    /**
+     * Deletes the favourite movie from the logged in user's list.
+     * @function deleteFavouriteMovie
+     * @param {*} event 
+     * @param {*} favouriteMovie 
+     * @returns {alert} Informs the user that the movie has been deleted
+     */
+    deleteFavouriteMovie(event, favouriteMovie) {
+        event.preventDefault();
+        let username = localStorage.getItem('user');
+        axios.delete(`https://rotten-potatoes3000.herokuapp.com/user/${username}/movies/${favouriteMovie}`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        })
+            .then(res => {
+                this.getUserProfile(localStorage.getItem('token'));
+                alert('Movie deleted!');
+            })
+            .catch(function (error) {
+                alert('Unable to delete movie, reload the page and try again!' + error);
+            });
+    }
+
+    handleChange(event) {
+        this.setState({ [event.target.name]: event.target.value });
+    }
+
+    render() {
+        const { username, email, birthday, favourites } = this.state;
+
+        return (
+            &lt;div className="profile-view">
+                &lt;div className="update-profile-buttons">
+                    &lt;Link className="profile-view-link" to={'/'}>
+                        &lt;Button
+                            variant="outline-dark"
+                            className="profile-view-return-button"
+                        >
+                            Return to movie list
+                        &lt;/Button>
+                    &lt;/Link>
+
+                    &lt;Link className="profile-view-link" to={`/update/:username`}>
+                        &lt;Button
+                            variant="outline-dark"
+                            className="profile-view-update-button"
+                        >
+                            Update your profile
+                        &lt;/Button>
+                    &lt;/Link>
+                &lt;/div>
+
+                &lt;Card className="profile-view-card">
+                    &lt;Card.Body>
+                        &lt;Card.Title className="profile-view-title">Profile&lt;/Card.Title>
+                        &lt;ListGroup className="list-group-flush" variant="flush">
+                            &lt;ListGroup.Item className="profile-username">Username: {username}&lt;/ListGroup.Item>
+                            &lt;ListGroup.Item className="profile-email">Email: {email}&lt;/ListGroup.Item>
+                            &lt;ListGroup.Item className="profile-birthday">Birthday: &lt;span>{birthday &amp;&amp; birthday.slice(0, 10)}&lt;/span>&lt;/ListGroup.Item>
+                            &lt;ListGroup.Item className="profile-favourites">Favorites:&lt;br />&lt;br />
+                                &lt;div>
+                                    {favourites.length === 0 &amp;&amp; &lt;p>No movies added yet.&lt;/p>}
+                                    {favourites.length > 0 &amp;&amp;
+                                        &lt;ul>
+                                            {favourites.map(favouriteMovie => (
+                                                &lt;ListGroup.Item className="profile-view-fav-movies" key={favouriteMovie}>
+                                                    &lt;Link className="profile-view-link" to={`/movies/${favouriteMovie}`}>
+                                                        {
+                                                            JSON.parse(localStorage.getItem('movies')).find(
+                                                                movie => movie._id === favouriteMovie
+                                                            ).title
+                                                        }
+                                                    &lt;/Link>
+                                                    &lt;Button
+                                                        variant="outline-danger"
+                                                        className="delete-movie-button"
+                                                        size="sm"
+                                                        onClick={event => this.deleteFavouriteMovie(event, favouriteMovie)}
+                                                    >
+                                                        Remove
+                                                    &lt;/Button>
+                                                &lt;/ListGroup.Item>)
+                                            )}
+                                        &lt;/ul>
+                                    }
+                                &lt;/div>
+                            &lt;/ListGroup.Item>
+                        &lt;/ListGroup>
+                    &lt;/Card.Body>
+                &lt;/Card>
+            &lt;/div >
+        );
+    }
+}
+
+let mapStateToProps = state => {
+    return { movies: state.movies, loggedInUser: state.loggedInUser }
+}
+
+export default connect(mapStateToProps)(ProfileView);</code></pre>
+            </article>
+        </section>
+
+    </div>
+
+    <nav>
+        <h2><a href="index.html">Home</a></h2>
+        <h3>Global</h3>
+        <ul>
+            <li><a href="global.html#addToFavourites">addToFavourites</a></li>
+            <li><a href="global.html#deleteFavouriteMovie">deleteFavouriteMovie</a></li>
+            <li><a href="global.html#deleteUserProfile">deleteUserProfile</a></li>
+            <li><a href="global.html#DirectorView">DirectorView</a></li>
+            <li><a href="global.html#GenreView">GenreView</a></li>
+            <li><a href="global.html#getMovies">getMovies</a></li>
+            <li><a href="global.html#getUserProfile">getUserProfile</a></li>
+            <li><a href="global.html#handleProfileUpdate">handleProfileUpdate</a></li>
+            <li><a href="global.html#handleRegister">handleRegister</a></li>
+            <li><a href="global.html#handleSubmit">handleSubmit</a></li>
+            <li><a href="global.html#MovieCard">MovieCard</a></li>
+            <li><a href="global.html#MoviesList">MoviesList</a></li>
+            <li><a href="global.html#onLoggedIn">onLoggedIn</a></li>
+            <li><a href="global.html#onLogout">onLogout</a></li>
+            <li><a href="global.html#updateUserProfile">updateUserProfile</a></li>
+            <li><a href="global.html#VisibilityFilterInput">VisibilityFilterInput</a></li>
+        </ul>
+    </nav>
+
+    <br class="clear">
+
+    <footer>
+        <p>
+            Documentation generated by
+            <a href="https://github.com/lucianmurmurache" target="_blank"> Lucian Murmurache </a>
+            using <a href="https://github.com/jsdoc/jsdoc" target="_blank"> JSDoc </a> on the 2nd of May 2020
+        </p>
+    </footer>
+
+    <script> prettyPrint(); </script>
+    <script src="scripts/linenumber.js"> </script>
+</body>
+
+</html>

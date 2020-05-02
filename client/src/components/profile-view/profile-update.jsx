@@ -34,6 +34,13 @@ export function ProfileUpdate(props) {
 
     const user = props.user;
 
+    /**
+     * Once the user has edited their profile data, the information is sent to the database
+     * @function handleProfileUpdate
+     * @param {*} user
+     * @returns {alert} Informs the user that their data has been updated
+     * @returns {localStorage} Updates the user information in localStorage
+     */
     const handleProfileUpdate = e => {
         e.preventDefault();
         const userInfo = {
@@ -58,6 +65,13 @@ export function ProfileUpdate(props) {
             })
     }
 
+    /**
+     * Once the user has deleted their profile, the data is removed from the database
+     * @function deleteUserProfile
+     * @param {*} username 
+     * @returns {alert} Informs the user that their data has been deleted
+     * @returns {localStorage} The user data is removed from localStorage
+     */
     const deleteUserProfile = e => {
         e.preventDefault();
         let username = localStorage.getItem('user');

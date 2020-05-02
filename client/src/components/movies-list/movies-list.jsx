@@ -18,6 +18,12 @@ const mapStateToProps = state => {
     return { visibilityFilter };
 };
 
+/**
+ * A list of movies is rendered
+ * @function MoviesList
+ * @param {*} props 
+ * @returns {MovieCard} - movies can be filtered by name via the search bar
+ */
 function MoviesList(props) {
     const { movies, visibilityFilter } = props;
     let filteredMovies = movies;

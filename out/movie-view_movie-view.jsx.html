@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: movie-view/movie-view.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+    <div id="main">
+
+        <h1 class="page-title">Source: movie-view/movie-view.jsx</h1>
+
+
+
+
+
+
+        <section>
+            <article>
+                <pre class="prettyprint source linenums"><code>import React from 'react';
+import './movie-view.scss';
+
+import PropTypes from 'prop-types';
+import axios from 'axios';
+
+import { Link } from 'react-router-dom';
+
+/* =============react-bootstrap-imports=============*/
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Spinner from 'react-bootstrap/Spinner';
+/* =============react-bootstrap-imports=============*/
+
+export class MovieView extends React.Component {
+    constructor() {
+        super();
+
+        this.state = {};
+    }
+
+    /**
+     * When the "Add to favorites" button is triggered, the movie is stored in the favourite movie list of the user
+     * @function addToFavourites
+     * @param {string} props - movie id
+     * @returns {movie._id} 
+     */
+    addToFavourites(e) {
+        const { movie } = this.props;
+        e.preventDefault();
+        axios.post(`https://rotten-potatoes3000.herokuapp.com/user/${localStorage.getItem('user')}/movies/${movie._id}`, {
+            username: localStorage.getItem('user')
+        }, {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        })
+            .then(res => {
+                alert(`${movie.title} has been added to your favorites list!`);
+            })
+            .catch(error => {
+                alert(`Unable to add ${movie.title} to your favorites list!` + error)
+            });
+    }
+
+
+    render() {
+        const { movie } = this.props;
+        if (!movie) return &lt;div>
+            &lt;Spinner animation="border" role="status">
+                &lt;span className="sr-only">Loading...&lt;/span>
+            &lt;/Spinner>
+        &lt;/div>;
+
+        return (
+            &lt;div className="movie-view">
+                &lt;Card className="movie-view-card">
+                    &lt;Card.Img alt="movie-poster" variant="top" className="movie-poster" src={movie.imagePath} />
+                    &lt;Card.Body>
+
+                        &lt;Card.Title className="movie-title">
+                            {movie.title}
+                        &lt;/Card.Title>
+
+                        &lt;Card.Text className="movie-description">
+                            {movie.description}
+                        &lt;/Card.Text>
+
+                        &lt;Card.Text className="genre-name">Genre: &lt;/Card.Text>
+                        &lt;Link className="movie-view-link" to={`/genres/${movie.genre.name}`}>
+                            &lt;Card.Text className="genre-name">{movie.genre.name}&lt;/Card.Text>
+                        &lt;/Link>
+                        &lt;br>&lt;/br>
+
+                        &lt;Card.Text className="director-name">Director: &lt;/Card.Text>
+                        &lt;Link className="movie-view-link" to={`/directors/${movie.director.name}`}>
+                            &lt;Card.Text className="director-name">{movie.director.name}&lt;/Card.Text>
+                        &lt;/Link>
+                        &lt;br>&lt;/br>&lt;br>&lt;/br>
+                        &lt;Button
+                            size="sm"
+                            variant="outline-primary"
+                            className="add-favourite-button"
+                            onClick={e => this.addToFavourites(e)}
+                        >
+                            Add to favorites
+                        &lt;/Button>
+                        &lt;br>&lt;/br>&lt;br>&lt;/br>
+
+
+                        &lt;Link to={'/'}>
+                            &lt;Button
+                                variant="outline-dark"
+                                className="movie-view-return-button">
+                                Return to list
+                            &lt;/Button>
+                        &lt;/Link>
+
+                    &lt;/Card.Body>
+                &lt;/Card>
+            &lt;/div >
+        );
+    }
+}
+
+/*=================PropTypes=================*/
+
+MovieView.propTypes = {
+    movie: PropTypes.shape({
+        _id: PropTypes.string,
+        title: PropTypes.string,
+        description: PropTypes.string,
+        imagePath: PropTypes.string
+    }).isRequired
+}
+/*=================PropTypes=================*/</code></pre>
+            </article>
+        </section>
+
+
+
+
+    </div>
+
+    <nav>
+        <h2><a href="index.html">Home</a></h2>
+        <h3>Global</h3>
+        <ul>
+            <li><a href="global.html#addToFavourites">addToFavourites</a></li>
+            <li><a href="global.html#deleteFavouriteMovie">deleteFavouriteMovie</a></li>
+            <li><a href="global.html#deleteUserProfile">deleteUserProfile</a></li>
+            <li><a href="global.html#DirectorView">DirectorView</a></li>
+            <li><a href="global.html#GenreView">GenreView</a></li>
+            <li><a href="global.html#getMovies">getMovies</a></li>
+            <li><a href="global.html#getUserProfile">getUserProfile</a></li>
+            <li><a href="global.html#handleProfileUpdate">handleProfileUpdate</a></li>
+            <li><a href="global.html#handleRegister">handleRegister</a></li>
+            <li><a href="global.html#handleSubmit">handleSubmit</a></li>
+            <li><a href="global.html#MovieCard">MovieCard</a></li>
+            <li><a href="global.html#MoviesList">MoviesList</a></li>
+            <li><a href="global.html#onLoggedIn">onLoggedIn</a></li>
+            <li><a href="global.html#onLogout">onLogout</a></li>
+            <li><a href="global.html#updateUserProfile">updateUserProfile</a></li>
+            <li><a href="global.html#VisibilityFilterInput">VisibilityFilterInput</a></li>
+        </ul>
+    </nav>
+
+    <br class="clear">
+
+    <footer>
+        <p>
+            Documentation generated by
+            <a href="https://github.com/lucianmurmurache" target="_blank"> Lucian Murmurache </a>
+            using <a href="https://github.com/jsdoc/jsdoc" target="_blank"> JSDoc </a> on the 2nd of May 2020
+        </p>
+    </footer>
+
+    <script> prettyPrint(); </script>
+    <script src="scripts/linenumber.js"> </script>
+</body>
+
+</html>

@@ -33,6 +33,12 @@ export class ProfileView extends React.Component {
         }
     }
 
+    /**
+     * Gets the user data to be displayed and sets the state.
+     * @function getUserProfile
+     * @param {string} token 
+     * @returns {object} user data
+     */
     getUserProfile(token) {
         let username = localStorage.getItem('user');
         axios.get(`https://rotten-potatoes3000.herokuapp.com/user/${username}`, {
@@ -53,6 +59,13 @@ export class ProfileView extends React.Component {
             });
     }
 
+    /**
+     * Deletes the favourite movie from the logged in user's list.
+     * @function deleteFavouriteMovie
+     * @param {*} event 
+     * @param {*} favouriteMovie 
+     * @returns {alert} Informs the user that the movie has been deleted
+     */
     deleteFavouriteMovie(event, favouriteMovie) {
         event.preventDefault();
         let username = localStorage.getItem('user');

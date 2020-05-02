@@ -26,7 +26,6 @@ import { GenreView } from '../genre-view/genre-view';
 import { LoginView } from '../login-view/login-view';
 import MoviesList from '../movies-list/movies-list';
 
-
 export class MainView extends React.Component {
 
     constructor() {
@@ -41,6 +40,12 @@ export class MainView extends React.Component {
         };
     }
 
+    /**
+     * When the user has logged in, the list of available movies is rendered
+     * @function getMovies
+     * @param {*} token 
+     * @returns {array} movie list
+     */
     getMovies(token) {
         axios.get('https://rotten-potatoes3000.herokuapp.com/movies', {
             headers: { Authorization: `Bearer ${token}` }
@@ -57,6 +62,12 @@ export class MainView extends React.Component {
             });
     }
 
+    /**
+     * Get user profile data
+     * @function getUserProfile
+     * @param {*} token 
+     * @returns {object}
+     */
     getUserProfile(token) {
         let username = localStorage.getItem('user');
         axios.get(`https://rotten-potatoes3000.herokuapp.com/user/${username}`, {
@@ -73,6 +84,12 @@ export class MainView extends React.Component {
             });
     }
 
+    /**
+     * User profile update
+     * @function updateUserProfile
+     * @param {*} data 
+     * @returns {object}
+     */
     updateUserProfile(data) {
         this.setState({
             userInfo: data
@@ -91,6 +108,13 @@ export class MainView extends React.Component {
         }
     }
 
+    /**
+     * Information sent to post from login-view
+     * @function onLoggedIn
+     * @param {*} authData 
+     * @returns {localStorage}
+     * @returns {state}
+     */
     onLoggedIn(authData) {
         this.setState({
             user: authData.user.username
@@ -104,6 +128,12 @@ export class MainView extends React.Component {
         });
     }
 
+    /**
+     * Once the logout is triggered, the local storage is removed and the login page is rendered.
+     * @function onLogout
+     * @param user
+     * @returns {state} 
+     */
     onLogout() {
         localStorage.removeItem('user');
         localStorage.removeItem('token');

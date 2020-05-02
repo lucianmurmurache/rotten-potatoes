@@ -11,6 +11,13 @@ import Col from 'react-bootstrap/Col';
 import Spinner from 'react-bootstrap/Spinner';
 /* =============react-bootstrap-imports=============*/
 
+/**
+ * The movie card renders the movie data, such as the movie title, image and a description of up to 100 characters.
+ * @function MovieCard
+ * @param {string} props - movie
+ * @returns {MovieCard}
+ */
+
 export class MovieCard extends React.Component {
     render() {
         const { movie } = this.props;

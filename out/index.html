@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+    <div id="main">
+
+        <h1 class="page-title">Rotten-potatoes3000</h1>
+        <!--Summary-->
+        <h2>Summary</h2>
+        <div>
+            <p>
+                Using React, build the client-side for an application called rotten-potatoes based on server-side code
+                (REST API and database).
+            </p>
+            <p>
+                Stack: MongoDB, ExpressJS, ReactJS, NodeJS(MERN App).
+            </p>
+        </div>
+        <!--Summary-->
+
+
+        <!--Project Description-->
+        <h2>Project Description</h2>
+        <div>
+            <p>RottenPotatoes provides users with access to information related to different movies, directors, movie
+                genres and actors.
+            </p>
+            <p>
+                Users will be able to register, update their information and create a list of their favourite movies.
+            </p>
+        </div>
+        <!--Project Description-->
+
+
+        <!--Installation instructions-->
+
+        <div>
+
+            <h2>Installation instructions</h2>
+
+            <ol>
+                <li>
+                    <p>
+                        Once you cloned the repository, navigate to the root directry and run <b>npm install</b>
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        Next, run <b>npm run start</b>
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        Open your browser of choice and nagivate to the <i>localhost</i> specified in your terminal
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        To login, use the following credentials to login:
+                    </p>
+                    <ul>
+                        <li>
+                            <p>
+                                Username: test1
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Password testpassword1
+                            </p>
+                        </li>
+                    </ul>
+
+                </li>
+            </ol>
+        </div>
+
+        <!--Installation instructions-->
+
+
+        <!--Dependencies-->
+
+        <div>
+
+            <h2>Dependencies</h2>
+
+            <ul>
+                <li>
+                    <p>
+                        uuid
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        cors
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        react
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        axios
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        bcrypt
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        morgan
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        lodash
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        express
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        passport
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        mongoose
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        react-dom
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        prop-types
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        body-parser
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        jsonwebtoken
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        passport-jwt
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        passport-local
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        react-bootstrap
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        react-router-dom
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        express-validator
+                    </p>
+                </li>
+
+            </ul>
+        </div>
+
+        <!--Dependencies-->
+
+
+        <!--Features-->
+
+        <div>
+            <h2>Features</h2>
+
+            <ul>
+                <li>
+                    <p>
+                        Return a list of all available movies to the user.
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        Return data (description, genre, director, image URL, whether it’s featured or not) about a
+                        single movie by title to the user.
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        Return data about a genre by name.
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        Return data about a director (including bio, birth year) by name.
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        Allow new users to register.
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        Allow users to update their user info (username, password, email, date of birth).
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        Allow users to add and remove a movie to their list of favorites.
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        Allow existing users to deregister.
+                    </p>
+                </li>
+
+            </ul>
+        </div>
+
+        <!--Features-->
+
+
+        <!--Requirements-->
+
+        <div>
+
+            <h2>Requirements</h2>
+
+            <ul>
+                <li>
+                    <p>
+                        The application must be a single-page application (SPA)
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        The API must be a <a href="https://nodejs.org/en/" target="_blank">Node.js</a> and
+                        <a href="http://expressjs.com/" target="_blank">Express</a> application
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        The API must use REST architecture, with URL endpoints corresponding to the data operations
+                        listed in Features(see above section)
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        The API must use at least three middleware modules, such as the
+                        <a href="https://www.npmjs.com/package/body-parser" target="_blank">body-parser</a>
+                        package for reading data from requests and
+                        <a href="https://www.npmjs.com/package/morgan" target="_blank">morgan</a> for logging
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        The API must use a “package.json” file.
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        The database must be built using <a href="https://www.mongodb.com/" target="_blank">MongoDB</a>
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        The business logic must be modeled with <a href="https://mongoosejs.com/"
+                            target="_blank">Mongoose</a>
+                    </p>
+                </li>
+
+                <li>
+                    <p>
+                        The API must provide movie information in <a href="https://www.json.org/json-en.html"
+                            target="_blank">JSON</a> format
+                    </p>
+                </li>
+            </ul>
+
+        </div>
+
+        <!--Requirements-->
+
+    </div>
+
+    <nav>
+        <h2><a href="index.html">Home</a></h2>
+        <h3>Global</h3>
+        <ul>
+            <li><a href="global.html#addToFavourites">addToFavourites</a></li>
+            <li><a href="global.html#deleteFavouriteMovie">deleteFavouriteMovie</a></li>
+            <li><a href="global.html#deleteUserProfile">deleteUserProfile</a></li>
+            <li><a href="global.html#DirectorView">DirectorView</a></li>
+            <li><a href="global.html#GenreView">GenreView</a></li>
+            <li><a href="global.html#getMovies">getMovies</a></li>
+            <li><a href="global.html#getUserProfile">getUserProfile</a></li>
+            <li><a href="global.html#handleProfileUpdate">handleProfileUpdate</a></li>
+            <li><a href="global.html#handleRegister">handleRegister</a></li>
+            <li><a href="global.html#handleSubmit">handleSubmit</a></li>
+            <li><a href="global.html#MovieCard">MovieCard</a></li>
+            <li><a href="global.html#MoviesList">MoviesList</a></li>
+            <li><a href="global.html#onLoggedIn">onLoggedIn</a></li>
+            <li><a href="global.html#onLogout">onLogout</a></li>
+            <li><a href="global.html#updateUserProfile">updateUserProfile</a></li>
+            <li><a href="global.html#VisibilityFilterInput">VisibilityFilterInput</a></li>
+        </ul>
+    </nav>
+
+    <br class="clear">
+
+    <footer>
+        <p>
+            Documentation generated by
+            <a href="https://github.com/lucianmurmurache" target="_blank"> Lucian Murmurache </a>
+            using <a href="https://github.com/jsdoc/jsdoc" target="_blank"> JSDoc </a> on the 2nd of May 2020
+        </p>
+    </footer>
+
+    <script> prettyPrint(); </script>
+    <script src="scripts/linenumber.js"> </script>
+</body>
+
+</html>
+<!--
+    jsdoc client/src/components/director-view/director-view.jsx client/src/components/genre-view/genre-view.jsx 
+    client/src/components/login-view/login-view.jsx client/src/components/main-view/main-view.jsx 
+    client/src/components/movie-card/movie-card.jsx client/src/components/movie-view/movie-view.jsx 
+    client/src/components/movies-list/movies-list.jsx client/src/components/profile-view/profile-view.jsx 
+    client/src/components/profile-view/profile-update.jsx client/src/components/registartion-view/registration-view.jsx 
+    client/src/components/visibility-filter-input/visibility-filter-input.jsx
+-->

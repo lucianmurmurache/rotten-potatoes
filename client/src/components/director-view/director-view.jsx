@@ -10,6 +10,14 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 /* =============react-bootstrap-imports=============*/
 
+/**
+ * Director information view - renders the director name, bio, birth and a list of movies directed that
+ * are available in the database.
+ * @function DirectorView
+ * @param {string} props - director, movies
+ * @returns {DirectorView}
+ */
+
 export class DirectorView extends React.Component {
     constructor() {
         super();

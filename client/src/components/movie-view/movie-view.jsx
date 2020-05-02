@@ -19,6 +19,12 @@ export class MovieView extends React.Component {
         this.state = {};
     }
 
+    /**
+     * When the "Add to favorites" button is triggered, the movie is stored in the favourite movie list of the user
+     * @function addToFavourites
+     * @param {string} props - movie id
+     * @returns {movie._id} 
+     */
     addToFavourites(e) {
         const { movie } = this.props;
         e.preventDefault();

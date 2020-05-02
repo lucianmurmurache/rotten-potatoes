@@ -8,6 +8,12 @@ import Form from 'react-bootstrap/Form';
 
 import { setFilter } from '../../actions/actions';
 
+/**
+ * Filters movies by name
+ * @function VisibilityFilterInput
+ * @param {*} props 
+ * @returns {setFilter}
+ */
 function VisibilityFilterInput(props) {
 
     return <div className="visibility-filter-input">
